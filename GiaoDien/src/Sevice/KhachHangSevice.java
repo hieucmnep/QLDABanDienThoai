@@ -7,6 +7,7 @@ package Sevice;
 import Model.KhachHang;
 import dbconnect.DBConnector;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class KhachHangSevice {
@@ -40,30 +41,37 @@ public class KhachHangSevice {
         return KH;
     }
 
-    public void Insert(KhachHang kh) {
+
+    public Integer add(KhachHang  kh) {
+        Integer row = null;
         try {
             Connection cnt = DBConnector.getConnection();
-            PreparedStatement psm = cnt.prepareStatement("INSERT INTO KHACHHANG (MAKH, TENKH, NGAYSINH, GIOITINH, SDT, TRANGTHAI, DIACHI, EMAIL) values (?,?,?,?,?,?,?,?)");
-            psm.setString(0, kh.getMaKH());
-            psm.setString(1, kh.getTenKH());
-            psm.setString(2, kh.getGioiTinh());
-            psm.setString(3, kh.getSdt());
-            psm.setString(4, kh.getEmail());
-//            psm.setDate(5, Date.valueOf(kh.getNgaySinh();
-            psm.setString(6, kh.getDiaChi());
-            psm.setBoolean(7, kh.getTrangThai());
+            PreparedStatement psm = cnt.prepareStatement("INSERT INTO KHACHHANG (IDKH,MAKH, TENKH, NGAYSINH, GIOITINH, SDT, TRANGTHAI, DIACHI, EMAIL) VALUES (?,?,?,?,?,?,?,?)");
+            psm.setInt(1, kh.getId());
+            psm.setString(1, kh.getMaKH());
+            psm.setString(2, kh.getTenKH());
+            psm.setString(3, kh.getGioiTinh());
+            psm.setString(4, kh.getSdt());
+            psm.setString(5, kh.getEmail());
+            psm.setDate(6, Date.valueOf(LocalDate.parse(kh.getNgaySinh().toString())));
+            psm.setString(7, kh.getDiaChi());
+            psm.setBoolean(8, kh.isTrangThai());
 
-            psm.executeUpdate();
+            row = psm.executeUpdate();
+            cnt.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return row;
     }
+    
+    
 
     public void Delete(KhachHang kh) {
         try {
             Connection cnt = DBConnector.getConnection();
             PreparedStatement psm = cnt.prepareStatement("delete khachhang where MaKH Like ?");
-            psm.setString(1, kh.getMaKH() );
+            psm.setString(1, kh.getMaKH());
             psm.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,4 +98,4 @@ public class KhachHangSevice {
         return a2;
     }
 
-    }
+}
