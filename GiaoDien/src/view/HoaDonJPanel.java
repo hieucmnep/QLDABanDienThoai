@@ -53,6 +53,12 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Mã Hóa Đơn:");
 
+        txtMaHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaHDActionPerformed(evt);
+            }
+        });
+
         jLabel9.setText("Ngày Tạo:");
 
         jLabel5.setText("Mã Sản Phẩm:");
@@ -361,6 +367,10 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         ArrayList<HoaDonCT> lshd = shdct.InHoaDon();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtMaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaHDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaHDActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

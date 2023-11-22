@@ -4,6 +4,7 @@
  */
 package view;
 
+import Model.HoaDonCT;
 import Model.KhachHang;
 import Sevice.KhachHangSevice;
 import java.lang.reflect.Array;
@@ -28,6 +29,7 @@ public class KháchHang extends javax.swing.JPanel {
     private final KhachHangSevice khsevice = new KhachHangSevice();
     DefaultTableModel model = new DefaultTableModel();
     int idex;
+    private HoaDonJPanel panlhoadon;
 
     public KháchHang() {
         initComponents();
@@ -41,26 +43,32 @@ public class KháchHang extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (KhachHang kh : kh2) {
-            model.addRow(new Object[]{kh.getId(),kh.getTenKH(), kh.getMaKH(), kh.getNgaySinh(), kh.getGioiTinh(), kh.getSdt(), kh.getEmail(), kh.getDiaChi(), kh.isTrangThai() ? "Mới" : "Lâu Năm"});
+            model.addRow(new Object[]{kh.getId(), kh.getMaKH(), kh.getTenKH(), kh.getEmail(), kh.getDiaChi(), kh.getNgaySinh(), kh.getGioiTinh(), kh.getSdt(), kh.isTrangThai() ? "Mới" : "Lâu Năm"});
         }
     }
 
     private void hienthi() {
-        txtMa.setText(tblbang.getValueAt(idex, 0).toString());
-        txtTen.setText(tblbang.getValueAt(idex, 1).toString());
-        txtMa.setText(tblbang.getValueAt(idex, 2).toString());
-        txtemai.setText(tblbang.getValueAt(idex, 6).toString());
-        tardiachi.setText(tblbang.getValueAt(idex, 7).toString());
-        txtngaysinh.setDateFormatString(tblbang.getValueAt(idex, 3).toString());
-        txtsdt.setText(tblbang.getValueAt(idex, 5).toString());
+        txtMa.setText(tblbang.getValueAt(idex, 1).toString());
+        txtTen.setText(tblbang.getValueAt(idex, 2).toString());
+        tardiachi.setText(tblbang.getValueAt(idex, 4).toString());
+        txtngaysinh.setDateFormatString(tblbang.getValueAt(idex, 5).toString());
+        txtsdt.setText(tblbang.getValueAt(idex, 7).toString());
         cbbtrangthai.setSelectedItem(tblbang.getValueAt(idex, 8).toString());
-        String GioiTinh = tblbang.getValueAt(idex, 4).toString();
+        String GioiTinh = tblbang.getValueAt(idex, 6).toString();
         if (GioiTinh.equals("Nam")) {
             rdonam.setSelected(true);
         } else {
             rdonu.setSelected(true);
         }
-        String TrangThai = tblbang.getValueAt(idex, 8).toString();
+        String Email = tblbang.getValueAt(idex, 3).toString();
+
+        if (Email != null) {
+            txtemai.setText(Email.toString());
+            // Tiếp tục xử lý giá trị làm gì đó...
+        } else {
+            txtemai.setText("");
+            // Xử lý trường hợp giá trị là null
+        }
 
     }
 
@@ -177,7 +185,6 @@ public class KháchHang extends javax.swing.JPanel {
         jTextField7 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         btnxuatthongtin = new javax.swing.JButton();
-        btnnhapthongtin = new javax.swing.JButton();
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -555,10 +562,6 @@ public class KháchHang extends javax.swing.JPanel {
             }
         });
 
-        btnnhapthongtin.setBackground(new java.awt.Color(51, 255, 255));
-        btnnhapthongtin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnnhapthongtin.setText("Nhập Thông Tin");
-
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -566,27 +569,20 @@ public class KháchHang extends javax.swing.JPanel {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnxuatthongtin, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 803, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(16, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnxuatthongtin, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnnhapthongtin, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnxuatthongtin)
-                    .addComponent(btnnhapthongtin))
-                .addGap(44, 44, 44)
+                .addContainerGap(61, Short.MAX_VALUE)
+                .addComponent(btnxuatthongtin)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
@@ -715,34 +711,43 @@ public class KháchHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnxoaActionPerformed
 
     private void btnxuatthongtinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxuatthongtinActionPerformed
-        // TODO add your handling code here:
+        ArrayList<KhachHang> lshd = khsevice.InHoaDon();
     }//GEN-LAST:event_btnxuatthongtinActionPerformed
 
     private void txtTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimkiemActionPerformed
-//        String maKH = txtMa.getText().trim();
-//        if (!maKH.isEmpty()) {
-//            List<KhachHang> grades = khsevice.getGradesByMasv(masv);
-//            if (!grades.isEmpty()) {
-//
-//                Grade firstStudentGrade = grades.get(0);
-//
-//                txthoten.setText(firstStudentGrade.getHoten());
-//                txtTinhoc.setText(String.valueOf(firstStudentGrade.getTinhoc()));
-//                txtTienganh.setText(String.valueOf(firstStudentGrade.getTienganh()));
-//                txtgdtc.setText(String.valueOf(firstStudentGrade.getGdtc()));
-//                txtdiemtb.setText(String.valueOf(firstStudentGrade.getDiemTB()));
-//                txtma.setText(firstStudentGrade.getMasv());
-//            } else {
-//                JOptionPane.showMessageDialog(this, "Không tìm thấy sinh viên với mã " + masv, "Thông báo", JOptionPane.WARNING_MESSAGE);
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Vui lòng nhập mã sinh viên để tìm kiếm", "Thông báo", JOptionPane.WARNING_MESSAGE);
+//       // TODO add your handling code here:
+        String maHD = txtMa.getText().trim();
+        String maSP = txtTen.getText().trim();
+        String NgayTao = txtemai.getText().trim();
+
+        // Bước 2: Thực hiện tìm kiếm
+        ArrayList<KhachHang> ketQuaTimKiem = new ArrayList<>();
+        if (!maHD.isEmpty()) {
+            ketQuaTimKiem.addAll(khsevice.timKiemMaKH(maHD));
+        }
+//        if (!maSP.isEmpty()) {
+//            ketQuaTimKiem.addAll(shdct.timKiemMaSP(maSP));
+//        }
+//        if (!NgayTao.isEmpty()) {
+//            ketQuaTimKiem.addAll(shdct.timKiemNgayTao(NgayTao));
 //        }
 
+        // Bước 3: Hiển thị kết quả tìm kiếm
+        if (ketQuaTimKiem.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Không có dữ liệu phù hợp");
+            return;
+        } else {
+            // Xóa dữ liệu trong bảng
+            model.setRowCount(0);
+
+            for (KhachHang kh : ketQuaTimKiem) {
+                model.addRow(new Object[]{kh.getId(), kh.getMaKH(), kh.getTenKH(), kh.getEmail(), kh.getDiaChi(), kh.getNgaySinh(), kh.getGioiTinh(), kh.getSdt(), kh.isTrangThai() ? "Mới" : "Lâu Năm"});
+            }
+        }
     }//GEN-LAST:event_txtTimkiemActionPerformed
 
     private void tblbanggiaodichAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblbanggiaodichAncestorAdded
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_tblbanggiaodichAncestorAdded
 
     private void cbbThuongHieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbbThuongHieuMouseClicked
@@ -775,7 +780,6 @@ public class KháchHang extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnlammoi;
-    private javax.swing.JButton btnnhapthongtin;
     private javax.swing.JButton btnsua;
     private javax.swing.JButton btnthem;
     private javax.swing.JButton btnxoa;

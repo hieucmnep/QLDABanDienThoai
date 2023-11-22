@@ -4,13 +4,24 @@
  */
 package Sevice;
 
+import Model.HoaDonCT;
 import Model.KhachHang;
 import dbconnect.DBConnector;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class KhachHangSevice {
 
@@ -72,7 +83,7 @@ public class KhachHangSevice {
             Connection cnt = DBConnector.getConnection();
             String sql = "DELETE FROM KhachHang WHERE IDKH = ?";
             PreparedStatement psm = cnt.prepareStatement(sql);
-            psm.setInt(1, kh.getId());
+            psm.setInt(1, idToDelete);
             int rowsAffected = psm.executeUpdate();
             psm.close();
             cnt.close();
@@ -90,14 +101,12 @@ public class KhachHangSevice {
             PreparedStatement psm = cnt.prepareStatement(sql);
             psm.setString(1, kh.getMaKH());
             psm.setString(2, kh.getTenKH());
-            psm.setDate(4, Date.valueOf(kh.getNgaySinh()));
+            psm.setDate(3, Date.valueOf(kh.getNgaySinh()));
             psm.setString(4, kh.getGioiTinh());
             psm.setString(5, kh.getSdt());
             psm.setBoolean(6, kh.isTrangThai());
             psm.setString(7, kh.getDiaChi());
             psm.setString(8, kh.getEmail());
-            psm.setInt(9, kh.getId());
-
             row = psm.executeUpdate();
             cnt.close();
         } catch (Exception e) {
@@ -105,17 +114,69 @@ public class KhachHangSevice {
         }
         return row;
     }
+ public ArrayList<KhachHang> InHoaDon() {
+        ArrayList<KhachHang> list = GetAll();
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet();
+        Row row;
+        Cell cell;
 
-    public List<KhachHang> search(String keyword) {
-        List<KhachHang> results = new ArrayList<>();
-        Connection cnt = DBConnector.getConnection();
-        String sql = "SELECT * FROM KhachHang WHERE MAKH LIKE ? OR TENKH LIKE ?";
+        // write the column headers
+        row = sheet.createRow(0);
+        String[] headers = {"MAHD", "MASPCT", "DONGIA", "SOLUONG", "TIENKHACHDUA", "TIENTRALAI", "NGAYMUA", "HINHTHUCTHANHTOAN", "TONGTIEN", "TRANGTHAI", "GHICHU", "GIAMGIA"};
+        for (int c = 0; c < headers.length; c++) {
+            cell = row.createCell(c);
+            cell.setCellValue(headers[c]);
+        }
+
+        // write the data rows
+        for (int r = 0; r < list.size(); r++) {
+            row = sheet.createRow(r + 1);
+            KhachHang KH = list.get(r);
+            cell = row.createCell(0);
+            cell.setCellValue(KH.getMaKH());
+            cell = row.createCell(1);
+            cell.setCellValue(KH.getTenKH());
+            cell = row.createCell(2);
+            cell.setCellValue(KH.getNgaySinh());
+            cell = row.createCell(3);
+            cell.setCellValue(KH.getEmail());
+            cell = row.createCell(4);
+            cell.setCellValue(KH.getDiaChi());
+            cell = row.createCell(5);
+            cell.setCellValue(KH.getGioiTinh());
+            cell = row.createCell(6);
+            cell.setCellValue(KH.getSdt());
+            cell = row.createCell(7);
+            cell.setCellValue(KH.isTrangThai());
+            cell = row.createCell(8);
+        }
+
         try {
-            PreparedStatement psm = cnt.prepareStatement(sql);
-            psm.setString(1, "%" + keyword + "%");
-            psm.setString(2, "%" + keyword + "%");
-
-            ResultSet rs = psm.executeQuery();
+            File f = new File("D://danhsach.xlsx");
+            FileOutputStream fis = new FileOutputStream(f);
+            workbook.write(fis);
+            fis.close();
+            JOptionPane.showMessageDialog(null, "In Thành Công");
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Lỗi mở file");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Lỗi ghi file");
+        }
+        return list;
+    }  
+ 
+    public ArrayList<KhachHang> timKiemMaKH(String ma) {
+        ArrayList<KhachHang> lskh = new ArrayList<>();
+        Connection cn = DBConnector.getConnection();
+        String sql = "SELECT * FROM KHACHHANG where MAKH = ?";
+        Statement st;
+        try {
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, ma); // Thiết lập giá trị cho tham số 1
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 KhachHang kh = new KhachHang();
                 kh.setId(rs.getInt("IDKH"));
@@ -126,67 +187,76 @@ public class KhachHangSevice {
                 kh.setEmail(rs.getString("EMAIL"));
                 kh.setNgaySinh(rs.getString("NGAYSINH"));
                 kh.setDiaChi(rs.getNString("DIACHI"));
-                kh.setTrangThai(rs.getBoolean("TrangThai"));
-                results.add(kh);
+                kh.setTrangThai(rs.getBoolean("TRANGTHAI"));
+                lskh.add(kh);
             }
-
-            psm.close();
+            cn.close();
+            ps.close();
             rs.close();
-            cnt.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return results;
+        return lskh ;
     }
 
-//    public Integer Jonbang(KhachHang kh) {
-//        String query = "SELECT HOADON.ID, TenKH, SDT, NgayGD, TenSP, SoLuong, GiaBan, TongTien, TrangThai "
-//                + "FROM HOADON "
-//                + "JOIN HOADONCT ON HOADON.ID = HOADONCT.MAHD";
-//        try {
-//            Connection cnt = DBConnector.getConnection();
-//            PreparedStatement psm = cnt.prepareStatement(query);
-//
-//            // Execute the query and get the result set
-//            ResultSet = psm.executeQuery();
-//
-//            // Process the result set
-//            while (resultSet.next()) {
-//                String id = resultSet.getString("ID");
-//                String tenKH = resultSet.getString("TenKH");
-//                String sdt = resultSet.getString("SDT");
-//                String ngayGD = resultSet.getString("NgayGD");
-//                String tenSP = resultSet.getString("TenSP");
-//                int soLuong = resultSet.getInt("SoLuong");
-//                float giaBan = resultSet.getFloat("GiaBan");
-//                float tongTien = resultSet.getFloat("TongTien");
-//                boolean trangThai = resultSet.getBoolean("TrangThai");
-//
-//                // Process the retrieved data as needed
-//                System.out.println(id + ", " + tenKH + ", " + sdt + ", " + ngayGD + ", "
-//                        + tenSP + ", " + soLuong + ", " + giaBan + ", "
-//                        + tongTien + ", " + trangThai);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            // Close resources in reverse order of their creation
-//            try {
-//                if (resultSet != null) {
-//                    resultSet.close();
-//                }
-//                if (preparedStatement != null) {
-//                    preparedStatement.close();
-//                }
-//                if (connection != null) {
-//                    connection.close();
-//                }
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-//}
-//} catch (Exception e) {
-//        }
+     public ArrayList<KhachHang> timKiemTenKH(String Ten) {
+        ArrayList<KhachHang> lskh = new ArrayList<>();
+        Connection cn = DBConnector.getConnection();
+        String sql = "SELECT * FROM KHACHHANG where TenKH = ?";
+        Statement st;
+        try {
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, Ten); // Thiết lập giá trị cho tham số 1
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                KhachHang kh = new KhachHang();
+                kh.setId(rs.getInt("IDKH"));
+                kh.setMaKH(rs.getString("MAKH"));
+                kh.setTenKH(rs.getNString("TENKH"));
+                kh.setGioiTinh(rs.getString("GIOITINH"));
+                kh.setSdt(rs.getString("SDT"));
+                kh.setEmail(rs.getString("EMAIL"));
+                kh.setNgaySinh(rs.getString("NGAYSINH"));
+                kh.setDiaChi(rs.getNString("DIACHI"));
+                kh.setTrangThai(rs.getBoolean("TRANGTHAI"));
+                lskh.add(kh);
+            }
+            cn.close();
+            ps.close();
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lskh ;
+    }
+     public ArrayList<KhachHang> timKiemNgaySinh(String NgaySinh) {
+        ArrayList<KhachHang> lskh = new ArrayList<>();
+        Connection cn = DBConnector.getConnection();
+        String sql = "SELECT * FROM KHACHHANG where NGAYSINH = ?";
+        Statement st;
+        try {
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, NgaySinh); // Thiết lập giá trị cho tham số 1
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                KhachHang kh = new KhachHang();
+                kh.setId(rs.getInt("IDKH"));
+                kh.setMaKH(rs.getString("MAKH"));
+                kh.setTenKH(rs.getNString("TENKH"));
+                kh.setGioiTinh(rs.getString("GIOITINH"));
+                kh.setSdt(rs.getString("SDT"));
+                kh.setEmail(rs.getString("EMAIL"));
+                kh.setNgaySinh(rs.getString("NGAYSINH"));
+                kh.setDiaChi(rs.getNString("DIACHI"));
+                kh.setTrangThai(rs.getBoolean("TRANGTHAI"));
+                lskh.add(kh);
+            }
+            cn.close();
+            ps.close();
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lskh ;
+    }
 }
