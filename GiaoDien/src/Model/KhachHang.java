@@ -11,17 +11,18 @@ package Model;
 import java.util.Date;
 
 public class KhachHang {
-    private Integer id;
+
+    private int id;
     private String maKH;
     private String tenKH;
     private String sdt;
-    private Date ngaySinh;
+    private String ngaySinh;
     private String email;
     private String diaChi;
     private String gioiTinh;
     private boolean trangThai;
 
-    public KhachHang(Integer id, String maKH, String tenKH, String sdt, Date ngaySinh, String email, String diaChi, String gioiTinh, boolean trangThai) {
+    public KhachHang(int id, String maKH, String tenKH, String sdt, String ngaySinh, String email, String diaChi, String gioiTinh, boolean trangThai) {
         this.id = id;
         this.maKH = maKH;
         this.tenKH = tenKH;
@@ -36,11 +37,11 @@ public class KhachHang {
     public KhachHang() {
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -68,11 +69,11 @@ public class KhachHang {
         this.sdt = sdt;
     }
 
-    public Date getNgaySinh() {
+    public String getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(Date ngaySinh) {
+    public void setNgaySinh(String ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
@@ -108,7 +109,4 @@ public class KhachHang {
         this.trangThai = trangThai;
     }
 
-   
-
-   
 }

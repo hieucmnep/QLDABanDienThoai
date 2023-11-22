@@ -17,7 +17,7 @@ public class DBConnector {
     protected Connection connection;
     private static final String HOSTNAME = "localhost";
     private static final String PORT = "1433";
-    private static final String DBNAME = "duan1_1";
+    private static final String DBNAME = "DU_AN_1";
     private static final String USERNAME = "sa";
     private static final String PASSWORD = "2003";
 

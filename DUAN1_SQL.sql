@@ -1,7 +1,8 @@
-﻿DROP DATABASE duan1
-CREATE DATABASE duan1_1
-GO
-USE duan1_1
+﻿DROP DATABASE DU_AN_1;
+go
+CREATE DATABASE DU_AN_1;
+go
+USE DU_AN_1
 GO
 
 DROP TABLE NHANVIEN
@@ -29,18 +30,16 @@ DROP TABLE KHACHHANG
 CREATE TABLE KHACHHANG
 (
 	IDKH INT IDENTITY(1,1) ,
-	MAKH VARCHAR(50) NOT NULL,
-	TENKH NVARCHAR(50) NOT NULL,
-	NGAYSINH DATE NOT NULL,
+	MAKH VARCHAR(50) NOT NULL PRIMARY KEY ,
+	TENKH NVARCHAR(50) NULL,
+	NGAYSINH DATE,
 	GIOITINH  VARCHAR(20),
-	SDT Nvarchar(50) NOT NULL ,
-	TRANGTHAI VARCHAR(50) NOT NULL,	
-	DIACHI	Nvarchar(50) NOT NULl,
-	EMAIL	Nvarchar(50) NOT NULl,
-	CONSTRAINT PK_KHACHHANG PRIMARY KEY(MAKH),
-	)
+	SDT Nvarchar(50)  NULL ,
+	TRANGTHAI bit,	
+	DIACHI	Nvarchar(50) NULl,
+	EMAIL	Nvarchar(50) NULl,
+)
 --- THÊM DỮ LIỆU 
-
 DROP TABLE HOADONCT
 CREATE TABLE HOADONCT
 (
@@ -60,7 +59,6 @@ CREATE TABLE HOADONCT
 	CONSTRAINT FK_HOADONCT_SANPHAM FOREIGN KEY(MASP) REFERENCES SANPHAM, 
 )
 --- THÊM DỮ LIỆU 
-select * from HOADONCT
 
 CREATE TABLE HOADON
 (
@@ -99,20 +97,29 @@ CREATE TABLE SANPHAM
 DROP TABLE SANPHAMCT
 CREATE TABLE SANPHAMCT
 (
-	ID INT IDENTITY(1,1),
-	MASPCT VARCHAR(50) NOT NULL PRIMARY KEY,
-	MAMAU VARCHAR(50) NOT NULL,
-	MASP VARCHAR(50) NOT NULL,
-	MARAM VARCHAR(50) NOT NULL,
-	MANSX VARCHAR(50) NOT NULL,
-	NGAYNHAP VARCHAR(50) NOT NULL,
-	SOLUONG INT NOT NULL,
-	GIANHAP FLOAT NOT NULL,
-	CONSTRAINT FK_SPCHITIET FOREIGN KEY(MASP) REFERENCES SANPHAM(MASP),
-	CONSTRAINT FK_SPCHITIET_MAUSAC FOREIGN KEY(MASP) REFERENCES MAUSAC(MAMAU),
-	CONSTRAINT FK_SPCHITIET_RAM FOREIGN KEY(MARAM) REFERENCES RAM(MARAM),
-	CONSTRAINT FK_SPCHITIET_NOISANXUAT FOREIGN KEY(MARAM) REFERENCES NOISANXUAT(MANSX),
-)
+    ID INT IDENTITY(1, 1),
+    MASPCT VARCHAR(50) NOT NULL PRIMARY KEY,
+    MAMAU VARCHAR(50) NOT NULL,
+    MASP VARCHAR(50) NOT NULL,
+    MARAM VARCHAR(50) NOT NULL,
+    MANSX VARCHAR(50) NOT NULL,
+    NGAYNHAP VARCHAR(50) NOT NULL,
+    SOLUONG INT NOT NULL,
+    GIANHAP FLOAT NOT NULL,
+    CONSTRAINT FK_SPCHITIET FOREIGN KEY (MASP) REFERENCES SANPHAM (MASP),
+    CONSTRAINT FK_SPCHITIET_MAUSAC FOREIGN KEY (MAMAU) REFERENCES MAUSAC (MAMAU),
+    CONSTRAINT FK_SPCHITIET_RAM FOREIGN KEY (MARAM) REFERENCES RAM (MARAM),
+    CONSTRAINT FK_SPCHITIET_NOISANXUAT FOREIGN KEY (MANSX) REFERENCES NOISANXUAT (MANSX)
+);
+
+-- THÊM DỮ LIỆU
+INSERT INTO SANPHAMCT (MASPCT, MAMAU, MASP, MARAM, MANSX, NGAYNHAP, SOLUONG, GIANHAP)
+VALUES
+('SPCT001', 'MS001', 'SP001', 'RM001', 'NSX001', '2022-12-01', 100, 600),
+('SPCT002', 'MS002', 'SP002', 'RM002', 'NSX002', '2023-01-15', 50, 1200),
+('SPCT003', 'MS003', 'SP003', 'RM003', 'NSX003', '2023-02-20', 80, 800),
+('SPCT004', 'MS004', 'SP004', 'RM004', 'NSX001', '2023-03-10', 30, 1500),
+('SPCT005', 'MS005', 'SP005', 'RM005', 'NSX002', '2023-04-05', 60, 2000);
 --- THÊM DỮ LIỆU 
 
 CREATE TABLE MAUSAC 
@@ -153,6 +160,9 @@ SELECT * FROM SANPHAM
 SELECT * FROM HOADON
 SELECT * FROM HOADONCT
 SELECT * FROM KHACHHANG
+INSERT INTO KHACHHANG (MAKH, TENKH, NGAYSINH, GIOITINH, SDT, TRANGTHAI, DIACHI, EMAIL)
+VALUES 
+('KH009', N'Nguyen Van A', '2003-08-19', N'Nam', '036858383', 1, N'123 Duong ABC', 'nguyenvana@gmail.com')
 SELECT * FROM NHANVIEN
 SELECT * FROM KHOHANG
 SELECT * FROM RAM
@@ -160,40 +170,24 @@ SELECT * FROM NOISANXUAT
 SELECT * FROM MAUSAC
 
 -- NHÂN VIÊN 
-DROP TABLE NHANVIEN
 INSERT INTO NHANVIEN (MANV, TENNV, NGAYSINH, SDT, TENTK, CHUCVU, DIACHI, CCCD, EMAIL, GIOITINH, TRANGTHAI, HINHANH)
 VALUES
-('NV001', N'Nguyễn Huy Hoàng', '1990-01-01', '023456789', 'HuyHoang06', N'Quản Lý', N'Hà Nội', '083456789012', 'huyhoang@email.com', N'NAM', N'ĐANG LÀM VIỆC', 'profile.jpg'),
-('NV002', N'Hà Huy Toàn', '1990-08-13', '023456789', 'HuyToan93', N'Nhân Viên', N'Hà Nam', '083456789012', 'huytoan@email.com', N'NAM', N'Đã Nghỉ Việc', 'profile1.jpg'),
-('NV003', N'Nguyễn Trà My', '1999-08-01', '023456789', 'Tramy09', N'Nhân Viên', N'Hà Nội', '083456789012', 'tramy@email.com', N'Nữ', N'ĐANG LÀM VIỆC', 'profile2.jpg'),
-('NV004', N'Nguyễn Khánh Linh', '1990-07-18', '023456789', 'KhanhLinh08', N'Nhân Viên', N'Hà Nội', '083456789012', 'khanhlinh@email.com', N'NAM', N'ĐANG LÀM VIỆC', 'profile3.jpg'),
-('NV005', N'Hà Duy Khánh', '1990-01-01', '023456789', 'DuyKhanh03', N'Nhân Viên', N'Phú Thọ', '083456789012', 'duykhanh@email.com', N'NAM', N'ĐANG LÀM VIỆC', 'profile6.jpg')
+('NV001', 'John Doe', '1990-01-01', '123456789', 'john_doe', 'Manager', '123 Main St', '123456789012', 'john.doe@email.com', 'Male', 'Active', 'profile.jpg'),
+('NV002', 'Jane Smith', '1985-05-15', '987654321', 'jane_smith', 'Sales Representative', '456 Oak St', '987654321012', 'jane.smith@email.com', 'Female', 'Active', 'avatar.jpg'),
+('NV003', 'Alice Johnson', '1992-08-20', '456789012', 'alice_j', 'IT Specialist', '789 Elm St', '456789012345', 'alice.johnson@email.com', 'Female', 'Active', 'alice.jpg'),
+('NV004', 'Bob Wilson', '1980-12-10', '555666777', 'bob_w', 'Marketing Manager', '101 Pine St', '555666777888', 'bob.wilson@email.com', 'Male', 'Inactive', 'bob.jpg'),
+('NV005', 'Eva Rodriguez', '1995-03-25', '777888999', 'eva_r', 'HR Coordinator', '222 Maple St', '777888999000', 'eva.rodriguez@email.com', 'Female', 'Active', 'eva.jpg');
 
 -- KHÁCH HÀNG 
 INSERT INTO KHACHHANG (MAKH, TENKH, NGAYSINH, GIOITINH, SDT, TRANGTHAI, DIACHI, EMAIL)
 VALUES 
-('KH001', N'Nguyen Van A', '2003-08-19', N'Nam', '036858383', N'Dang hoat dong', N'123 Duong ABC', 'nguyenvana@gmail.com'),
-('KH002', N'Tran Thi B', '2004-08-20', N'Nu', '096474787', N'Khong hoat dong', N'456 Duong XYZ', 'tranthib@gmail.com'),
-('KH003', N'Le Minh C', '2005-08-02', N'Nam', '034674474', N'Dang hoat dong', N'789 Duong LMN', 'leminhc@gmail.com'),
-('KH004', N'Nguyen Van Hieu', '1999-07-19', N'Nam', '035454554', N'Dang hoat dong', N'234 Duong HIJ', 'nguyenvanhieu@gmail.com'),
-('KH005', N'Tran Thi Linh', '2000-05-19', N'Nu', '02464734747', N'Dang hoat dong', N'567 Duong UVW', 'tranlinh@gmail.com'),
-('KH006', N'Pham Van Thai', '2002-08-22', N'Nam', '0376941599', N'Khong hoat dong', N'890 Duong XYZ', 'phamthai@gmail.com'),
-('KH007', N'Le Hoang', '2001-04-22', N'Nam', '0247585858', N'Dang hoat dong', N'123 Duong LMN', 'lehoang@gmail.com');
-
-UPDATE KHACHHANG
-SET NGAYSINH = '2003-08-19'
-WHERE MAKH = 'KH006';
-UPDATE KHACHHANG
-SET TRANGTHAI = 
-    CASE 
-        WHEN TRANGTHAI = N'Dang hoat dong' THEN N'moi'
-        WHEN TRANGTHAI = N'Khong hoat dong' THEN N'Lau nam'
-    END;
-
-
-UPDATE KHACHHANG
-SET NGAYSINH = '2003-08-19'
-WHERE MAKH = 'KH006'; -- Assuming you want to update the record with MAKH 'KH006'
+('KH001', N'Nguyen Van A', '2003-08-19', N'Nam', '036858383', 1, N'123 Duong ABC', 'nguyenvana@gmail.com'),
+('KH002', N'Tran Thi B', '2004-08-20', N'Nu', '096474787', 0, N'456 Duong XYZ', 'tranthib@gmail.com'),
+('KH003', N'Le Minh C', '2005-08-02', N'Nam', '034674474', 1, N'789 Duong LMN', 'leminhc@gmail.com'),
+('KH004', N'Nguyen Van Hieu', '1999-07-19', N'Nam', '035454554', 1, N'234 Duong HIJ', 'nguyenvanhieu@gmail.com'),
+('KH005', N'Tran Thi Linh', '2000-05-19', N'Nu', '02464734747', 0, N'567 Duong UVW', 'tranlinh@gmail.com'),
+('KH006', N'Pham Van Thai', '2002-08-22', N'Nam', '0376941599', 1, N'890 Duong XYZ', 'phamthai@gmail.com'),
+('KH007', N'Le Hoang', '2001-04-22', N'Nam', '0247585858', 0, N'123 Duong LMN', 'lehoang@gmail.com');
 
 -- HÓA ĐƠN 
 INSERT INTO HOADON (MAHD, MANV, MAKH, HINHTHUCTT, TRANGTHAI)
@@ -205,33 +199,36 @@ VALUES
 ('HD005', 'NV005', 'KH005', 'Credit Card', 1);
 
 -- SẢN PHẨM 
+-- Thêm sản phẩm điện thoại hiện đại
 INSERT INTO SANPHAM (MASP, TENSP, THUONGHIEU, CHIP, CAMERA, KICHTHUOC, CHATLIEU, HEDIEUHANH, DUNGLUONGPIN, GIA, TRANGTHAI, HINHSP)
 VALUES
-('SP001', 'Smartphone X', 'BrandX', 'Snapdragon 865', '48MP', 6.4, 'Metal', 'Android', '4000mAh', 799.99, 1, 'phone_x.jpg'),
-('SP002', 'Laptop Pro', 'BrandY', 'Intel i7', 'HD Webcam', 15.6, 'Aluminum', 'Windows 10', '5000mAh', 1299.99, 1, 'laptop_pro.jpg'),
-('SP003', 'Tablet Lite', 'BrandZ', 'MediaTek 675', '12MP', 10.1, 'Plastic', 'Android', '6000mAh', 299.99, 1, 'tablet_lite.jpg'),
-('SP004', 'Smartwatch 2', 'BrandW', 'ARM Cortex', '2MP', NULL, 'Metal', 'Wear OS', '400mAh', 199.99, 0, 'smartwatch_2.jpg'),
-('SP005', 'Gaming PC', 'BrandG', 'AMD Ryzen', 'NVIDIA RTX 3080', NULL, 'Aluminum', 'Windows 11', NULL, 2499.99, 1, 'gaming_pc.jpg');
+('SP001', N'Samsung Galaxy S21', N'Samsung', N'Exynos 2100', N'108MP', 6.2, N'Glass and Aluminum', N'Android', N'4000mAh', 999.99, 1, 'samsung_s21.jpg'),
+('SP002', N'iPhone 13 Pro', N'Apple', N'A15 Bionic', N'Triple 12MP', 6.1, N'Stainless Steel and Ceramic', N'iOS', N'3095mAh', 1299.99, 1, 'iphone_13_pro.jpg'),
+('SP003', N'OnePlus 9', N'OnePlus', N'Snapdragon 888', N'48MP', 6.55, N'Glass', N'Android', N'4500mAh', 899.99, 1, 'oneplus_9.jpg'),
+('SP004', N'Google Pixel 6', N'Google', N'Tensor', N'Dual 50MP', 6.4, N'Aluminum', N'Android', N'4600mAh', 799.99, 1, 'google_pixel_6.jpg'),
+('SP005', N'Xiaomi Mi 11', N'Xiaomi', N'Snapdragon 888', N'108MP', 6.81, N'Glass', N'Android', N'4600mAh', 699.99, 1, 'xiaomi_mi_11.jpg');
 
 
 --HÓA ĐƠN CHI TIẾT
 INSERT INTO HOADONCT (MAHD, MASP, DONGIA, SOLUONG, TIENKHACHDUA, TIENTRALAI, NGAYMUA, HINHTHUCTHANHTOAN, TONGTIEN, GHICHU, GIAMGIA)
 VALUES
 ('HD001', 'SP001', 799.99, 2, 1600, 0.01, '2023-01-01', 'Cash', 1599.99, 'Good condition', '10% off'),
-('HD001', 'SP002', 1299.99, 1, 1300, 0.01, '2023-01-01', 'Credit Card', 1299.99, 'Promotion applied', '5% off'),
-('HD002', 'SP003', 299.99, 3, 900, 0.01, '2023-02-15', 'Online Transfer', 899.99, 'Bulk discount', '15% off'),
-('HD002', 'SP004', 199.99, 1, 200, 0.01, '2023-02-15', 'Cash', 199.99, 'Limited time offer', '10% off'),
-('HD003', 'SP005', 2499.99, 1, 2500, 0.01, '2023-03-01', 'Credit Card', 2499.99, 'Special edition', 'No discount');
+('HD002', 'SP002', 1299.99, 1, 1300, 0.01, '2023-01-01', 'Credit Card', 1299.99, 'Promotion applied', '5% off'),
+('HD003', 'SP003', 299.99, 3, 900, 0.01, '2023-02-15', 'Online Transfer', 899.99, 'Bulk discount', '15% off'),
+('HD004', 'SP004', 199.99, 1, 200, 0.01, '2023-02-15', 'Cash', 199.99, 'Limited time offer', '10% off'),
+('HD005', 'SP005', 2499.99, 1, 2500, 0.01, '2023-03-01', 'Credit Card', 2499.99, 'Special edition', 'No discount');
 
 
 -- SẢN PHẨM CHI TIẾT 
-INSERT INTO SANPHAMCT (MAMAU, MASP, MARAM, MANSX, NGAYNHAP, SOLUONG, GIANHAP)
+-- SẢN PHẨM CHI TIẾT 
+INSERT INTO SANPHAMCT (MASPCT, MAMAU, MASP, MARAM, MANSX, NGAYNHAP, SOLUONG, GIANHAP)
 VALUES
-('MS001', 'SP001', 'RM001', 'NSX001', '2022-12-01', 100, 600),
-('MS002', 'SP002', 'RM002', 'NSX002', '2023-01-15', 50, 1200),
-('MS003', 'SP003', 'RM003', 'NSX003', '2023-02-20', 80, 800),
-('MS004', 'SP004', 'RM002', 'NSX001', '2023-03-10', 30, 1500),
-('MS005', 'SP005', 'RM003', 'NSX002', '2023-04-05', 60, 2000);
+('SPCT001', 'MS001', 'SP001', 'RM001', 'NSX001', '2022-12-01', 100, 600),
+('SPCT002', 'MS002', 'SP002', 'RM002', 'NSX002', '2023-01-15', 50, 1200),
+('SPCT003', 'MS003', 'SP003', 'RM003', 'NSX003', '2023-02-20', 80, 800),
+('SPCT004', 'MS004', 'SP004', 'RM004', 'NSX001', '2023-03-10', 30, 1500),
+('SPCT005', 'MS005', 'SP005', 'RM005', 'NSX002', '2023-04-05', 60, 2000);
+
 
 --BANG PHỤ SẢN PHẨM CHI TIẾT
 INSERT INTO MAUSAC (MAMAU, TENMAU)
@@ -241,6 +238,15 @@ VALUES
 ('MS003', 'Green'),
 ('MS004', 'Yellow'),
 ('MS005', 'Black');
+-- Update an existing record in MAUSAC
+UPDATE MAUSAC
+SET TENMAU = 'NewColor'
+WHERE MAMAU = 'MS001';
+-- BANG PHỤ SẢN PHẨM CHI TIẾT
+INSERT INTO MAUSAC (MAMAU, TENMAU)
+VALUES
+('MS006', 'NewColor');
+SELECT * FROM MAUSAC WHERE MAMAU = 'MS001';
 
 INSERT INTO RAM (MARAM, LOAIRAM)
 VALUES
@@ -266,3 +272,17 @@ VALUES
 ('SP003', 'Tablet Lite', 299.99, 80),
 ('SP004', 'Smartwatch 2', 199.99, 20),
 ('SP005', 'Gaming PC', 2499.99, 10);
+
+
+ALTER TABLE HOADON
+DROP CONSTRAINT FK_HOADON_KHACHHANG;
+
+ALTER TABLE HOADON
+ADD CONSTRAINT FK_HOADON_KHACHHANG
+FOREIGN KEY (MAKH) REFERENCES KHACHHANG(MAKH)
+ON DELETE CASCADE;
+SET IDENTITY_INSERT KHACHHANG ON;
+
+-- Your insert statement here
+
+SET IDENTITY_INSERT KHACHHANG OFF;

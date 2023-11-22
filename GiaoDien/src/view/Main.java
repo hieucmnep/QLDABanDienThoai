@@ -25,7 +25,6 @@ public class Main extends javax.swing.JFrame {
     private KháchHang panelKhachhang;
     private HoaDonJPanel panelhoadon;
     private TrangChu panelTrangChu;
-    private NhanVien panelnhanvien;
 
     public Main() {
         initComponents();
@@ -35,7 +34,6 @@ public class Main extends javax.swing.JFrame {
         panelKhachhang = new KháchHang();
         panelhoadon = new HoaDonJPanel();
         panelTrangChu = new TrangChu();
-        panelnhanvien = new NhanVien();
 
     }
 
@@ -509,7 +507,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_ThongkeMouseClicked
 
     private void NhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NhanVienMouseClicked
-        showPanel(panelnhanvien);
+
     }//GEN-LAST:event_NhanVienMouseClicked
 
     private void KhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KhachHangMouseClicked
