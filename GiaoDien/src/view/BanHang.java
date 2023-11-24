@@ -65,7 +65,7 @@ public class BanHang extends javax.swing.JPanel implements KhachHangSelectedList
             for (SanPham sp : productList) {
                 // Lấy đường dẫn tới ảnh trong project (điều này cần được điều chỉnh phù hợp với cấu trúc thư mục của project của bạn)
                 // Sử dụng đường dẫn tuyệt đối
-                String imagePath = "C:\\Users\\LE DINH LINH\\Downloads\\GiaoDien\\src\\img\\" + sp.getHinhSP();
+                String imagePath = "D:\\DuAnQLDT\\QLDABanDienThoai\\GiaoDien\\src\\img" + sp.getHinhSP();
                 ImageIcon hinhAnhIcon = new ImageIcon(imagePath);
 
                 // Định dạng giá thành chuỗi VND
@@ -752,11 +752,11 @@ public class BanHang extends javax.swing.JPanel implements KhachHangSelectedList
         BanHang banHangPanel = new BanHang();
         KhachHangJFrame khachHangFrame = new KhachHangJFrame(banHangPanel);
         khachHangFrame.addKhachHangSelectedListener(new KhachHangSelectedListener() {
-            public void onKhachHangSelected(kh khachHang1) {
+            public void onKhachHangSelected(kh khachHang) {
                 // Xử lý khi khách hàng được chọn
-                tenkhachhang.setText(khachHang1.getTen());
-                sdtkhachhang.setText(String.valueOf(khachHang1.getSdt()));
-                emailkhachhang.setText(khachHang1.getEmail());
+                tenkhachhang.setText(khachHang.getTen());
+                sdtkhachhang.setText(String.valueOf(khachHang.getSdt()));
+                emailkhachhang.setText(khachHang.getEmail());
 
                 // Đóng JDialog sau khi chọn khách hàng
 //                dialog.dispose();

@@ -109,4 +109,13 @@ public class KhachHang {
         this.trangThai = trangThai;
     }
 
+    private HoaDonCT hoaDonCT;
+
+    public HoaDonCT getHoaDonCT() {
+        return hoaDonCT;
+    }
+
+    public void setHoaDonCT(HoaDonCT hoaDonCT) {
+        this.hoaDonCT = hoaDonCT;
+    }
 }

@@ -241,6 +241,11 @@ public class HoaDonJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblHDCT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblHDCTMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblHDCT);
 
         javax.swing.GroupLayout thongtinhoadonLayout = new javax.swing.GroupLayout(thongtinhoadon);
@@ -371,6 +376,10 @@ public class HoaDonJPanel extends javax.swing.JPanel {
     private void txtMaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaHDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaHDActionPerformed
+
+    private void tblHDCTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHDCTMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblHDCTMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
