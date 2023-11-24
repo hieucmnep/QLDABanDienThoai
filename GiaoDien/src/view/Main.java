@@ -25,6 +25,7 @@ public class Main extends javax.swing.JFrame {
     private KháchHang panelKhachhang;
     private HoaDonJPanel panelhoadon;
     private TrangChu panelTrangChu;
+//    private QuanLyNhanVienJPanel panelnhanvien;
 
     public Main() {
         initComponents();
@@ -34,6 +35,7 @@ public class Main extends javax.swing.JFrame {
         panelKhachhang = new KháchHang();
         panelhoadon = new HoaDonJPanel();
         panelTrangChu = new TrangChu();
+//        panelnhanvien = new QuanLyNhanVienJPanel();
 
     }
 
@@ -51,7 +53,7 @@ public class Main extends javax.swing.JFrame {
         menu = new javax.swing.JPanel();
         TrangChu = new javax.swing.JLabel();
         KhachHang = new javax.swing.JLabel();
-        KhuyenMai = new javax.swing.JLabel();
+        HoaDon = new javax.swing.JLabel();
         NhanVien = new javax.swing.JLabel();
         BanHang = new javax.swing.JLabel();
         SanPham = new javax.swing.JLabel();
@@ -119,16 +121,19 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        KhuyenMai.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        KhuyenMai.setText("Hóa đơn");
-        KhuyenMai.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.pink, null));
-        KhuyenMai.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        KhuyenMai.addMouseListener(new java.awt.event.MouseAdapter() {
+        HoaDon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        HoaDon.setText("Hóa đơn");
+        HoaDon.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.pink, null));
+        HoaDon.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        HoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                KhuyenMaiMouseClicked(evt);
+                HoaDonMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                KhuyenMaiMouseEntered(evt);
+                HoaDonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                HoaDonMouseExited(evt);
             }
         });
 
@@ -223,7 +228,7 @@ public class Main extends javax.swing.JFrame {
             .addComponent(BanHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(SanPham, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(KhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(KhuyenMai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(HoaDon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(NhanVien, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Thongke, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(KhoHang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -254,7 +259,7 @@ public class Main extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(KhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(KhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(HoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(NhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -507,16 +512,16 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_ThongkeMouseClicked
 
     private void NhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NhanVienMouseClicked
-
+//        showPanel(panelnhanvien);
     }//GEN-LAST:event_NhanVienMouseClicked
 
     private void KhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KhachHangMouseClicked
         showPanel(panelKhachhang);
     }//GEN-LAST:event_KhachHangMouseClicked
 
-    private void KhuyenMaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KhuyenMaiMouseClicked
+    private void HoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoaDonMouseClicked
         showPanel(panelhoadon);
-    }//GEN-LAST:event_KhuyenMaiMouseClicked
+    }//GEN-LAST:event_HoaDonMouseClicked
 
     private void KhachHangMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KhachHangMouseEntered
         KhachHang.setOpaque(true);
@@ -527,9 +532,10 @@ public class Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_NhanVienMouseEntered
 
-    private void KhuyenMaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KhuyenMaiMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_KhuyenMaiMouseEntered
+    private void HoaDonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoaDonMouseEntered
+        HoaDon.setOpaque(true);
+        HoaDon.setBackground(Color.RED);
+    }//GEN-LAST:event_HoaDonMouseEntered
 
     private void SanPhamMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SanPhamMousePressed
         isMouseClicked = true;
@@ -547,6 +553,11 @@ public class Main extends javax.swing.JFrame {
         KhachHang.setOpaque(false);
         KhachHang.setBackground(new Color(255, 204, 255));
     }//GEN-LAST:event_KhachHangMouseExited
+
+    private void HoaDonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HoaDonMouseExited
+        HoaDon.setOpaque(false);
+        HoaDon.setBackground(new Color(255, 204, 255));
+    }//GEN-LAST:event_HoaDonMouseExited
 
     /**
      * @param args the command line arguments
@@ -585,9 +596,9 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BanHang;
+    private javax.swing.JLabel HoaDon;
     private javax.swing.JLabel KhachHang;
     private javax.swing.JLabel KhoHang;
-    private javax.swing.JLabel KhuyenMai;
     private javax.swing.JPanel MainChinh;
     private javax.swing.JLabel NhanVien;
     private javax.swing.JLabel SanPham;

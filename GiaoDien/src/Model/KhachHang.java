@@ -114,8 +114,19 @@ public class KhachHang {
     public HoaDonCT getHoaDonCT() {
         return hoaDonCT;
     }
-
+    
     public void setHoaDonCT(HoaDonCT hoaDonCT) {
         this.hoaDonCT = hoaDonCT;
     }
+    private SanPham sanpham;
+
+    public SanPham getSanpham() {
+        return sanpham;
+    }
+
+    public void setSanpham(SanPham sanpham) {
+        this.sanpham = sanpham;
+    }
+
+    
 }

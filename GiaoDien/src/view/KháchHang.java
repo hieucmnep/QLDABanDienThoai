@@ -5,6 +5,7 @@
 package view;
 
 import Model.KhachHang;
+import Model.SanPham_model;
 import Sevice.KhachHangSevice;
 import java.lang.reflect.Array;
 import java.text.ParseException;
@@ -34,6 +35,7 @@ public class KháchHang extends javax.swing.JPanel {
         initComponents();
         model = (DefaultTableModel) tblbang.getModel();
         loadtable();
+        loadtablespct();
 
     }
 
@@ -42,33 +44,48 @@ public class KháchHang extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (KhachHang kh : kh2) {
-            model.addRow(new Object[]{kh.getId(), kh.getMaKH(), kh.getTenKH(), kh.getEmail(), kh.getDiaChi(), kh.getNgaySinh(), kh.getGioiTinh(), kh.getSdt(), kh.isTrangThai() ? "Mới" : "Lâu Năm"});
+            model.addRow(new Object[]{kh.getId(), kh.getMaKH(), kh.getTenKH(), kh.getNgaySinh(), kh.getGioiTinh(), kh.getSdt(), kh.getEmail(), kh.getDiaChi(), kh.isTrangThai() ? "Mới" : "Lâu Năm"});
         }
     }
 
     private void hienthi() {
-    
+
         txtMa.setText(tblbang.getValueAt(idex, 1).toString());
         txtTen.setText(tblbang.getValueAt(idex, 2).toString());
-
+        txtngaysinh.setDateFormatString(tblbang.getValueAt(idex, 3).toString());
+        txtsdt.setText(tblbang.getValueAt(idex, 5).toString());
         // Check if the value is not null before converting to string
-        Object emailValue = tblbang.getValueAt(idex, 3);
+        Object emailValue = tblbang.getValueAt(idex, 6);
         if (emailValue != null) {
             txtemai.setText(emailValue.toString());
         } else {
             txtemai.setText("");
         }
-
-        tardiachi.setText(tblbang.getValueAt(idex, 4).toString());
-        txtngaysinh.setDateFormatString(tblbang.getValueAt(idex, 5).toString());
-        txtsdt.setText(tblbang.getValueAt(idex, 7).toString());
+        tardiachi.setText(tblbang.getValueAt(idex, 7).toString());
         cbbtrangthai.setSelectedItem(tblbang.getValueAt(idex, 8).toString());
-
-        String GioiTinh = tblbang.getValueAt(idex, 6).toString();
+        String GioiTinh = tblbang.getValueAt(idex, 4).toString();
         if (GioiTinh.equals("Nam")) {
             rdonam.setSelected(true);
         } else {
             rdonu.setSelected(true);
+        }
+
+    }
+
+    public void loadtablespct() {
+        DefaultTableModel model = (DefaultTableModel) this.tblbanggiaodich.getModel();
+        model.setRowCount(0);
+        for (KhachHang kh : khsevice.joinTables()) {
+            model.addRow(new Object[]{kh.getId(),
+                kh.getTenKH(),
+                kh.getSdt(),
+                kh.getHoaDonCT().getNgayMua(),
+                //                kh.getSanpham().getTenSP(),
+                kh.getHoaDonCT().getSoLuong(),
+                kh.getHoaDonCT().getDonGia(),
+                kh.getHoaDonCT().getTongTien(),
+                kh.getHoaDonCT().getTrangThai()});
+
         }
 
     }
@@ -693,7 +710,7 @@ public class KháchHang extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btnsuaActionPerformed
-    
+
     private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
         KhachHang kh = reafrom(); // Giả sử đây là phương thức để đọc thông tin KhachHang từ người dùng
         int cf = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa không?", "Thông báo", JOptionPane.YES_NO_OPTION);
@@ -720,7 +737,7 @@ public class KháchHang extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTimkiemActionPerformed
 
     private void tblbanggiaodichAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblbanggiaodichAncestorAdded
-         
+
     }//GEN-LAST:event_tblbanggiaodichAncestorAdded
 
     private void btntimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntimkiemActionPerformed
@@ -749,14 +766,13 @@ public class KháchHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btntimkiemActionPerformed
 
     private void tblbangAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblbangAncestorAdded
-      
-       
+
+
     }//GEN-LAST:event_tblbangAncestorAdded
 
     private void tblbanggiaodichMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblbanggiaodichMouseClicked
-        idex = tblbanggiaodich.getSelectedRow();
-        txtTen.getText();
-        khsevice.joinTables();
+
+
     }//GEN-LAST:event_tblbanggiaodichMouseClicked
 
 

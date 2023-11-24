@@ -71,7 +71,7 @@
               <Component id="BanHang" alignment="0" max="32767" attributes="0"/>
               <Component id="SanPham" alignment="0" max="32767" attributes="0"/>
               <Component id="KhachHang" alignment="0" max="32767" attributes="0"/>
-              <Component id="KhuyenMai" alignment="0" max="32767" attributes="0"/>
+              <Component id="HoaDon" alignment="0" max="32767" attributes="0"/>
               <Component id="NhanVien" alignment="1" max="32767" attributes="0"/>
               <Component id="Thongke" alignment="0" max="32767" attributes="0"/>
               <Component id="KhoHang" alignment="1" max="32767" attributes="0"/>
@@ -107,7 +107,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="KhachHang" min="-2" pref="64" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="KhuyenMai" min="-2" pref="61" max="-2" attributes="0"/>
+                  <Component id="HoaDon" min="-2" pref="61" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="NhanVien" min="-2" pref="66" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -161,7 +161,7 @@
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="KhachHangMousePressed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="KhuyenMai">
+        <Component class="javax.swing.JLabel" name="HoaDon">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="H&#xf3;a &#x111;&#x1a1;n"/>
@@ -175,8 +175,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="KhuyenMaiMouseClicked"/>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="KhuyenMaiMouseEntered"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="HoaDonMouseClicked"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="HoaDonMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="HoaDonMouseExited"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="NhanVien">

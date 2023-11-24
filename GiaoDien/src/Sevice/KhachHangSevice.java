@@ -82,7 +82,7 @@ public class KhachHangSevice {
         Integer row = null;
         try {
             Connection cnt = DBConnector.getConnection();
-            String sql = "DELETE NHANVIEN WHERE MAKH = ?";
+            String sql = "DELETE KHACHHANG WHERE MAKH = ?";
             PreparedStatement ps = cnt.prepareStatement(sql);
             ps.setString(1, kh.getMaKH());
             ps.executeQuery();
