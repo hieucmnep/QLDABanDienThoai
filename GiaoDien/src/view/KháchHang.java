@@ -27,6 +27,7 @@ import javax.swing.table.TableRowSorter;
  */
 public class KháchHang extends javax.swing.JPanel {
 
+    SimpleDateFormat dateform = new SimpleDateFormat("dd/MM/yyyy");
     private final KhachHangSevice khsevice = new KhachHangSevice();
     DefaultTableModel model = new DefaultTableModel();
     int idex;
@@ -553,7 +554,15 @@ public class KháchHang extends javax.swing.JPanel {
             new String [] {
                 "ID", "Ten KH", "SDT", "Ngày GD", "Ten SP", "Số Lượng", "Giá Bán", "Tổng Tiền", "Trạng Thái"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblbanggiaodich.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 tblbanggiaodichAncestorAdded(evt);
@@ -569,6 +578,17 @@ public class KháchHang extends javax.swing.JPanel {
             }
         });
         jScrollPane5.setViewportView(tblbanggiaodich);
+        if (tblbanggiaodich.getColumnModel().getColumnCount() > 0) {
+            tblbanggiaodich.getColumnModel().getColumn(0).setResizable(false);
+            tblbanggiaodich.getColumnModel().getColumn(1).setResizable(false);
+            tblbanggiaodich.getColumnModel().getColumn(2).setResizable(false);
+            tblbanggiaodich.getColumnModel().getColumn(3).setResizable(false);
+            tblbanggiaodich.getColumnModel().getColumn(4).setResizable(false);
+            tblbanggiaodich.getColumnModel().getColumn(5).setResizable(false);
+            tblbanggiaodich.getColumnModel().getColumn(6).setResizable(false);
+            tblbanggiaodich.getColumnModel().getColumn(7).setResizable(false);
+            tblbanggiaodich.getColumnModel().getColumn(8).setResizable(false);
+        }
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setText("Tim Kiem:");
@@ -589,8 +609,8 @@ public class KháchHang extends javax.swing.JPanel {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnxuatthongtin, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 803, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnxuatthongtin, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addGap(18, 18, 18)
@@ -600,15 +620,15 @@ public class KháchHang extends javax.swing.JPanel {
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                .addContainerGap(61, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addComponent(btnxuatthongtin)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -625,7 +645,7 @@ public class KháchHang extends javax.swing.JPanel {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);

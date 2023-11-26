@@ -128,6 +128,15 @@ public class SanPhamCT {
         this.giaTien = giaTien;
     }
 
-  
+    private SanPham sanpham;
+
+    public SanPham getSanpham() {
+        return sanpham;
+    }
+
+    public void setSanpham(SanPham sanpham) {
+        this.sanpham = sanpham;
+    }
+    
 }
 

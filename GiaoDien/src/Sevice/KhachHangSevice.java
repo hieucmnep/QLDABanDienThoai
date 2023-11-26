@@ -165,7 +165,7 @@ public class KhachHangSevice {
 
         // write the column headers
         row = sheet.createRow(0);
-        String[] headers = {"IDKH", "TENKH", "DONGIA", "SDT", "NGAYMUA", "SOLUONG", "NGAYMUA", "DONGIA", "TONGTIEN", "TRANGTHAI"};
+        String[] headers = {"IDKH", "TENKH", "SDT", "NGAYMUA", "TENSP", "SOLUONG", "GIABAN", "TONGTIEN", "TRANGTHAI"};
         for (int c = 0; c < headers.length; c++) {
             cell = row.createCell(c);
             cell.setCellValue(headers[c]);
@@ -176,21 +176,21 @@ public class KhachHangSevice {
             row = sheet.createRow(r + 1);
             KhachHang KH = list.get(r);
             cell = row.createCell(0);
-            cell.setCellValue(KH.getMaKH());
+            cell.setCellValue(KH.getId());
             cell = row.createCell(1);
             cell.setCellValue(KH.getTenKH());
             cell = row.createCell(2);
-            cell.setCellValue(KH.getNgaySinh());
+            cell.setCellValue(KH.getHoaDonCT().getNgayMua());
             cell = row.createCell(3);
-            cell.setCellValue(KH.getEmail());
+            cell.setCellValue(KH.getSanpham().getTenSP());
             cell = row.createCell(4);
-            cell.setCellValue(KH.getDiaChi());
+            cell.setCellValue(KH.getHoaDonCT().getSoLuong());
             cell = row.createCell(5);
-            cell.setCellValue(KH.getGioiTinh());
+            cell.setCellValue(KH.getHoaDonCT().getGiamGia());
             cell = row.createCell(6);
-            cell.setCellValue(KH.getSdt());
+            cell.setCellValue(KH.getHoaDonCT().getTongTien());
             cell = row.createCell(7);
-            cell.setCellValue(KH.isTrangThai());
+            cell.setCellValue(KH.getHoaDonCT().getTrangThai());
             cell = row.createCell(8);
         }
 

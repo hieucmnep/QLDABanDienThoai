@@ -5,14 +5,15 @@
             <url>src/view/KháchHang.java</url>
             <bookmark id="1">
                 <name/>
-                <line>728</line>
+                <line>748</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/DuAnQLDT/QLDABanDienThoai/GiaoDien/src/view/KháchHang.java</file>
+            <file>file:/D:/DuAnQLDT/QLDABanDienThoai/GiaoDien/src/view/Main.java</file>
+            <file>file:/D:/DuAnQLDT/QLDABanDienThoai/GiaoDien/src/Sevice/HoaDonCTDAO.java</file>
         </group>
     </open-files>
 </project-private>
