@@ -1,20 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package view;
 
 import view.DangKyJFrame;
+import Model.NhanVien;
+import Sevice.NhanVienDAO;
+import dbconnect.MsgBox;
+import dbconnect.Auth;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import view.DangKyJFrame;
 
-/**
- *
- * @author ADMIN
- */
 public class DangNhapJFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form DangNhapJFrame
-     */
+    NhanVienDAO dao = new NhanVienDAO();
+
     public DangNhapJFrame() {
         initComponents();
     }
@@ -29,14 +27,14 @@ public class DangNhapJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtTen = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnDangNhap = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jLabel3 = new javax.swing.JLabel();
+        btnDangKy = new javax.swing.JLabel();
+        txtMatKhau = new javax.swing.JPasswordField();
         AnhNen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -48,13 +46,13 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Đăng Nhập");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 270, 40));
+        getContentPane().add(txtTen, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 270, 40));
+        txtTen.getAccessibleContext().setAccessibleName("");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Tên Đăng Nhập:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 270, 40));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -71,14 +69,14 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton2.setText("Đăng Nhập");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnDangNhap.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnDangNhap.setText("Đăng Nhập");
+        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnDangNhapActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 270, 40));
+        getContentPane().add(btnDangNhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 270, 40));
 
         jCheckBox1.setBackground(new java.awt.Color(0, 0, 0));
         jCheckBox1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -86,15 +84,16 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         jCheckBox1.setText("Ghi nhớ đăng nhập");
         getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(102, 102, 255));
-        jLabel3.setText("Đăng Ký");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnDangKy.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnDangKy.setForeground(new java.awt.Color(102, 102, 255));
+        btnDangKy.setText("Đăng Ký");
+        btnDangKy.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                btnDangKyMouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 505, -1, -1));
+        getContentPane().add(btnDangKy, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 505, -1, -1));
+        getContentPane().add(txtMatKhau, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 270, 40));
 
         AnhNen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/AnhNen.png"))); // NOI18N
         AnhNen.setText("jLabel1");
@@ -103,22 +102,58 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    void dangNhap() {
+        String strMaTK = txtTen.getText().trim();
+        String strPassword = new String(txtMatKhau.getPassword());
+        ArrayList<NhanVien> ketQuaTimKiem = new ArrayList<>();
+
+        if (!strMaTK.isEmpty()) {
+            ketQuaTimKiem = dao.timKiemMaTK(strMaTK);
+            if (ketQuaTimKiem.isEmpty()) {
+                MsgBox.alert(this, "Tên đăng nhập không tồn tại");
+            } else {
+                if (!ketQuaTimKiem.get(0).getMatKhau().equals(strPassword)) {
+                    MsgBox.alert(this, "Sai mật khẩu");
+                } else {
+                    Auth.user = ketQuaTimKiem.get(0);
+                    this.dispose();
+                }
+            }
+            NhanVien nv = new NhanVien();
+            if (nv != null) {
+                String MaTK = nv.getMaTK();
+                if (MaTK.equalsIgnoreCase("MaTK")) {
+                    JOptionPane.showMessageDialog(this, "Đăng nhập thành công!", "Thành công", JOptionPane.INFORMATION_MESSAGE);
+                    Main diem = new Main();
+                    diem.setVisible(true);
+                    this.setVisible(false);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Quyền người dùng không rõ. Vui lòng liên hệ quản trị viên.", "Lỗi đăng nhập", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc mật khẩu không chính xác.", "Lỗi đăng nhập", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        dangNhap();
+    }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel5MouseClicked
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void btnDangKyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDangKyMouseClicked
         // TODO add your handling code here:
         DangKyJFrame dangky = new DangKyJFrame();
         dangky.setVisible(true);
         dangky.pack();
         dangky.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }//GEN-LAST:event_btnDangKyMouseClicked
 
     /**
      * @param args the command line arguments
@@ -126,14 +161,14 @@ public class DangNhapJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AnhNen;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel btnDangKy;
+    private javax.swing.JButton btnDangNhap;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JPasswordField txtMatKhau;
+    private javax.swing.JTextField txtTen;
     // End of variables declaration//GEN-END:variables
 }

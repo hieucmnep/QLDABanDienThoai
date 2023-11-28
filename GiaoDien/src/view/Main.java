@@ -25,8 +25,7 @@ public class Main extends javax.swing.JFrame {
     private KháchHang panelKhachhang;
     private HoaDonJPanel panelhoadon;
     private TrangChu panelTrangChu;
-//    private QuanLyNhanVienJPanel panelnhanvien;
-
+   
     public Main() {
         initComponents();
         setLocationRelativeTo(this);
@@ -35,7 +34,6 @@ public class Main extends javax.swing.JFrame {
         panelKhachhang = new KháchHang();
         panelhoadon = new HoaDonJPanel();
         panelTrangChu = new TrangChu();
-//        panelnhanvien = new QuanLyNhanVienJPanel();
 
     }
 

@@ -16,13 +16,13 @@ public class KhachHang {
     private String maKH;
     private String tenKH;
     private String sdt;
-    private String ngaySinh;
+    private Date ngaySinh;
     private String email;
     private String diaChi;
     private String gioiTinh;
     private boolean trangThai;
 
-    public KhachHang(int id, String maKH, String tenKH, String sdt, String ngaySinh, String email, String diaChi, String gioiTinh, boolean trangThai) {
+    public KhachHang(int id, String maKH, String tenKH, String sdt, Date ngaySinh, String email, String diaChi, String gioiTinh, boolean trangThai) {
         this.id = id;
         this.maKH = maKH;
         this.tenKH = tenKH;
@@ -69,13 +69,15 @@ public class KhachHang {
         this.sdt = sdt;
     }
 
-    public String getNgaySinh() {
+    public Date getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(String ngaySinh) {
+    public void setNgaySinh(Date ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
+
+   
 
     public String getEmail() {
         return email;
