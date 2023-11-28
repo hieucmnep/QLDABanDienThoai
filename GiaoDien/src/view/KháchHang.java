@@ -37,7 +37,7 @@ public class KháchHang extends javax.swing.JPanel {
         initComponents();
         model = (DefaultTableModel) tblbang.getModel();
         loadtable();
-        loadtablespct();
+      
 
     }
 
@@ -673,6 +673,7 @@ public class KháchHang extends javax.swing.JPanel {
     private void tblbangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblbangMouseClicked
         idex = tblbang.getSelectedRow();
         hienthi();
+        chuyenDuLieu();
     }//GEN-LAST:event_tblbangMouseClicked
 
     private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
@@ -771,9 +772,44 @@ public class KháchHang extends javax.swing.JPanel {
 
     private void tblbanggiaodichMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblbanggiaodichMouseClicked
         idex = tblbanggiaodich.getSelectedRow();
-
-
     }//GEN-LAST:event_tblbanggiaodichMouseClicked
+   private void chuyenDuLieu() {
+    // Lấy dữ liệu từ tblbang tại dòng được chọn (idex)
+    // và chuyển dữ liệu sang tblbanggiaodich
+    // Thay đổi dòng sau bằng logic thực tế của bạn để chuyển dữ liệu
+    if (idex != -1) {
+        Object[] rowData = getRowDataFromTblBang(idex); // Hàm này cần được cài đặt
+        updateTblBangGiaoDich(rowData); // Hàm này cần được cài đặt
+    }
+}
+
+private Object[] getRowDataFromTblBang(int rowIndex) {
+    // Lấy dữ liệu từ tblbang tại dòng được chọn (rowIndex)
+    // và trả về dữ liệu dưới dạng mảng Object
+    // Thay đổi dòng sau bằng logic thực tế của bạn để lấy dữ liệu
+    // Ví dụ giả định: tblbang là DefaultTableModel
+    DefaultTableModel tblBangModel = (DefaultTableModel) tblbang.getModel();
+    return tblBangModel.getDataVector().elementAt(rowIndex).toArray();
+}
+private void updateTblBangGiaoDich(Object[] rowData) {
+    // Xóa tất cả các dòng hiện có trong tblbanggiaodich
+    DefaultTableModel tblBangGiaoDichModel = (DefaultTableModel) tblbanggiaodich.getModel();
+    tblBangGiaoDichModel.setRowCount(0);
+    // Thêm dữ liệu mới từ tblbang
+    for (KhachHang kh : khsevice.joinTables()) {
+        tblBangGiaoDichModel.addRow(new Object[]{
+            kh.getId(),
+            kh.getTenKH(),
+            kh.getSdt(),
+            kh.getHoaDonCT().getNgayMua(),
+            kh.getSanpham().getTenSP(),
+            kh.getHoaDonCT().getSoLuong(),
+            kh.getHoaDonCT().getDonGia(),
+            kh.getHoaDonCT().getTongTien(),
+            kh.getHoaDonCT().getTrangThai()
+        });
+    }
+}
 
     private void txttimkiemgdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttimkiemgdActionPerformed
         String searchText = txttimkiemgd.getText().toLowerCase();

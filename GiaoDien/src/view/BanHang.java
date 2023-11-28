@@ -22,7 +22,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
 import Model.HoaDon;
-import Model.KhachHang1;
+import Model.KhachHang;
 import Model.SanPham;
 import Model.kh;
 import Model.kh.KhachHangSelectedListener;

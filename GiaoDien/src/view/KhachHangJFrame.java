@@ -4,6 +4,7 @@
  */
 package view;
 
+import Model.KhachHang;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +12,9 @@ import javax.swing.JFrame;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import Model.KhachHang1;
 import Model.kh;
-import Sevice.KhachHangJfameService;
+
+import Sevice.KhachHangSevice;
 import view.BanHang;
 import view.BanHang;
 
@@ -23,14 +24,14 @@ import view.BanHang;
  */
 public class KhachHangJFrame extends javax.swing.JFrame {
 
-    private KhachHangJfameService khachHangService;
+    private KhachHangSevice khachHangService;
     private BanHang panelBanHang;
     private List<kh.KhachHangSelectedListener> khachHangSelectedListeners = new ArrayList<>();
 
     public KhachHangJFrame(BanHang panelBanHang) {
         initComponents();
         setLocationRelativeTo(this);
-        khachHangService = new KhachHangJfameService();
+        khachHangService = new KhachHangSevice();
         this.panelBanHang = panelBanHang;
         this.add(panelBanHang);
 
@@ -44,15 +45,15 @@ public class KhachHangJFrame extends javax.swing.JFrame {
         model.setRowCount(0);
 
         // Lấy danh sách khách hàng từ dịch vụ
-        ArrayList<KhachHang1> danhSachKhachHang = khachHangService.getAllKhachHang();
+        ArrayList<KhachHang> danhSachKhachHang = khachHangService.GetAll();
 
         // Đổ dữ liệu vào bảng
-        for (KhachHang1 khachHang : danhSachKhachHang) {
+        for (KhachHang khachHang : danhSachKhachHang) {
             Object[] rowData = {
-                khachHang.getIdKH(),
+                khachHang.getId(),
                 khachHang.getMaKH(),
                 khachHang.getTenKH(),
-                khachHang.getGt(),
+                khachHang.getGioiTinh(),
                 khachHang.getNgaySinh(),
                 khachHang.getSdt(),
                 khachHang.getDiaChi(),
@@ -348,18 +349,18 @@ private void clearInputFields() {
         String email = jTextField7.getText();
 
         // Tạo đối tượng KhachHang1
-        KhachHang1 khachHangMoi = new KhachHang1(0, maKH, tenKH, ngaySinh, sdt, maKH, diaChi, email);
-
-        // Gọi dịch vụ để chèn khách hàng mới
-        boolean thanhCong = khachHangService.insertKhachHang(khachHangMoi);
-
-        if (thanhCong) {
-            // Làm mới bảng với dữ liệu đã cập nhật
-            loadTableData();
-        } else {
-            // Xử lý khi chèn thất bại (ví dụ: hiển thị thông báo lỗi)
-            System.out.println("Thêm khách hàng thất bại");
-        }
+//        KhachHang1 khachHangMoi = new KhachHang1(0, maKH, tenKH, ngaySinh, sdt, maKH, diaChi, email);
+//
+//        // Gọi dịch vụ để chèn khách hàng mới
+//        boolean thanhCong = khachHangService.add(kh);
+//
+//        if (thanhCong) {
+//            // Làm mới bảng với dữ liệu đã cập nhật
+//            loadTableData();
+//        } else {
+//            // Xử lý khi chèn thất bại (ví dụ: hiển thị thông báo lỗi)
+//            System.out.println("Thêm khách hàng thất bại");
+//        }
     } catch (NumberFormatException e) {
         // Xử lý khi người dùng nhập không phải là số
         
