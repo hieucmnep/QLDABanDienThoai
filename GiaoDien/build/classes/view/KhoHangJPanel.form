@@ -57,13 +57,13 @@
                   <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jComboBox1" min="-2" pref="88" max="-2" attributes="0"/>
+                  <Component id="cbbloc" min="-2" pref="88" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextField1" min="-2" pref="167" max="-2" attributes="0"/>
+                  <Component id="txttimkiem" min="-2" pref="167" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                  <Component id="btnTimKiem" min="-2" pref="130" max="-2" attributes="0"/>
+                  <Component id="btntimkiem" min="-2" pref="130" max="-2" attributes="0"/>
                   <EmptySpace pref="91" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -74,10 +74,10 @@
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cbbloc" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnTimKiem" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txttimkiem" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btntimkiem" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="18" max="32767" attributes="0"/>
               </Group>
@@ -90,14 +90,19 @@
             <Property name="text" type="java.lang.String" value="Kho"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="cbbloc">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="1">
+              <StringArray count="3">
                 <StringItem index="0" value="T&#x1ea5;t c&#x1ea3;"/>
+                <StringItem index="1" value="Android"/>
+                <StringItem index="2" value="iOS"/>
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbblocActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -107,14 +112,14 @@
             <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m h&#xe0;ng h&#xf3;a:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="txttimkiem">
         </Component>
-        <Component class="javax.swing.JButton" name="btnTimKiem">
+        <Component class="javax.swing.JButton" name="btntimkiem">
           <Properties>
             <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTimKiemActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btntimkiemActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -126,13 +131,13 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="tblkhohang">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="0">
                 <Column editable="false" title="M&#xe3; H&#xe0;ng H&#xf3;a" type="java.lang.Object"/>
                 <Column editable="false" title="T&#xea;n H&#xe0;ng H&#xf3;a" type="java.lang.Object"/>
-                <Column editable="true" title="Lo&#x1ea1;i H&#xe0;ng H&#xf3;a" type="java.lang.Object"/>
+                <Column editable="true" title="H&#x1ec7; &#x110;i&#x1ec1;u H&#xe0;nh" type="java.lang.Object"/>
                 <Column editable="false" title="S&#x1ed1; L&#x1b0;&#x1ee3;ng H&#xe0;ng H&#xf3;a" type="java.lang.Object"/>
               </Table>
             </Property>

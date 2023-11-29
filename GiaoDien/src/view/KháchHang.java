@@ -37,7 +37,7 @@ public class KháchHang extends javax.swing.JPanel {
         initComponents();
         model = (DefaultTableModel) tblbang.getModel();
         loadtable();
-      
+        loadtablespct();
 
     }
 
@@ -673,7 +673,6 @@ public class KháchHang extends javax.swing.JPanel {
     private void tblbangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblbangMouseClicked
         idex = tblbang.getSelectedRow();
         hienthi();
-        chuyenDuLieu();
     }//GEN-LAST:event_tblbangMouseClicked
 
     private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
@@ -703,11 +702,7 @@ public class KháchHang extends javax.swing.JPanel {
         tardiachi.setText("");
         rdonam.setSelected(true);
         cbbtrangthai.setSelectedItem(0);
-        ArrayList<KhachHang> khlist = khsevice.GetAll();
-        model.setRowCount(0);
-        for (KhachHang kh : khlist) {
-            model.addRow(new Object[]{kh.getId(), kh.getMaKH(), kh.getTenKH(), kh.getNgaySinh(), kh.getGioiTinh(), kh.getSdt(), kh.getEmail(), kh.getDiaChi(), kh.isTrangThai() ? "Mới" : "Lâu Năm"});
-        }
+
     }//GEN-LAST:event_btnlammoiActionPerformed
 
     private void btnsuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsuaActionPerformed
@@ -752,6 +747,7 @@ public class KháchHang extends javax.swing.JPanel {
         ArrayList<KhachHang> searchResult = khsevice.Search(searchText);
 
         updateTableModel(searchResult);
+        
     }//GEN-LAST:event_txtTimkiemActionPerformed
     private void updateTableModel(ArrayList<KhachHang> searchResult) {
 
@@ -773,56 +769,18 @@ public class KháchHang extends javax.swing.JPanel {
     private void tblbanggiaodichMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblbanggiaodichMouseClicked
         idex = tblbanggiaodich.getSelectedRow();
     }//GEN-LAST:event_tblbanggiaodichMouseClicked
-   private void chuyenDuLieu() {
-    // Lấy dữ liệu từ tblbang tại dòng được chọn (idex)
-    // và chuyển dữ liệu sang tblbanggiaodich
-    // Thay đổi dòng sau bằng logic thực tế của bạn để chuyển dữ liệu
-    if (idex != -1) {
-        Object[] rowData = getRowDataFromTblBang(idex); // Hàm này cần được cài đặt
-        updateTblBangGiaoDich(rowData); // Hàm này cần được cài đặt
-    }
-}
-
-private Object[] getRowDataFromTblBang(int rowIndex) {
-    // Lấy dữ liệu từ tblbang tại dòng được chọn (rowIndex)
-    // và trả về dữ liệu dưới dạng mảng Object
-    // Thay đổi dòng sau bằng logic thực tế của bạn để lấy dữ liệu
-    // Ví dụ giả định: tblbang là DefaultTableModel
-    DefaultTableModel tblBangModel = (DefaultTableModel) tblbang.getModel();
-    return tblBangModel.getDataVector().elementAt(rowIndex).toArray();
-}
-private void updateTblBangGiaoDich(Object[] rowData) {
-    // Xóa tất cả các dòng hiện có trong tblbanggiaodich
-    DefaultTableModel tblBangGiaoDichModel = (DefaultTableModel) tblbanggiaodich.getModel();
-    tblBangGiaoDichModel.setRowCount(0);
-    // Thêm dữ liệu mới từ tblbang
-    for (KhachHang kh : khsevice.joinTables()) {
-        tblBangGiaoDichModel.addRow(new Object[]{
-            kh.getId(),
-            kh.getTenKH(),
-            kh.getSdt(),
-            kh.getHoaDonCT().getNgayMua(),
-            kh.getSanpham().getTenSP(),
-            kh.getHoaDonCT().getSoLuong(),
-            kh.getHoaDonCT().getDonGia(),
-            kh.getHoaDonCT().getTongTien(),
-            kh.getHoaDonCT().getTrangThai()
-        });
-    }
-}
 
     private void txttimkiemgdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttimkiemgdActionPerformed
         String searchText = txttimkiemgd.getText().toLowerCase();
 
         ArrayList<KhachHang> searchResult = khsevice.SearchGD(searchText);
 
-        updateGD(searchResult);
+        Timkiemggd(searchResult);
     }//GEN-LAST:event_txttimkiemgdActionPerformed
-    private void updateGD(ArrayList<KhachHang> searchResult) {
-
+    private void Timkiemggd(ArrayList<KhachHang> Timkiemggd) {
         model.setRowCount(0);
 
-        for (KhachHang kh : khsevice.joinTables()) {
+        for (KhachHang kh : Timkiemggd) {
             model.addRow(new Object[]{kh.getId(),
                 kh.getTenKH(),
                 kh.getSdt(),
@@ -832,9 +790,10 @@ private void updateTblBangGiaoDich(Object[] rowData) {
                 kh.getHoaDonCT().getDonGia(),
                 kh.getHoaDonCT().getTongTien(),
                 kh.getHoaDonCT().getTrangThai()});
-
         }
     }
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnlammoi;

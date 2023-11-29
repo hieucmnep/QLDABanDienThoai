@@ -25,7 +25,8 @@ public class Main extends javax.swing.JFrame {
     private KháchHang panelKhachhang;
     private HoaDonJPanel panelhoadon;
     private TrangChu panelTrangChu;
-   
+    private KhoHangJPanel panelkhohang;
+
     public Main() {
         initComponents();
         setLocationRelativeTo(this);
@@ -34,6 +35,7 @@ public class Main extends javax.swing.JFrame {
         panelKhachhang = new KháchHang();
         panelhoadon = new HoaDonJPanel();
         panelTrangChu = new TrangChu();
+        panelkhohang = new KhoHangJPanel();
 
     }
 
@@ -210,6 +212,15 @@ public class Main extends javax.swing.JFrame {
         KhoHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 KhoHangMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                KhoHangMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                KhoHangMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                KhoHangMousePressed(evt);
             }
         });
 
@@ -502,7 +513,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_BanHangMouseReleased
 
     private void KhoHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KhoHangMouseClicked
-        JOptionPane.showMessageDialog(this, "Chưa Phát Triên ");
+        showPanel(panelkhohang);
     }//GEN-LAST:event_KhoHangMouseClicked
 
     private void ThongkeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ThongkeMouseClicked
@@ -556,6 +567,22 @@ public class Main extends javax.swing.JFrame {
         HoaDon.setOpaque(false);
         HoaDon.setBackground(new Color(255, 204, 255));
     }//GEN-LAST:event_HoaDonMouseExited
+
+    private void KhoHangMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KhoHangMouseEntered
+        KhoHang.setOpaque(true);
+        KhoHang.setBackground(Color.RED);        // TODO add your handling code here:
+    }//GEN-LAST:event_KhoHangMouseEntered
+
+    private void KhoHangMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KhoHangMouseExited
+        KhoHang.setOpaque(false);
+        KhoHang.setBackground(new Color(255, 204, 255));
+    }//GEN-LAST:event_KhoHangMouseExited
+
+    private void KhoHangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KhoHangMousePressed
+       isMouseClicked = true;
+        KhoHang.setOpaque(true);
+        KhoHang.setBackground(Color.RED);
+    }//GEN-LAST:event_KhoHangMousePressed
 
     /**
      * @param args the command line arguments

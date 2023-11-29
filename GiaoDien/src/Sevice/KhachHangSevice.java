@@ -147,7 +147,6 @@ public class KhachHangSevice {
 
                 kh.setSanpham(sp);
 
-                kh.setHoaDonCT(so);
 
                 KH.add(kh);
             }
