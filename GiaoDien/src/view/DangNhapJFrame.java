@@ -1,6 +1,5 @@
 package view;
 
-import view.DangKyJFrame;
 import Model.NhanVien;
 import Sevice.NhanVienDAO;
 import dbconnect.MsgBox;
@@ -8,6 +7,8 @@ import dbconnect.Auth;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import view.DangKyJFrame;
+import javax.swing.JFrame;
+
 
 public class DangNhapJFrame extends javax.swing.JFrame {
 
@@ -106,7 +107,6 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         String strMaTK = txtTen.getText().trim();
         String strPassword = new String(txtMatKhau.getPassword());
         ArrayList<NhanVien> ketQuaTimKiem = new ArrayList<>();
-
         if (!strMaTK.isEmpty()) {
             ketQuaTimKiem = dao.timKiemMaTK(strMaTK);
             if (ketQuaTimKiem.isEmpty()) {
@@ -119,18 +119,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
                     this.dispose();
                 }
             }
-            NhanVien nv = new NhanVien();
-            if (nv != null) {
-                String MaTK = nv.getMaTK();
-                if (MaTK.equalsIgnoreCase("MaTK")) {
-                    JOptionPane.showMessageDialog(this, "Đăng nhập thành công!", "Thành công", JOptionPane.INFORMATION_MESSAGE);
-                    Main diem = new Main();
-                    diem.setVisible(true);
-                    this.setVisible(false);
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Quyền người dùng không rõ. Vui lòng liên hệ quản trị viên.", "Lỗi đăng nhập", JOptionPane.ERROR_MESSAGE);
-            }
+          
         } else {
             JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc mật khẩu không chính xác.", "Lỗi đăng nhập", JOptionPane.ERROR_MESSAGE);
         }
@@ -140,6 +129,12 @@ public class DangNhapJFrame extends javax.swing.JFrame {
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         // TODO add your handling code here:
         dangNhap();
+        if (Auth.user != null) {
+            // If authenticated, open the Main frame
+            Main mainFrame = new Main();
+            mainFrame.setVisible(true);
+            this.dispose(); // Close the current login frame
+        }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked

@@ -143,13 +143,12 @@ public class KhoHangJPanel extends javax.swing.JPanel {
     private void btntimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntimkiemActionPerformed
         String keyword = txttimkiem.getText();
 
-        ArrayList<KhoHang> searchResult = khsv.searchSPKH(keyword);
+        ArrayList<KhoHang> timkiemkh = khsv.searchSPKH(keyword);
 
         DefaultTableModel model = (DefaultTableModel) tblkhohang.getModel();
         model.setRowCount(0);
-
-        for (KhoHang kh : searchResult) {
-            Object[] rowData = {kh.getMasp(), kh.getTenSp(), kh.getSoluong(), kh.getSanpham().getHeDieuHanh()};
+        for (KhoHang kh : timkiemkh) {
+            Object[] rowData = {kh.getMasp(), kh.getTenSp(),kh.getSanpham().getHeDieuHanh(), kh.getSoluong()};
             model.addRow(rowData);
         }
 
