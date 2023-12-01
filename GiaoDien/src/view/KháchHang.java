@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -18,6 +19,8 @@ import java.util.regex.Pattern;
 import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -32,13 +35,13 @@ public class KháchHang extends javax.swing.JPanel {
     private final KhachHangSevice khsevice = new KhachHangSevice();
     DefaultTableModel model = new DefaultTableModel();
     int idex;
+    private DefaultTableModel model2;
 
     public KháchHang() {
         initComponents();
         model = (DefaultTableModel) tblbang.getModel();
         loadtable();
         loadtablespct();
-
     }
 
     private void loadtable() {
@@ -54,8 +57,12 @@ public class KháchHang extends javax.swing.JPanel {
 
         txtMa.setText(tblbang.getValueAt(idex, 1).toString());
         txtTen.setText(tblbang.getValueAt(idex, 2).toString());
+
         try {
-            Date.parse(tblbang.getValueAt(idex, 3).toString());
+            String dateString = tblbang.getValueAt(idex, 3).toString();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date parsedDate = dateFormat.parse(dateString);
+            txtngaysinh.setDateFormatString(dateString);
         } catch (ParseException ex) {
             ex.printStackTrace();
         }
@@ -190,9 +197,7 @@ public class KháchHang extends javax.swing.JPanel {
         jPanel11 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tblbanggiaodich = new javax.swing.JTable();
-        txttimkiemgd = new javax.swing.JTextField();
         btnxuatthongtin = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -516,7 +521,7 @@ public class KháchHang extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 578, Short.MAX_VALUE))
+                .addGap(0, 593, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Khách Hàng", jPanel3);
@@ -573,12 +578,6 @@ public class KháchHang extends javax.swing.JPanel {
             tblbanggiaodich.getColumnModel().getColumn(8).setResizable(false);
         }
 
-        txttimkiemgd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txttimkiemgdActionPerformed(evt);
-            }
-        });
-
         btnxuatthongtin.setBackground(new java.awt.Color(51, 255, 255));
         btnxuatthongtin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnxuatthongtin.setText("Xuất Thông Tin");
@@ -588,8 +587,6 @@ public class KháchHang extends javax.swing.JPanel {
             }
         });
 
-        jLabel11.setText("Tìm Kiếm");
-
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -598,11 +595,7 @@ public class KháchHang extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 803, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnxuatthongtin, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txttimkiemgd, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnxuatthongtin, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
@@ -610,11 +603,7 @@ public class KháchHang extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(btnxuatthongtin)
-                .addGap(13, 13, 13)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txttimkiemgd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(44, 44, 44)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(85, Short.MAX_VALUE))
         );
@@ -646,7 +635,7 @@ public class KháchHang extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 626, Short.MAX_VALUE))
+                .addGap(0, 644, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Thông Tin Giao Dịch", jPanel4);
@@ -747,7 +736,7 @@ public class KháchHang extends javax.swing.JPanel {
         ArrayList<KhachHang> searchResult = khsevice.Search(searchText);
 
         updateTableModel(searchResult);
-        
+
     }//GEN-LAST:event_txtTimkiemActionPerformed
     private void updateTableModel(ArrayList<KhachHang> searchResult) {
 
@@ -769,15 +758,7 @@ public class KháchHang extends javax.swing.JPanel {
     private void tblbanggiaodichMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblbanggiaodichMouseClicked
         idex = tblbanggiaodich.getSelectedRow();
     }//GEN-LAST:event_tblbanggiaodichMouseClicked
-
-    private void txttimkiemgdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttimkiemgdActionPerformed
-        String searchText = txttimkiemgd.getText().toLowerCase();
-
-        ArrayList<KhachHang> searchResult = khsevice.SearchGD(searchText);
-
-        Timkiemggd(searchResult);
-    }//GEN-LAST:event_txttimkiemgdActionPerformed
-    private void Timkiemggd(ArrayList<KhachHang> Timkiemggd) {
+     private void Timkiemggd(ArrayList<KhachHang> Timkiemggd) {
         model.setRowCount(0);
 
         for (KhachHang kh : Timkiemggd) {
@@ -794,7 +775,6 @@ public class KháchHang extends javax.swing.JPanel {
     }
 
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnlammoi;
     private javax.swing.JButton btnsua;
@@ -803,7 +783,6 @@ public class KháchHang extends javax.swing.JPanel {
     private javax.swing.JButton btnxuatthongtin;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbbtrangthai;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -837,7 +816,6 @@ public class KháchHang extends javax.swing.JPanel {
     private javax.swing.JTextField txtemai;
     private com.toedter.calendar.JDateChooser txtngaysinh;
     private javax.swing.JTextField txtsdt;
-    private javax.swing.JTextField txttimkiemgd;
     // End of variables declaration//GEN-END:variables
 
 }

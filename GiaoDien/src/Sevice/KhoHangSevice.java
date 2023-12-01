@@ -47,37 +47,37 @@ public class KhoHangSevice {
         return KH;
     }
 
-    public ArrayList<KhoHang> searchSPKH(String keyword) {
-        ArrayList<KhoHang> KH = new ArrayList<>();
-        Connection cnt = DBConnector.getConnection();
-        String sql = "SELECT KHOHANG.MASP, KHOHANG.TENSP, SOLUONG, SANPHAM.HEDIEUHANH "
-                + "FROM SANPHAM JOIN KHOHANG ON SANPHAM.MASP = KHOHANG.MASP "
-                + "WHERE KHOHANG.MASP LIKE ? OR KHOHANG.TENSP LIKE ?";
-        try {
-            PreparedStatement psm = cnt.prepareStatement(sql);
-            String likeKeyword = "%" + keyword + "%";
-            psm.setString(1, likeKeyword);
-            psm.setString(2, likeKeyword);
+        public ArrayList<KhoHang> searchSPKH(String keyword) {
+            ArrayList<KhoHang> KH = new ArrayList<>();
+            Connection cnt = DBConnector.getConnection();
+            String sql = "SELECT KHOHANG.MASP, KHOHANG.TENSP, SOLUONG, SANPHAM.HEDIEUHANH "
+                    + "FROM SANPHAM JOIN KHOHANG ON SANPHAM.MASP = KHOHANG.MASP "
+                    + "WHERE KHOHANG.MASP LIKE ? OR KHOHANG.TENSP LIKE ?";
+            try {
+                PreparedStatement psm = cnt.prepareStatement(sql);
+                String likeKeyword = "%" + keyword + "%";
+                psm.setString(1, likeKeyword);
+                psm.setString(2, likeKeyword);
 
-            ResultSet rs = psm.executeQuery();
-            while (rs.next()) {
-                KhoHang kh = new KhoHang();
-                kh.setMasp(rs.getString("MASP"));
-                kh.setTenSp(rs.getString("TENSP"));
-                kh.setSoluong(rs.getInt("SOLUONG"));
+                ResultSet rs = psm.executeQuery();
+                while (rs.next()) {
+                    KhoHang kh = new KhoHang();
+                    kh.setMasp(rs.getString("MASP"));
+                    kh.setTenSp(rs.getString("TENSP"));
+                    kh.setSoluong(rs.getInt("SOLUONG"));
 
-                SanPham sp = new SanPham();
-                sp.setHeDieuHanh(rs.getString("HEDIEUHANH"));
-                kh.setSanpham(sp);
+                    SanPham sp = new SanPham();
+                    sp.setHeDieuHanh(rs.getString("HEDIEUHANH"));
+                    kh.setSanpham(sp);
 
-                KH.add(kh);
+                    KH.add(kh);
+                }
+                psm.close();
+                rs.close();
+                cnt.close();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            psm.close();
-            rs.close();
-            cnt.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+            return KH;
         }
-        return KH;
-    }
 }

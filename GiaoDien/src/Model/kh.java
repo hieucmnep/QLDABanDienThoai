@@ -14,6 +14,10 @@ public class kh {
     private String sdt;
     private String email;
 
+    public String getmakh() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public interface KhachHangSelectedListener {
         void onKhachHangSelected(kh khachHang);
     }

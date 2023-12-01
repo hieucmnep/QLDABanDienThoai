@@ -65,7 +65,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="578" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="593" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -646,7 +646,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="626" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="644" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -701,11 +701,6 @@
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jScrollPane5" min="-2" pref="803" max="-2" attributes="0"/>
                                   <Component id="btnxuatthongtin" alignment="1" min="-2" pref="124" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txttimkiemgd" min="-2" pref="739" max="-2" attributes="0"/>
-                                  </Group>
                               </Group>
                               <EmptySpace pref="16" max="32767" attributes="0"/>
                           </Group>
@@ -716,12 +711,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                               <Component id="btnxuatthongtin" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txttimkiemgd" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                               <Component id="jScrollPane5" min="-2" pref="143" max="-2" attributes="0"/>
                               <EmptySpace pref="85" max="32767" attributes="0"/>
                           </Group>
@@ -811,11 +801,6 @@
                         </Component>
                       </SubComponents>
                     </Container>
-                    <Component class="javax.swing.JTextField" name="txttimkiemgd">
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txttimkiemgdActionPerformed"/>
-                      </Events>
-                    </Component>
                     <Component class="javax.swing.JButton" name="btnxuatthongtin">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -829,11 +814,6 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnxuatthongtinActionPerformed"/>
                       </Events>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel11">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m"/>
-                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>

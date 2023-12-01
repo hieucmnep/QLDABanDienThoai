@@ -12,6 +12,10 @@ import java.util.Date;
 
 public class KhachHang {
 
+    public static String getmakh() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     private int id;
     private String maKH;
     private String tenKH;

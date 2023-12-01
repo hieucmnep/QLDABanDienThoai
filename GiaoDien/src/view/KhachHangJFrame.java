@@ -15,8 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import Model.kh;
 
 import Sevice.KhachHangSevice;
-import view.BanHang;
-import view.BanHang;
+
 
 /**
  *
@@ -407,7 +406,7 @@ private void clearInputFields() {
                 KhachHangJFrame khachHangJFrame = new KhachHangJFrame(banHangChuaCuaSo);
 
                 // Đăng ký BanHang làm người nghe sự kiện
-                khachHangJFrame.addKhachHangSelectedListener(banHangChuaCuaSo);
+                khachHangJFrame.addKhachHangSelectedListener((kh.KhachHangSelectedListener) banHangChuaCuaSo);
 
                 khachHangJFrame.setVisible(true); // Đảm bảo gọi trước
             }
@@ -444,4 +443,8 @@ private void clearInputFields() {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTable khachhang;
     // End of variables declaration//GEN-END:variables
+
+    private void add(BanHang panelBanHang) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

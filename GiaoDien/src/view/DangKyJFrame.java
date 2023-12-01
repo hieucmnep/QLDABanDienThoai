@@ -1,5 +1,7 @@
 package view;
 
+
+
 public class DangKyJFrame extends javax.swing.JFrame {
 
     /**
@@ -110,7 +112,7 @@ public class DangKyJFrame extends javax.swing.JFrame {
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
-        DangNhapJFrame dangNhap = new DangNhapJFrame();
+        DangNhap dangNhap = new DangNhap();
         dangNhap.setVisible(true);
         dangNhap.pack();
         dangNhap.setLocationRelativeTo(null);
