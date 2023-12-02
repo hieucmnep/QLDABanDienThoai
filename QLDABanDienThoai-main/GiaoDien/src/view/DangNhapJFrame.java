@@ -1,18 +1,22 @@
 package view;
 
 import Model.NhanVien;
-import Sevice.NhanVienDAO;
+import Sevice.TaiKhoan;
 import dbconnect.MsgBox;
 import dbconnect.Auth;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import view.DangKyJFrame;
 import javax.swing.JFrame;
 
-
 public class DangNhapJFrame extends javax.swing.JFrame {
 
-    NhanVienDAO dao = new NhanVienDAO();
+    TaiKhoan dao = new TaiKhoan();
 
     public DangNhapJFrame() {
         initComponents();
@@ -33,7 +37,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnDangNhap = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        Luumatkhau = new javax.swing.JCheckBox();
         btnDangKy = new javax.swing.JLabel();
         txtMatKhau = new javax.swing.JPasswordField();
         AnhNen = new javax.swing.JLabel();
@@ -79,11 +83,16 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         });
         getContentPane().add(btnDangNhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 270, 40));
 
-        jCheckBox1.setBackground(new java.awt.Color(0, 0, 0));
-        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setText("Ghi nhớ đăng nhập");
-        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, -1, -1));
+        Luumatkhau.setBackground(new java.awt.Color(0, 0, 0));
+        Luumatkhau.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Luumatkhau.setForeground(new java.awt.Color(255, 255, 255));
+        Luumatkhau.setText("Ghi nhớ đăng nhập");
+        Luumatkhau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LuumatkhauActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Luumatkhau, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, -1, -1));
 
         btnDangKy.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnDangKy.setForeground(new java.awt.Color(102, 102, 255));
@@ -119,21 +128,21 @@ public class DangNhapJFrame extends javax.swing.JFrame {
                     this.dispose();
                 }
             }
-          
+
         } else {
-            JOptionPane.showMessageDialog(this, "Tên đăng nhập hoặc mật khẩu không chính xác.", "Lỗi đăng nhập", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Vui Long Nhập Thông Tin.", "Lỗi đăng nhập", JOptionPane.ERROR_MESSAGE);
         }
     }
 
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        // TODO add your handling code here:
         dangNhap();
         if (Auth.user != null) {
-            // If authenticated, open the Main frame
+
             Main mainFrame = new Main();
             mainFrame.setVisible(true);
-            this.dispose(); // Close the current login frame
+            this.dispose();
+
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
@@ -150,15 +159,39 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnDangKyMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+    private void LuumatkhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LuumatkhauActionPerformed
+        if (Luumatkhau.isSelected()) {
+            String username = txtTen.getText();
+            char[] password = txtMatKhau.getPassword();
 
+            try (PrintWriter writer = new PrintWriter(new FileWriter("loginInfo.txt"))) {
+                // Save username and password to a file
+                writer.println(username);
+                writer.println(new String(password));
+                writer.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_LuumatkhauActionPerformed
+    private void loadSavedLoginInfo() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("loginInfo.txt"))) {
+            String username = reader.readLine();
+            String password = reader.readLine();
+
+            // Set the loaded username and password to the corresponding fields
+            txtTen.setText(username);
+            txtMatKhau.setText(password);
+        } catch (IOException e) {
+            // Handle the case when the file doesn't exist or an error occurs
+            e.printStackTrace();
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AnhNen;
+    private javax.swing.JCheckBox Luumatkhau;
     private javax.swing.JLabel btnDangKy;
     private javax.swing.JButton btnDangNhap;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
