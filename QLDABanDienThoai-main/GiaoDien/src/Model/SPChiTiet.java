@@ -12,25 +12,26 @@ import java.util.Date;
  * @author ADMIN
  */
 public class SPChiTiet {
-    private String masp, loairam, mausac, maspct, nhasx;
-    private Date ngaynhap;
+  private String masp, loairam, mausac, nhasx;
+    private String ngaynhap;
     private int soluong;
     private float gianhap;
-
+    private String maspct;
     public SPChiTiet(String loairam, String mausac) {
         this.loairam = loairam;
         this.mausac = mausac;
     }
-
-    public SPChiTiet(String loairam, String mausac, String nhasx, Date ngaynhap, int soluong) {
+  
+    public SPChiTiet(String loairam, String mausac, String nhasx, String ngaynhap, int soluong,String maspct) {
         this.loairam = loairam;
         this.mausac = mausac;
         this.nhasx = nhasx;
         this.ngaynhap = ngaynhap;
         this.soluong = soluong;
+         this.maspct = maspct;
     }
 
-    public SPChiTiet(String masp, String loairam, String mausac, String maspct, String nhasx, Date ngaynhap, int soluong, float gianhap) {
+    public SPChiTiet(String masp, String loairam, String mausac, String maspct, String nhasx, String ngaynhap, int soluong, float gianhap) {
         this.masp = masp;
         this.loairam = loairam;
         this.mausac = mausac;
@@ -41,7 +42,7 @@ public class SPChiTiet {
         this.gianhap = gianhap;
     }
 
-    public SPChiTiet(String masp, String loairam, String mausac, String maspct, String nhasx, Date ngaynhap, int soluong) {
+    public SPChiTiet(String masp, String loairam, String mausac, String maspct, String nhasx, String ngaynhap, int soluong) {
         this.masp = masp;
         this.loairam = loairam;
         this.mausac = mausac;
@@ -49,6 +50,14 @@ public class SPChiTiet {
         this.nhasx = nhasx;
         this.ngaynhap = ngaynhap;
         this.soluong = soluong;
+    }
+
+    public SPChiTiet(String masp, String loairam, String mausac, String nhasx, String maspct) {
+        this.masp = masp;
+        this.loairam = loairam;
+        this.mausac = mausac;
+        this.nhasx = nhasx;
+        this.maspct = maspct;
     }
 
     
@@ -95,11 +104,11 @@ public class SPChiTiet {
         this.maspct = maspct;
     }
 
-    public Date getNgaynhap() {
+    public String getNgaynhap() {
         return ngaynhap;
     }
 
-    public void setNgaynhap(Date ngaynhap) {
+    public void setNgaynhap(String ngaynhap) {
         this.ngaynhap = ngaynhap;
     }
 
@@ -117,6 +126,11 @@ public class SPChiTiet {
 
     public void setGianhap(float gianhap) {
         this.gianhap = gianhap;
+    }
+
+    @Override
+    public String toString() {
+        return "SPChiTiet{" + "masp=" + masp + ", loairam=" + loairam + ", mausac=" + mausac + ", nhasx=" + nhasx + ", ngaynhap=" + ngaynhap + ", soluong=" + soluong + ", gianhap=" + gianhap + ", maspct=" + maspct + '}';
     }
 
     

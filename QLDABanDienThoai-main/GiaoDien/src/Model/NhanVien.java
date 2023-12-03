@@ -1,6 +1,15 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Model;
 
+/**
+ *
+ * @author hieu9
+ */
 public class NhanVien {
+   
     private String MaTK;
     private String hoTen;
     private String matKhau;
@@ -52,7 +61,5 @@ public class NhanVien {
     public String toString() {
         return "NhanVien{" + "MaTK=" + MaTK + ", hoTen=" + hoTen + ", matKhau=" + matKhau + ", vaiTro=" + vaiTro + '}';
     }
-
-    
-    
 }
+

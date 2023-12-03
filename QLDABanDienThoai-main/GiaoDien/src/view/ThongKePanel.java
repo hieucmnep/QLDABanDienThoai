@@ -41,6 +41,7 @@ public class ThongKePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblThongKE = new javax.swing.JTable();
@@ -113,6 +114,7 @@ public class ThongKePanel extends javax.swing.JPanel {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm kiếm"));
 
+        buttonGroup1.add(rdoThanhCong);
         rdoThanhCong.setText("Đã thanh toán");
         rdoThanhCong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +122,7 @@ public class ThongKePanel extends javax.swing.JPanel {
             }
         });
 
+        buttonGroup1.add(rdoHuy);
         rdoHuy.setText("Đã hủy");
         rdoHuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -531,6 +534,7 @@ public class ThongKePanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnTimKiem;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel iblTongDC;
     private javax.swing.JLabel iblTongDC1;
     private javax.swing.JLabel iblTongDC2;

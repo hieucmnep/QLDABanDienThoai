@@ -21,12 +21,13 @@ public class Main extends javax.swing.JFrame {
 
     private BanHang panelSell;
     private boolean isMouseClicked = false;
-    private SanPham panelSanPham;
+    private SanPham1 panelSanPham;
     private KháchHang panelKhachhang;
     private HoaDonJPanel panelhoadon;
     private TrangChu panelTrangChu;
     private KhoHangJPanel panelkhohang;
     private ThongKePanel panelthongke;
+//    private NhanVien panelnhanvien;
 
     public Main() {
         initComponents();
@@ -38,6 +39,7 @@ public class Main extends javax.swing.JFrame {
         panelTrangChu = new TrangChu();
         panelkhohang = new KhoHangJPanel();
         panelthongke = new ThongKePanel();
+//        panelnhanvien = new NhanVien();
 
     }
 
@@ -307,17 +309,17 @@ public class Main extends javax.swing.JFrame {
         vuuu.setBackground(new java.awt.Color(255, 204, 255));
         vuuu.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Hotro.jpg"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Hotro-removebg-preview.png"))); // NOI18N
 
         jLabel9.setForeground(new java.awt.Color(0, 51, 255));
         jLabel9.setText("Hỗ Trợ");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/changepass.jpg"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/changepass-removebg-preview.png"))); // NOI18N
 
         jLabel10.setForeground(new java.awt.Color(0, 51, 255));
         jLabel10.setText("Đổi mật khẩu");
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Đangxuat.jpg"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Đangxuat-removebg-preview.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -345,7 +347,7 @@ public class Main extends javax.swing.JFrame {
         jLabel17.setText("Thời gian");
 
         jLabel18.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel18.setText("chưa có code");
+        jLabel18.setText("Date");
         jLabel18.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jLabel18AncestorAdded(evt);
@@ -375,7 +377,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel17)
                 .addGap(30, 30, 30)
                 .addComponent(jLabel18)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,9 +417,8 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(vuuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         vuuuLayout.setVerticalGroup(
             vuuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -443,12 +444,13 @@ public class Main extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(MainChinh, javax.swing.GroupLayout.DEFAULT_SIZE, 969, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(vuuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, 0)
+                        .addComponent(MainChinh, javax.swing.GroupLayout.DEFAULT_SIZE, 998, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addComponent(vuuu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

@@ -30,7 +30,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
 import view.KhachHangJFrame;
-import view.SanPham;
+import view.SanPham1;
 
 /**
  *

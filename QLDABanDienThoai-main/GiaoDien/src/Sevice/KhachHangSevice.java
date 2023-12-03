@@ -249,8 +249,8 @@ public class KhachHangSevice {
     }
 
     public void xuatDuLieuRaExcel() {
-        ArrayList<KhachHang> danhSachKhachHang = GetAll();
-
+        ArrayList<KhachHang> danhSachKhachHang = joinTables();
+        
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("DuLieuKhachHang");
 
@@ -269,24 +269,15 @@ public class KhachHangSevice {
             hang.createCell(0).setCellValue(kh.getId());
             hang.createCell(1).setCellValue(kh.getTenKH());
             hang.createCell(2).setCellValue(kh.getSdt());
-
-            HoaDonCT hoaDonCT = kh.getHoaDonCT();
-            if (hoaDonCT != null) {
-                hang.createCell(3).setCellValue(hoaDonCT.getNgayMua());
-                hang.createCell(4).setCellValue(hoaDonCT.getSoLuong());
-                hang.createCell(5).setCellValue(hoaDonCT.getDonGia());
-                hang.createCell(6).setCellValue(hoaDonCT.getTongTien());
-                hang.createCell(7).setCellValue(hoaDonCT.getTrangThai());
+               
+                hang.createCell(3).setCellValue(kh.getHoaDonCT().getNgayMua());
+                hang.createCell(4).setCellValue(kh.getHoaDonCT().getSoLuong());
+                hang.createCell(5).setCellValue(kh.getHoaDonCT().getDonGia());
+                hang.createCell(6).setCellValue(kh.getHoaDonCT().getTongTien());
+                hang.createCell(7).setCellValue(kh.getHoaDonCT().getTrangThai());
                 hang.createCell(8).setCellValue(kh.getSanPham().getTenSP());
-            } else {
-                hang.createCell(3).setCellValue("N/A");
-                hang.createCell(4).setCellValue(0);
-                hang.createCell(5).setCellValue(0.0);
-                hang.createCell(6).setCellValue(0.0);
-                hang.createCell(7).setCellValue("N/A");
-                hang.createCell(8).setCellValue("N/A");
-            }
-        }
+            } 
+        
 
         try {
             File f = new File("D://In.xlsx");
