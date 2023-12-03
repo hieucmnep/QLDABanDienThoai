@@ -6,7 +6,7 @@ package Sevice;
 
 import Model.HoaDonCT;
 import Model.KhachHang;
-import Model.SanPham;
+import model.SanPham;
 import dbconnect.DBConnector;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -144,7 +144,7 @@ public class KhachHangSevice {
                 sp.setTenSP(rs.getString("TenSP"));
                 kh.setHoaDonCT(so);
 
-                kh.setSanpham(sp);
+                kh.setSanPham(sp);
 
                 KH.add(kh);
             }
@@ -196,99 +196,100 @@ public class KhachHangSevice {
         return result;
     }
 
-        public ArrayList<KhachHang> SearchGD(String keyword) {
-            ArrayList<KhachHang> result = new ArrayList<>();
-            Connection cnt = DBConnector.getConnection();
-            String sql = "SELECT KHACHHANG.IDKH, TENKH, SDT, HOADONCT.NGAYMUA, HOADONCT.SOLUONG, DONGIA, TONGTIEN, HOADONCT.TRANGTHAI, TENSP "
-                    + "FROM HOADONCT "
-                    + "JOIN KHACHHANG ON HOADONCT.MAKH = KHACHHANG.MAKH "
-                    + "JOIN SANPHAMCT ON SANPHAMCT.MASPCT = HOADONCT.MASPCT "
-                    + "JOIN SANPHAM ON SANPHAM.MASP = SANPHAMCT.MASP "
-                    + "WHERE KHACHHANG.TENKH LIKE ? OR KHACHHANG.MAKH LIKE ? OR KHACHHANG.EMAIL LIKE ? OR KHACHHANG.SDT LIKE ?";
+    public ArrayList<KhachHang> SearchGD(String keyword) {
+        ArrayList<KhachHang> result = new ArrayList<>();
+        Connection cnt = DBConnector.getConnection();
+        String sql = "SELECT KHACHHANG.IDKH, TENKH, SDT, HOADONCT.NGAYMUA, HOADONCT.SOLUONG, DONGIA, TONGTIEN, HOADONCT.TRANGTHAI, TENSP "
+                + "FROM HOADONCT "
+                + "JOIN KHACHHANG ON HOADONCT.MAKH = KHACHHANG.MAKH "
+                + "JOIN SANPHAMCT ON SANPHAMCT.MASPCT = HOADONCT.MASPCT "
+                + "JOIN SANPHAM ON SANPHAM.MASP = SANPHAMCT.MASP "
+                + "WHERE KHACHHANG.TENKH LIKE ? OR KHACHHANG.MAKH LIKE ? OR KHACHHANG.EMAIL LIKE ? OR KHACHHANG.SDT LIKE ?";
 
-            try {
-                PreparedStatement psm = cnt.prepareStatement(sql);
-                String likeKeyword = "%" + keyword + "%";
-                psm.setString(1, likeKeyword);
-                psm.setString(2, likeKeyword);
-                psm.setString(3, likeKeyword);
-                psm.setString(4, likeKeyword);
+        try {
+            PreparedStatement psm = cnt.prepareStatement(sql);
+            String likeKeyword = "%" + keyword + "%";
+            psm.setString(1, likeKeyword);
+            psm.setString(2, likeKeyword);
+            psm.setString(3, likeKeyword);
+            psm.setString(4, likeKeyword);
 
-                ResultSet rs = psm.executeQuery();
+            ResultSet rs = psm.executeQuery();
 
-                while (rs.next()) {
-                    KhachHang kh = new KhachHang();
-                    kh.setId(rs.getInt("IDKH"));
-                    kh.setTenKH(rs.getNString("TENKH"));
-                    kh.setSdt(rs.getString("SDT"));
+            while (rs.next()) {
+                KhachHang kh = new KhachHang();
+                kh.setId(rs.getInt("IDKH"));
+                kh.setTenKH(rs.getNString("TENKH"));
+                kh.setSdt(rs.getString("SDT"));
 
-                    HoaDonCT so = new HoaDonCT();
-                    so.setNgayMua(rs.getString("NGAYMUA"));
-                    so.setSoLuong(rs.getInt("SOLUONG"));
-                    so.setDonGia(rs.getFloat("DONGIA"));
-                    so.setTongTien(rs.getFloat("TONGTIEN"));
-                    so.setTrangThai(rs.getString("TRANGTHAI"));
+                HoaDonCT so = new HoaDonCT();
+                so.setNgayMua(rs.getString("NGAYMUA"));
+                so.setSoLuong(rs.getInt("SOLUONG"));
+                so.setDonGia(rs.getFloat("DONGIA"));
+                so.setTongTien(rs.getFloat("TONGTIEN"));
+                so.setTrangThai(rs.getString("TRANGTHAI"));
 
-                    SanPham sp = new SanPham();
-                    sp.setTenSP(rs.getString("TENSP"));
+                SanPham sp = new SanPham();
+                sp.setTenSP(rs.getString("TENSP"));
 
-                    kh.setHoaDonCT(so);
-                    kh.setSanpham(sp);
+                kh.setHoaDonCT(so);
+                kh.setSanPham(sp);
 
-                    result.add(kh);
-                }
-
-                psm.close();
-                rs.close();
-                cnt.close();
-            } catch (Exception e) {
-                e.printStackTrace();
+                result.add(kh);
             }
 
-            return result;
+            psm.close();
+            rs.close();
+            cnt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-    public ArrayList<KhachHang> InHoaDon() {
-        ArrayList<KhachHang> list = GetAll();
+        return result;
+    }
+
+    public void xuatDuLieuRaExcel() {
+        ArrayList<KhachHang> danhSachKhachHang = GetAll();
+
         Workbook workbook = new XSSFWorkbook();
-        Sheet sheet = workbook.createSheet();
-        Row row;
-        Cell cell;
+        Sheet sheet = workbook.createSheet("DuLieuKhachHang");
 
-        // write the column headers
-        row = sheet.createRow(0);
-        String[] headers = {"ID", "Tên Khách Hàng", "Số Điện Thoại", "Ngày Mua", "Số Lượng", "Đơn Giá", "Tổng Tiền", "Trạng Thái", "Tên Sản Phẩm"};
-        for (int c = 0; c < headers.length; c++) {
-            cell = row.createCell(c);
-            cell.setCellValue(headers[c]);
+        // Tạo hàng tiêu đề
+        Row headerRow = sheet.createRow(0);
+        String[] tieuDe = {"ID", "Tên Khách Hàng", "Số Điện Thoại", "Ngày Mua", "Số Lượng", "Đơn Giá", "Tổng Tiền", "Trạng Thái", "Tên Sản Phẩm"};
+        for (int i = 0; i < tieuDe.length; i++) {
+            Cell cell = headerRow.createCell(i);
+            cell.setCellValue(tieuDe[i]);
         }
 
-        int rowNum = 1;
-            for (KhachHang kh : list) {
-                row = sheet.createRow(rowNum++);
-                row.createCell(0).setCellValue(kh.getId());
-                row.createCell(1).setCellValue(kh.getTenKH());
-                row.createCell(2).setCellValue(kh.getSdt());
-                HoaDonCT hoaDonCT = kh.getHoaDonCT();
-                if (hoaDonCT != null) {
-                    row.createCell(3).setCellValue(hoaDonCT.getNgayMua());
-                    row.createCell(4).setCellValue(hoaDonCT.getSoLuong());
-                    row.createCell(5).setCellValue(hoaDonCT.getDonGia());
-                    row.createCell(6).setCellValue(hoaDonCT.getTongTien());
-                    row.createCell(7).setCellValue(hoaDonCT.getTrangThai());
-                    row.createCell(8).setCellValue(kh.getSanpham().getTenSP());
-                } else {
-                    row.createCell(3).setCellValue("N/A");
-                    row.createCell(4).setCellValue(0);
-                    row.createCell(5).setCellValue(0.0);
-                    row.createCell(6).setCellValue(0.0);
-                    row.createCell(7).setCellValue("N/A");
-                    row.createCell(8).setCellValue("N/A");
-                }
+        // Đổ dữ liệu vào bảng
+        int soHang = 1;
+        for (KhachHang kh : danhSachKhachHang) {
+            Row hang = sheet.createRow(soHang++);
+            hang.createCell(0).setCellValue(kh.getId());
+            hang.createCell(1).setCellValue(kh.getTenKH());
+            hang.createCell(2).setCellValue(kh.getSdt());
+
+            HoaDonCT hoaDonCT = kh.getHoaDonCT();
+            if (hoaDonCT != null) {
+                hang.createCell(3).setCellValue(hoaDonCT.getNgayMua());
+                hang.createCell(4).setCellValue(hoaDonCT.getSoLuong());
+                hang.createCell(5).setCellValue(hoaDonCT.getDonGia());
+                hang.createCell(6).setCellValue(hoaDonCT.getTongTien());
+                hang.createCell(7).setCellValue(hoaDonCT.getTrangThai());
+                hang.createCell(8).setCellValue(kh.getSanPham().getTenSP());
+            } else {
+                hang.createCell(3).setCellValue("N/A");
+                hang.createCell(4).setCellValue(0);
+                hang.createCell(5).setCellValue(0.0);
+                hang.createCell(6).setCellValue(0.0);
+                hang.createCell(7).setCellValue("N/A");
+                hang.createCell(8).setCellValue("N/A");
+            }
         }
 
         try {
-            File f = new File("D:\\InHoaDon.xlsx");
+            File f = new File("D://In.xlsx");
             FileOutputStream fis = new FileOutputStream(f);
             workbook.write(fis);
             fis.close();
@@ -300,6 +301,8 @@ public class KhachHangSevice {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Lỗi ghi file");
         }
-        return list;
+
     }
 }
+
+

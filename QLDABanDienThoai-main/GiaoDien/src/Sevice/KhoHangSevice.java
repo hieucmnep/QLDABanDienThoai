@@ -7,7 +7,8 @@ package Sevice;
 import Model.HoaDonCT;
 import Model.KhachHang;
 import Model.KhoHang;
-import Model.SanPham;
+import model.SanPham;
+import Model.SanPhamCT;
 import dbconnect.DBConnector;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -22,9 +23,9 @@ public class KhoHangSevice {
     public ArrayList<KhoHang> joinSPKH() {
         ArrayList<KhoHang> KH = new ArrayList<>();
         Connection cnt = DBConnector.getConnection();
-        String sql = "SELECT DISTINCT KHOHANG.MASP, KHOHANG.TENSP, KHOHANG.SOLUONG, SANPHAM.HEDIEUHANH\n"
-                + "FROM SANPHAM\n"
-                + "JOIN KHOHANG ON SANPHAM.MASP = KHOHANG.MASP; ";
+        String sql = "SELECT KHOHANG.MASP, KHOHANG.TENSP, KHOHANG.GIA, KHOHANG.SOLUONG, SANPHAMCT.NGAYNHAP\n"
+                + "FROM KHOHANG\n"
+                + "JOIN SANPHAMCT ON KHOHANG.MASP = SANPHAMCT.MASP;";
         try {
             PreparedStatement psm = cnt.prepareStatement(sql);
             ResultSet rs = psm.executeQuery();
@@ -32,10 +33,13 @@ public class KhoHangSevice {
                 KhoHang kh = new KhoHang();
                 kh.setMasp(rs.getString("MASP"));
                 kh.setTenSp(rs.getString("TENSP"));
+                kh.setGia(rs.getFloat("GIA"));
                 kh.setSoluong(rs.getInt("SOLUONG"));
-                SanPham sp = new SanPham();
-                sp.setHeDieuHanh(rs.getString("HEDIEUHANH"));
-                kh.setSanpham(sp);
+
+                SanPhamCT sp = new SanPhamCT();
+                sp.setNgayNhap(rs.getDate("NGAYNHAP"));
+                kh.setSp(sp);
+
                 KH.add(kh);
             }
             psm.close();
@@ -47,37 +51,42 @@ public class KhoHangSevice {
         return KH;
     }
 
-    public ArrayList<KhoHang> searchSPKH(String keyword) {
-        ArrayList<KhoHang> KH = new ArrayList<>();
-        Connection cnt = DBConnector.getConnection();
-        String sql = "SELECT KHOHANG.MASP, KHOHANG.TENSP, SOLUONG, SANPHAM.HEDIEUHANH "
-                + "FROM SANPHAM JOIN KHOHANG ON SANPHAM.MASP = KHOHANG.MASP "
-                + "WHERE KHOHANG.MASP LIKE ? OR KHOHANG.TENSP LIKE ?";
-        try {
-            PreparedStatement psm = cnt.prepareStatement(sql);
-            String likeKeyword = "%" + keyword + "%";
-            psm.setString(1, likeKeyword);
-            psm.setString(2, likeKeyword);
+  public ArrayList<KhoHang> searchSPKH(String searchString) {
+    ArrayList<KhoHang> KH = new ArrayList<>();
+    Connection cnt = DBConnector.getConnection();
+    String sql = "SELECT KHOHANG.MASP, KHOHANG.TENSP, KHOHANG.GIA, KHOHANG.SOLUONG, SANPHAMCT.NGAYNHAP\n"
+            + "FROM KHOHANG\n"
+            + "JOIN SANPHAMCT ON KHOHANG.MASP = SANPHAMCT.MASP\n"
+            + "WHERE KHOHANG.TENSP LIKE ? OR KHOHANG.MASP LIKE ?;";  // Add more conditions as needed
 
-            ResultSet rs = psm.executeQuery();
-            while (rs.next()) {
-                KhoHang kh = new KhoHang();
-                kh.setMasp(rs.getString("MASP"));
-                kh.setTenSp(rs.getString("TENSP"));
-                kh.setSoluong(rs.getInt("SOLUONG"));
+    try {
+        PreparedStatement psm = cnt.prepareStatement(sql);
+        // Set the search parameters
+        psm.setString(1, "%" + searchString + "%");
+        psm.setString(2, "%" + searchString + "%");
 
-                SanPham sp = new SanPham();
-                sp.setHeDieuHanh(rs.getString("HEDIEUHANH"));
-                kh.setSanpham(sp);
+        ResultSet rs = psm.executeQuery();
+        while (rs.next()) {
+            KhoHang kh = new KhoHang();
+            kh.setMasp(rs.getString("MASP"));
+            kh.setTenSp(rs.getString("TENSP"));
+            kh.setGia(rs.getFloat("GIA"));
+            kh.setSoluong(rs.getInt("SOLUONG"));
 
-                KH.add(kh);
-            }
-            psm.close();
-            rs.close();
-            cnt.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+            SanPhamCT sp = new SanPhamCT();
+            sp.setNgayNhap(rs.getDate("NGAYNHAP"));
+            kh.setSp(sp);
+
+            KH.add(kh);
         }
-        return KH;
+        psm.close();
+        rs.close();
+        cnt.close();
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+    return KH;
+}
+
+
 }

@@ -13,10 +13,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import Model.kh;
-
 import Sevice.KhachHangSevice;
-import view.BanHang;
-import view.BanHang;
+
 
 /**
  *

@@ -8,6 +8,7 @@ package Model;
  *
  * @author LE DINH LINH
  */
+import model.SanPham;
 import java.util.Date;
 
 public class SanPhamCT {

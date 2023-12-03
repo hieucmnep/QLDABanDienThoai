@@ -4,7 +4,7 @@
  */
 package Sevice;
 
-import Model.SanPham;
+import model.SanPham;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.*;

@@ -9,18 +9,29 @@ package Model;
  * @author hieu9
  */
 public class KhoHang {
-
+    private int ID;
     private String masp;
     private String TenSp;
     private int soluong;
+    private float gia;
 
-    public KhoHang(String masp, String TenSp, int soluong) {
+    public KhoHang(int ID, String masp, String TenSp, int soluong, float gia) {
+        this.ID = ID;
         this.masp = masp;
         this.TenSp = TenSp;
         this.soluong = soluong;
+        this.gia = gia;
     }
 
     public KhoHang() {
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getMasp() {
@@ -47,14 +58,27 @@ public class KhoHang {
         this.soluong = soluong;
     }
 
-    private SanPham sanpham;
-
-    public SanPham getSanpham() {
-        return sanpham;
+    public float getGia() {
+        return gia;
     }
 
-    public void setSanpham(SanPham sanpham) {
-        this.sanpham = sanpham;
+    public void setGia(float gia) {
+        this.gia = gia;
     }
+    
+   private SanPhamCT sp;
+
+    public SanPhamCT getSp() {
+        return sp;
+    }
+
+    public void setSp(SanPhamCT sp) {
+        this.sp = sp;
+    }
+
+   
+
+   
+  
 
 }

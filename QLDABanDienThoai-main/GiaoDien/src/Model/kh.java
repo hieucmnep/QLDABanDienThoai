@@ -8,11 +8,12 @@ package Model;
  *
  * @author LE DINH LINH
  */
+
 public class kh {
 
     private String ten;
     private String sdt;
-    private String email;
+    private String makh;
 
     public interface KhachHangSelectedListener {
         void onKhachHangSelected(kh khachHang);
@@ -21,10 +22,10 @@ public class kh {
     public kh() {
     }
 
-    public kh(String ten, String sdt, String email) {
+    public kh(String ten, String sdt, String makh) {
         this.ten = ten;
         this.sdt = sdt;
-        this.email = email;
+        this.makh = makh;
     }
 
     public String getTen() {
@@ -35,7 +36,7 @@ public class kh {
         return sdt;
     }
 
-    public String getEmail() {
-        return email;
+    public String getmakh() {
+        return makh;
     }
 }

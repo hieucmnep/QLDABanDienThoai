@@ -4,7 +4,7 @@
  */
 package view;
 
-import Model.Mycombobox;
+import dbconnect.Mycombobox;
 import Model.SPChiTiet;
 import Model.SanPham_model;
 import Sevice.SPchitiet_sql;

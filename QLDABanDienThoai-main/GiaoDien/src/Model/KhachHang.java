@@ -8,6 +8,7 @@ package Model;
  *
  * @author hieu9
  */
+import model.SanPham;
 import java.util.Date;
 
 public class KhachHang {
@@ -21,8 +22,10 @@ public class KhachHang {
     private String diaChi;
     private String gioiTinh;
     private boolean trangThai;
+    private HoaDonCT hoaDonCT;
+    private SanPham sanPham;
 
-    public KhachHang(int id, String maKH, String tenKH, String sdt, Date ngaySinh, String email, String diaChi, String gioiTinh, boolean trangThai) {
+    public KhachHang(int id, String maKH, String tenKH, String sdt, Date ngaySinh, String email, String diaChi, String gioiTinh, boolean trangThai, HoaDonCT hoaDonCT, SanPham sanPham) {
         this.id = id;
         this.maKH = maKH;
         this.tenKH = tenKH;
@@ -32,6 +35,8 @@ public class KhachHang {
         this.diaChi = diaChi;
         this.gioiTinh = gioiTinh;
         this.trangThai = trangThai;
+        this.hoaDonCT = hoaDonCT;
+        this.sanPham = sanPham;
     }
 
     public KhachHang() {
@@ -77,8 +82,6 @@ public class KhachHang {
         this.ngaySinh = ngaySinh;
     }
 
-   
-
     public String getEmail() {
         return email;
     }
@@ -111,24 +114,26 @@ public class KhachHang {
         this.trangThai = trangThai;
     }
 
-    private HoaDonCT hoaDonCT;
+    public KhachHang(HoaDonCT hoaDonCT, SanPham sanPham) {
+        this.hoaDonCT = hoaDonCT;
+        this.sanPham = sanPham;
+    }
 
     public HoaDonCT getHoaDonCT() {
         return hoaDonCT;
     }
-    
+
     public void setHoaDonCT(HoaDonCT hoaDonCT) {
         this.hoaDonCT = hoaDonCT;
     }
-    private SanPham sanpham;
 
-    public SanPham getSanpham() {
-        return sanpham;
+    // Getters và Setters cho sanPham
+    public SanPham getSanPham() {
+        return sanPham;
     }
 
-    public void setSanpham(SanPham sanpham) {
-        this.sanpham = sanpham;
+    public void setSanPham(SanPham sanPham) {
+        this.sanPham = sanPham;
     }
 
-    
 }

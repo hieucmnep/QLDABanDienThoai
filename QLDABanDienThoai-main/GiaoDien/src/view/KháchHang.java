@@ -76,7 +76,7 @@ public class KháchHang extends javax.swing.JPanel {
                 kh.getTenKH(),
                 kh.getSdt(),
                 kh.getHoaDonCT().getNgayMua(),
-                kh.getSanpham().getTenSP(),
+                kh.getSanPham().getTenSP(),
                 kh.getHoaDonCT().getSoLuong(),
                 kh.getHoaDonCT().getDonGia(),
                 kh.getHoaDonCT().getTongTien(),
@@ -324,7 +324,6 @@ public class KháchHang extends javax.swing.JPanel {
                         .addGap(264, 264, 264)
                         .addComponent(btnthem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(10, 10, 10)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(rdonam)
@@ -739,7 +738,7 @@ public class KháchHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnxoaActionPerformed
 
     private void btnxuatthongtinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxuatthongtinActionPerformed
-        ArrayList<KhachHang> lshd = khsevice.InHoaDon();
+        khsevice.xuatDuLieuRaExcel();;
     }//GEN-LAST:event_btnxuatthongtinActionPerformed
 
     private void txtTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimkiemActionPerformed
@@ -787,7 +786,7 @@ public class KháchHang extends javax.swing.JPanel {
                 kh.getTenKH(),
                 kh.getSdt(),
                 kh.getHoaDonCT().getNgayMua(),
-                kh.getSanpham().getTenSP(),
+                kh.getSanPham().getTenSP(),
                 kh.getHoaDonCT().getSoLuong(),
                 kh.getHoaDonCT().getDonGia(),
                 kh.getHoaDonCT().getTongTien(),
@@ -814,10 +813,14 @@ public class KháchHang extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;

@@ -4,9 +4,11 @@
  */
 package view;
 
+import Model.HoaDonCT;
 import Model.KhoHang;
 import Sevice.KhoHangSevice;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -27,13 +29,16 @@ public class KhoHangJPanel extends javax.swing.JPanel {
     }
 
     private void hienthi() {
+        DefaultTableModel model = (DefaultTableModel) this.tblkhohang.getModel();
         ArrayList<KhoHang> khlst = khsv.joinSPKH();
         model.setRowCount(0);
         for (KhoHang kh : khlst) {
             model.addRow(new Object[]{kh.getMasp(),
                 kh.getTenSp(),
-                kh.getSanpham().getHeDieuHanh(),
-                kh.getSoluong(),});
+                kh.getGia(),
+                kh.getSoluong(),
+                kh.getSp().getNgayNhap()});
+
         }
     }
 
@@ -55,9 +60,9 @@ public class KhoHangJPanel extends javax.swing.JPanel {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tra Cứu Hàng Tồn Kho", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
-        jLabel1.setText("Kho");
+        jLabel1.setText("Loc");
 
-        cbbloc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Android", "iOS" }));
+        cbbloc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "2022-12-01", "2023-01-15", "2023-02-20", "2023-03-10", "2023-04-05" }));
         cbbloc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbblocActionPerformed(evt);
@@ -75,15 +80,24 @@ public class KhoHangJPanel extends javax.swing.JPanel {
 
         tblkhohang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Mã Hàng Hóa", "Tên Hàng Hóa", "Hệ Điều Hành", "Số Lượng Hàng Hóa"
+                "Mã Hàng Hóa", "Tên Hàng Hóa", "Gia", "Số Lượng Hàng Hóa", "NgayNhap"
             }
         ));
+        tblkhohang.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tblkhohangAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(tblkhohang);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -125,21 +139,30 @@ public class KhoHangJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btntimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntimkiemActionPerformed
-        String keyword = txttimkiem.getText();
+        // Get the search criteria from a text field
+        String searchString = txttimkiem.getText().trim();
 
-        ArrayList<KhoHang> timkiemkh = khsv.searchSPKH(keyword);
+        // Bước 2: Thực hiện tìm kiếm
+        ArrayList<KhoHang> searchResult = khsv.searchSPKH(searchString);
 
+        // Bước 3: Hiển thị kết quả tìm kiếm
+        // Xóa dữ liệu trong bảng
         DefaultTableModel model = (DefaultTableModel) tblkhohang.getModel();
         model.setRowCount(0);
-        for (KhoHang kh : timkiemkh) {
-            model.addRow(new Object[]{kh.getMasp(),
-                kh.getTenSp(),
-                kh.getSanpham().getHeDieuHanh(),
-                kh.getSoluong(),});
 
+        if (searchResult.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Không có dữ liệu phù hợp");
+            return;
+        } else {
+            // Thêm dữ liệu mới từ kết quả tìm kiếm vào bảng
+            for (KhoHang kh : searchResult) {
+                model.addRow(new Object[]{kh.getMasp(), kh.getTenSp(), kh.getGia(), kh.getSoluong(), kh.getSp().getNgayNhap()});
+            }
         }
 
+
     }//GEN-LAST:event_btntimkiemActionPerformed
+
     private void filterDataByBrand(String selectedBrand) {
         // Kiểm tra nếu thương hiệu được chọn không phải là placeholder "-- Chọn Thương hiệu --"
         if (!selectedBrand.equals("Tất cả")) {
@@ -149,13 +172,14 @@ public class KhoHangJPanel extends javax.swing.JPanel {
             tblkhohang.setRowSorter(sorter);
 
             // Thiết lập bộ lọc để chỉ hiển thị các hàng có thương hiệu tương ứng
-            RowFilter<Object, Object> brandFilter = RowFilter.regexFilter(selectedBrand, 2); // 2 là chỉ số cột chứa thông tin thương hiệu
+            RowFilter<Object, Object> brandFilter = RowFilter.regexFilter(selectedBrand, 4); // 2 là chỉ số cột chứa thông tin thương hiệu
             sorter.setRowFilter(brandFilter);
         } else {
             // Nếu chọn "-- Chọn Thương hiệu --", hiển thị toàn bộ dữ liệu
             tblkhohang.setRowSorter(null);
         }
     }
+
 
     private void cbblocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbblocActionPerformed
         // Lấy thương hiệu được chọn từ ComboBox
@@ -164,6 +188,10 @@ public class KhoHangJPanel extends javax.swing.JPanel {
         // Gọi hàm để lọc dữ liệu dựa trên thương hiệu được chọn
         filterDataByBrand(selectedBrand);
     }//GEN-LAST:event_cbblocActionPerformed
+
+    private void tblkhohangAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblkhohangAncestorAdded
+
+    }//GEN-LAST:event_tblkhohangAncestorAdded
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
