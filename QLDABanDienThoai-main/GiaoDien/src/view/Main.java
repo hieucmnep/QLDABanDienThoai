@@ -559,7 +559,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_TrangChuMouseClicked
 
     private void BanHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BanHangMouseClicked
-        showPanel(panelSell);
+//        showPanel(panelSell);
     }//GEN-LAST:event_BanHangMouseClicked
 
     private void BanHangMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BanHangMouseEntered
