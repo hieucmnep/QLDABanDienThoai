@@ -5,34 +5,12 @@
             <url>src/view/KháchHang.java</url>
             <bookmark id="1">
                 <name/>
-                <line>756</line>
+                <line>755</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/Model/HoaDonCho.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/view/KhachHangJFrame.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/view/Main.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/view/KháchHang.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/Sevice/KhachHangSevice.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/Model/kh.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/view/NhanVien.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/view/DSDL_An.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/Model/HoaDon.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/view/ThongKePanel.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/Sevice/PDFGenerator_1.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/Sevice/KhuyenMaiService.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/Model/SanPhamCT.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/view/SanPham1.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/Sevice/Sanpham_sql.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/view/BanHang.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/view/ThuocTinhsp.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/dbconnect/DBConnector.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/Sevice/BHservice.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/view/DangNhapJFrame.java</file>
-            <file>file:/C:/Users/LE%20DINH%20LINH/Downloads/DuAn1DT-main/DuAn1DT-main/DuAn1DT-main/QLDABanDienThoai-main/GiaoDien/src/view/TrangChu.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

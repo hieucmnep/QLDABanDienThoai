@@ -30,7 +30,6 @@ import javax.swing.table.TableRowSorter;
  */
 public class KháchHang extends javax.swing.JPanel {
 
-    SimpleDateFormat Date = new SimpleDateFormat("dd/MM/yyyy");
     private final KhachHangSevice khsevice = new KhachHangSevice();
     DefaultTableModel model = new DefaultTableModel();
     int idex;

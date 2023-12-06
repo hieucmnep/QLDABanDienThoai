@@ -19,7 +19,7 @@ import javax.swing.Timer;
  */
 public class Main extends javax.swing.JFrame {
 
-    private BanHang panelSell;
+//    private BanHang panelSell;
     private boolean isMouseClicked = false;
     private SanPham1 panelSanPham;
     private KháchHang panelKhachhang;
@@ -33,7 +33,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         setLocationRelativeTo(this);
-        panelSell = new BanHang();
+//        panelSell = new BanHang();
         panelSanPham = new SanPham1();
         panelKhachhang = new KháchHang();
         panelhoadon = new HoaDonJPanel();
