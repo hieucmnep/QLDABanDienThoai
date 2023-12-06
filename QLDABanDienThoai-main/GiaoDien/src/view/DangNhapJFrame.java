@@ -1,6 +1,7 @@
 package view;
 
-import Model.NhanVien;
+
+import Model.NhanVienYk;
 import Sevice.TaiKhoan;
 import dbconnect.MsgBox;
 import dbconnect.Auth;
@@ -11,8 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import view.DangKyJFrame;
-import javax.swing.JFrame;
+
 
 public class DangNhapJFrame extends javax.swing.JFrame {
 
@@ -112,27 +112,34 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    void dangNhap() {
-        String strMaTK = txtTen.getText().trim();
-        String strPassword = new String(txtMatKhau.getPassword());
-        ArrayList<NhanVien> ketQuaTimKiem = new ArrayList<>();
-        if (!strMaTK.isEmpty()) {
-            ketQuaTimKiem = dao.timKiemMaTK(strMaTK);
-            if (ketQuaTimKiem.isEmpty()) {
-                MsgBox.alert(this, "Tên đăng nhập không tồn tại");
-            } else {
-                if (!ketQuaTimKiem.get(0).getMatKhau().equals(strPassword)) {
-                    MsgBox.alert(this, "Sai mật khẩu");
-                } else {
-                    Auth.user = ketQuaTimKiem.get(0);
-                    this.dispose();
-                }
-            }
+void dangNhap() {
+    String strMaTK = txtTen.getText().trim();
+    String strPassword = new String(txtMatKhau.getPassword());
+    ArrayList<NhanVienYk> ketQuaTimKiem = new ArrayList<>();
 
+    if (!strMaTK.isEmpty()) {
+        ketQuaTimKiem = dao.timKiemMaTK(strMaTK);
+
+        if (ketQuaTimKiem.isEmpty()) {
+            MsgBox.alert(this, "Tên đăng nhập không tồn tại");
         } else {
-            JOptionPane.showMessageDialog(this, "Vui Long Nhập Thông Tin.", "Lỗi đăng nhập", JOptionPane.ERROR_MESSAGE);
+            NhanVienYk user = ketQuaTimKiem.get(0);
+
+            // Check for null before accessing fields
+            if (user.getMatKhau() == null) {
+                MsgBox.alert(this, "Sai Mật Khẩu");
+            } else if (!user.getMatKhau().equals(strPassword)) {
+                MsgBox.alert(this, "Sai mật khẩu");
+            } else {
+                Auth.user = user;
+                this.dispose();
+            }
         }
+    } else {
+        JOptionPane.showMessageDialog(this, "Vui lòng nhập thông tin.", "Lỗi đăng nhập", JOptionPane.ERROR_MESSAGE);
     }
+}
+
 
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed

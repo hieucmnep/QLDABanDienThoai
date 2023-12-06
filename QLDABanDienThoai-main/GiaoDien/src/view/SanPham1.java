@@ -1,6 +1,7 @@
 package view;
 
-import Sevice.SPchitiet_sql;
+import model.SPChiTiet;
+import model.SanPham_model;
 import Sevice.Sanpham_sql;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -16,13 +17,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
-import model.SPChiTiet;
-import model.SPchitiet_sql;
-import model.Sanpham_sql;
-import model.SanPham_model;
 import javax.swing.JOptionPane;
-import view.DSDL_An;
-import view.ThuocTinhsp;
+import model.SPchitiet_sql;
 
 //import java.sql.*;
 //import dbconnect.DBConnector;
@@ -71,8 +67,13 @@ public class SanPham1 extends javax.swing.JPanel {
         }
         revalidate();
         repaint();
+//        loadlai();
     }
 
+//    public void loadlai(){
+//        loadtable();
+//        loadtablespct();
+//    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

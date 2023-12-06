@@ -8,7 +8,6 @@ package Model;
  *
  * @author hieu9
  */
-import model.SanPham;
 import java.util.Date;
 
 public class KhachHang {

@@ -7,7 +7,6 @@ package Sevice;
 import Model.HoaDonCT;
 import Model.KhachHang;
 import Model.KhoHang;
-import model.SanPham;
 import Model.SanPhamCT;
 import dbconnect.DBConnector;
 import java.lang.reflect.Array;

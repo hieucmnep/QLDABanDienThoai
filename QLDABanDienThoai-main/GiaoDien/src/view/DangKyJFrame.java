@@ -1,6 +1,5 @@
 package view;
 
-import Model.NhanVien;
 import Sevice.TaiKhoan;
 
 import javax.swing.JOptionPane;
@@ -126,8 +125,8 @@ public class DangKyJFrame extends javax.swing.JFrame {
         }
 
         // Tạo đối tượng NhanVien để thêm vào cơ sở dữ liệu
-        NhanVien nv = new NhanVien();
-        nv.setMaTK(username);
+        Model.NhanVienYk nv = new Model.NhanVienYk();
+        nv.setMaNV(username);
         nv.setMatKhau(password);
         // Bạn có thể cần thêm các thông tin khác của nhân viên tại đây
 

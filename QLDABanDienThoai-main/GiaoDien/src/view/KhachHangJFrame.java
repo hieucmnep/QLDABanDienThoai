@@ -8,12 +8,10 @@ import Model.KhachHang;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFrame;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import Model.kh;
+
 import Sevice.KhachHangSevice;
+import model.kh;
 
 
 /**
@@ -317,11 +315,11 @@ private void clearInputFields() {
     private void khachhangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khachhangMouseClicked
         int row = khachhang.getSelectedRow();
         String ten = (String) khachhang.getValueAt(row, 2);
-        String sdt = String.valueOf(khachhang.getValueAt(row, 4));
-        String email = (String) khachhang.getValueAt(row, 7);
+        String sdt = String.valueOf(khachhang.getValueAt(row, 5));
+        String makh = (String) khachhang.getValueAt(row, 1);
 
         // Tạo đối tượng KhachHang1
-        kh kh = new kh(ten, sdt, email);
+        kh kh = new kh(ten, sdt, makh);
 
         // Gửi sự kiện khi khách hàng được chọn
         fireKhachHangSelectedEvent(kh);

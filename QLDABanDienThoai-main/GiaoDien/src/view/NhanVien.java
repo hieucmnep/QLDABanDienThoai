@@ -53,9 +53,9 @@ public class NhanVien extends javax.swing.JPanel {
     String strFind = "";
     String findByName = "";
     String findByRole = "";
-    String duongdananh = "C:\\Users\\ADMIN\\Downloads\\DuAn1-main (1)\\DuAn1-main\\GiaoDien\\src\\img\\1.jpg";
-    ImageIcon iconmessage = new ImageIcon("C:/Users/ADMIN/Downloads/DuAn1-main (1)/DuAn1-main/GiaoDien/src/Icon/Comments.png");
-    ImageIcon icon_message_error = new ImageIcon("C:/Users/ADMIN/Downloads/DuAn1-main (1)/DuAn1-main/GiaoDien/src/Icon/Warning.png");
+    String duongdananh = "C:\\DuAn1DT\\QLDABanDienThoai-main\\GiaoDien\\src\\img";
+    ImageIcon iconmessage = new ImageIcon("C:\\DuAn1DT\\QLDABanDienThoai-main\\GiaoDien\\src\\Icon");
+    ImageIcon icon_message_error = new ImageIcon("C:\\DuAn1DT\\QLDABanDienThoai-main\\GiaoDien\\src\\Icon");
 
     public NhanVien() {
         init();
@@ -113,6 +113,7 @@ public class NhanVien extends javax.swing.JPanel {
         btnxuatfile = new javax.swing.JButton();
         btnchonanh = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         txthinhanh = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
@@ -424,7 +425,7 @@ public class NhanVien extends javax.swing.JPanel {
                             .addComponent(jLabel17)
                             .addComponent(cboloctheochucvu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnchonanh))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnxuatfile)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -434,6 +435,8 @@ public class NhanVien extends javax.swing.JPanel {
         jLabel15.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Search.png"))); // NOI18N
         jLabel15.setText("Lọc thông tin");
+
+        jLabel2.setText("Hinh Anh");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -498,7 +501,9 @@ public class NhanVien extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(btnxoa)
                                 .addGap(28, 28, 28)
-                                .addComponent(btnlammoi)))
+                                .addComponent(btnlammoi)
+                                .addGap(48, 48, 48)
+                                .addComponent(jLabel2)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -519,7 +524,9 @@ public class NhanVien extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(anh, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel14))
+                        .addComponent(jLabel14)
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel2))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1247,6 +1254,7 @@ public class NhanVien extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1282,5 +1290,9 @@ public class NhanVien extends javax.swing.JPanel {
         initComponents();
         loadTable();
         display(0);
+    }
+
+    public String getMaTK() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -6,7 +6,7 @@ package Sevice;
 
 import Model.HoaDonCT;
 import Model.KhachHang;
-import model.SanPham;
+import Model.SanPham;
 import dbconnect.DBConnector;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -92,32 +92,30 @@ public class KhachHangSevice {
         return null;
     }
 
-    public Integer update(KhachHang kh) {
-        Integer row = null;
-        try {
-            Connection cnt = DBConnector.getConnection();
-            String sql = "UPDATE KHACHHANG SET MAKH=?, TENKH=?, NGAYSINH=?, GIOITINH=?, SDT=?, TRANGTHAI=?, DIACHI=?, EMAIL=? WHERE IDKH=?";
+ public Integer update(KhachHang kh) {
+    try (Connection cnt = DBConnector.getConnection();
+         PreparedStatement ps = cnt.prepareStatement(
+                 "UPDATE KHACHHANG SET TENKH=?, NGAYSINH=?, GIOITINH=?, SDT=?, TRANGTHAI=?, DIACHI=?, EMAIL=? WHERE MAKH=?")) {
+        ps.setString(1, kh.getTenKH());
+        ps.setDate(2, new java.sql.Date(kh.getNgaySinh().getTime()));
+        ps.setString(3, kh.getGioiTinh());
+        ps.setString(4, kh.getSdt());
+        ps.setBoolean(5, kh.isTrangThai());
+        ps.setString(6, kh.getDiaChi());
+        ps.setString(7, kh.getEmail());
+        ps.setString(8, kh.getMaKH());
 
-            try (PreparedStatement psm = cnt.prepareStatement(sql)) {
-                psm.setString(1, kh.getMaKH());
-                psm.setString(2, kh.getTenKH());
-                psm.setDate(3, new java.sql.Date(kh.getNgaySinh().getTime()));
-                psm.setString(4, kh.getGioiTinh());
-                psm.setString(5, kh.getSdt());
-                psm.setBoolean(6, kh.isTrangThai());
-                psm.setString(7, kh.getDiaChi());
-                psm.setString(8, kh.getEmail());
-                psm.setInt(9, kh.getId());
-                row = psm.executeUpdate();
-            }
-
-            cnt.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Handle the exception as needed, for example, log it or throw a custom exception
-        }
+        int row = ps.executeUpdate();
+        cnt.commit();
         return row;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        // Handle SQLException (rollback, log, etc.)
+        return 0; // Indicate failure
     }
+}
+
+    
 
     public ArrayList<KhachHang> joinTables() {
         ArrayList<KhachHang> KH = new ArrayList<>();
@@ -250,7 +248,7 @@ public class KhachHangSevice {
 
     public void xuatDuLieuRaExcel() {
         ArrayList<KhachHang> danhSachKhachHang = joinTables();
-        
+
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("DuLieuKhachHang");
 
@@ -265,22 +263,20 @@ public class KhachHangSevice {
         // Đổ dữ liệu vào bảng
         int soHang = 1;
         for (KhachHang kh : danhSachKhachHang) {
-            Row hang = sheet.createRow(soHang++);
+            Row hang = sheet.createRow(soHang);
             hang.createCell(0).setCellValue(kh.getId());
             hang.createCell(1).setCellValue(kh.getTenKH());
             hang.createCell(2).setCellValue(kh.getSdt());
-               
-                hang.createCell(3).setCellValue(kh.getHoaDonCT().getNgayMua());
-                hang.createCell(4).setCellValue(kh.getHoaDonCT().getSoLuong());
-                hang.createCell(5).setCellValue(kh.getHoaDonCT().getDonGia());
-                hang.createCell(6).setCellValue(kh.getHoaDonCT().getTongTien());
-                hang.createCell(7).setCellValue(kh.getHoaDonCT().getTrangThai());
-                hang.createCell(8).setCellValue(kh.getSanPham().getTenSP());
-            } 
-        
+            hang.createCell(3).setCellValue(kh.getHoaDonCT().getNgayMua());
+            hang.createCell(4).setCellValue(kh.getHoaDonCT().getSoLuong());
+            hang.createCell(5).setCellValue(kh.getHoaDonCT().getDonGia());
+            hang.createCell(6).setCellValue(kh.getHoaDonCT().getTongTien());
+            hang.createCell(7).setCellValue(kh.getHoaDonCT().getTrangThai());
+            hang.createCell(8).setCellValue(kh.getSanPham().getTenSP());
+        }
 
         try {
-            File f = new File("D://In.xlsx");
+            File f = new File("D:\\DuAn1DT-main\\DuAn1DT-main\\QLDABanDienThoai-main\\LichSuGiaoDich.xlsx");
             FileOutputStream fis = new FileOutputStream(f);
             workbook.write(fis);
             fis.close();
@@ -292,8 +288,6 @@ public class KhachHangSevice {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Lỗi ghi file");
         }
-
     }
+
 }
-
-

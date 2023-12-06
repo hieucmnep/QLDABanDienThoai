@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model;
+package Model;
 
 import javax.swing.ImageIcon;
 
@@ -12,6 +12,8 @@ import javax.swing.ImageIcon;
  */
 public class SanPham {
 
+    private SanPhamChiTiet sanPhamChiTiet;
+    private String maSPCT;
     private int idSP;
     private String maSP;
     private String tenSP;
@@ -28,6 +30,7 @@ public class SanPham {
     private ImageIcon hinhSP;
 
     public SanPham() {
+        sanPhamChiTiet = new SanPhamChiTiet();
     }
 
     public SanPham(int idSP, String maSP, String tenSP, String thuongHieu, String chip, String camera, float kichThuoc, String chatLieu, String heDieuHanh, String dungLuongPin, float gia, int soluong, int trangThai, ImageIcon hinhSP) {
@@ -159,4 +162,23 @@ public class SanPham {
         this.hinhSP = hinhSP;
     }
 
+    public void themSanPhamChiTiet(SanPhamChiTiet spct) {
+        this.sanPhamChiTiet = spct;
+    }
+
+    public SanPhamChiTiet getSanPhamChiTiet() {
+        return sanPhamChiTiet;
+    }
+
+    public void setSanPhamChiTiet(SanPhamChiTiet sanPhamChiTiet) {
+        this.sanPhamChiTiet = sanPhamChiTiet;
+    }
+
+    public String getMaSPCT() {
+        return maSPCT;
+    }
+
+    public void setMaSPCT(String maSPCT) {
+        this.maSPCT = maSPCT;
+    }
 }

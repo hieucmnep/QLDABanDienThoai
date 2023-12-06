@@ -1,25 +1,21 @@
 
-package Model;
-
-  
+package model;
 
 
 public class SanPham_model {
-    private String masp,tenmau,thuonghieu,tensp,chip;
+    private String masp,thuonghieu,tensp,chip;
     private float gia;
     private int trangthai;
     private SPChiTiet spct;
     private String camera,hdh,chatlieu,pin,hinhanh,kichthuoc;
-    
     
     public SPChiTiet getSpct() {
         return spct;
     }
     
     
-    public SanPham_model(String masp, String tenmau, String thuonghieu, String tensp, String chip, float gia, int trangthai, String camera, String hdh, String chatlieu, String pin, String hinhanh, String kichthuoc) {
+    public SanPham_model(String masp, String thuonghieu, String tensp, String chip, float gia, int trangthai, String camera, String hdh, String chatlieu, String pin, String hinhanh, String kichthuoc) {
         this.masp = masp;
-        this.tenmau = tenmau;
         this.thuonghieu = thuonghieu;
         this.tensp = tensp;
         this.chip = chip;
@@ -50,9 +46,8 @@ public class SanPham_model {
     }
     
 
-    public SanPham_model(String masp, String loairam, String tenmau, String thuonghieu, String tensp, float gia, int trangthai, SPChiTiet spct) {
+    public SanPham_model(String masp, String thuonghieu, String tensp, float gia, int trangthai, SPChiTiet spct) {
         this.masp = masp;
-        this.tenmau = tenmau;
         this.thuonghieu = thuonghieu;
         this.tensp = tensp;
         this.gia = gia;
@@ -132,14 +127,6 @@ public class SanPham_model {
         this.masp = masp;
     }
 
-    public String getTenmau() {
-        return tenmau;
-    }
-
-    public void setTenmau(String tenmau) {
-        this.tenmau = tenmau;
-    }
-
     public String getThuonghieu() {
         return thuonghieu;
     }
@@ -174,7 +161,7 @@ public class SanPham_model {
 
     @Override
     public String toString() {
-        return "SanPham_model{" + "masp=" + masp + ", tenmau=" + tenmau + ", thuonghieu=" + thuonghieu + ", tensp=" + tensp + ", chip=" + chip + ", gia=" + gia + ", trangthai=" + trangthai + ", spct=" + spct + ", camera=" + camera + ", hdh=" + hdh + ", chatlieu=" + chatlieu + ", pin=" + pin + ", hinhanh=" + hinhanh + ", kichthuoc=" + kichthuoc + '}';
+        return "SanPham_model{" + "masp=" + masp + ", thuonghieu=" + thuonghieu + ", tensp=" + tensp + ", chip=" + chip + ", gia=" + gia + ", trangthai=" + trangthai + ", spct=" + spct + ", camera=" + camera + ", hdh=" + hdh + ", chatlieu=" + chatlieu + ", pin=" + pin + ", hinhanh=" + hinhanh + ", kichthuoc=" + kichthuoc + '}';
     }
     
     

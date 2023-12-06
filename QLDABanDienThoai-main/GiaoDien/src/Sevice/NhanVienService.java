@@ -22,7 +22,7 @@ public class NhanVienService {
             e.printStackTrace();
         }
     }
-
+     
     public List<NhanVienModel> getAll() {
         list.clear();
         try {

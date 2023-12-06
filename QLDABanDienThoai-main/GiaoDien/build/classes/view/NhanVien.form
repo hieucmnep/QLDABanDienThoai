@@ -204,6 +204,8 @@
                                       <Component id="btnxoa" linkSize="2" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                       <Component id="btnlammoi" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -227,6 +229,8 @@
                               <Component id="anh" min="-2" pref="171" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
@@ -630,7 +634,7 @@
                                       <Component id="cboloctheochucvu" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="btnchonanh" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnxuatfile" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               </Group>
@@ -927,6 +931,11 @@
                   <Image iconType="3" name="/Icon/Search.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="L&#x1ecd;c th&#xf4;ng tin"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Hinh Anh"/>
               </Properties>
             </Component>
           </SubComponents>

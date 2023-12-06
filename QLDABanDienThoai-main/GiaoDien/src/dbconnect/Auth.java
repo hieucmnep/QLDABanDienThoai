@@ -4,14 +4,14 @@
  */
 package dbconnect;
 
-import Model.NhanVien;
+import Model.NhanVienYk;
 
 /**
  *
  * @author ADMIN
  */
 public class Auth {
-    public static NhanVien user = null;
+    public static NhanVienYk user = null;
     
     public static void clear(){
         Auth.user = null;

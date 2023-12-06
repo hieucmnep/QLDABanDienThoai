@@ -17,9 +17,9 @@ public class DBConnector {
     protected Connection connection;
     private static final String HOSTNAME = "localhost";
     private static final String PORT = "1433";
-    private static final String DBNAME = "DU_AN_1";
+    private static final String DBNAME = "DUAN11";
     private static final String USERNAME = "sa";
-    private static final String PASSWORD = "2003";
+    private static final String PASSWORD = "20112004";
 
     public static Connection getConnection() {
 
@@ -36,7 +36,16 @@ public class DBConnector {
         }
         return null;
     }
-    
+    public static void closeConnection(Connection connection) {
+        if (connection != null) {
+            try {
+                connection.close();
+                System.out.println("Đã đóng kết nối đến cơ sở dữ liệu.");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     public static void main(String[] args) {
         System.out.println(getConnection());
     }
