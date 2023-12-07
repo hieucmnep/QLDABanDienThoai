@@ -21,7 +21,7 @@ import model.SPchitiet_sql;
 public class ThuocTinhsp extends javax.swing.JFrame {
 
     SPchitiet_sql sql = new SPchitiet_sql();
-    private SanPham1 spct;
+    private SanPham spct;
 
     public ThuocTinhsp() {
         initComponents();
@@ -293,12 +293,12 @@ public class ThuocTinhsp extends javax.swing.JFrame {
                     btnthem.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            SanPham1 sp = new SanPham1();
+                            SanPham sp = new SanPham();
                             sp.loadtablespct();
                             sp.loadtable();
                         }
                     });
-                    spct = new SanPham1();
+                    spct = new SanPham();
                     getContentPane().add(spct);
                     spct.clear();
                     JOptionPane.showMessageDialog(this, "Thêm thành công ");

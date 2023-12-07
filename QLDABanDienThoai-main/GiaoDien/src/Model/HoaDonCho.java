@@ -13,7 +13,7 @@ import java.util.Date;
 public class HoaDonCho extends HoaDon {
     private boolean daThanhToan;
 
-    public HoaDonCho(String maHD, String maNV, String maKH, String hinhThucTT, int trangThai, Date ngayMua, boolean daThanhToan) {
+    public HoaDonCho(String maHD, String maNV, String maKH, String hinhThucTT, String trangThai, Date ngayMua, boolean daThanhToan) {
         super(maHD, maNV, maKH, hinhThucTT, trangThai, ngayMua);
         this.daThanhToan = daThanhToan;
     }

@@ -13,14 +13,14 @@ public class HoaDon {
     private String maNV;
     private String maKH;
     private String hinhThucTT;
-    private int trangThai;
+    private String trangThai;
     private Date ngayMua;
 
 
     public HoaDon() {
     }
 
-    public HoaDon(String maHD, String maNV, String maKH, String hinhThucTT, int trangThai, Date ngayMua) {
+    public HoaDon(String maHD, String maNV, String maKH, String hinhThucTT, String trangThai, Date ngayMua) {
         this.maHD = maHD;
         this.maNV = maNV;
         this.maKH = maKH;
@@ -61,11 +61,11 @@ public class HoaDon {
         this.hinhThucTT = hinhThucTT;
     }
 
-    public int getTrangThai() {
+    public String getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(int trangThai) {
+    public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
 

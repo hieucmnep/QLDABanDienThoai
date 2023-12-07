@@ -14,13 +14,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.SPchitiet_sql;
 
-import view.SanPham1;
+import view.SanPham;
 
 public class DSDL_An extends javax.swing.JFrame {
 
     SPchitiet_sql sql = new SPchitiet_sql();
     DefaultTableModel dtm;
-    private SanPham1 sp;
+    private SanPham sp;
 
     public DSDL_An() {
         initComponents();
@@ -144,12 +144,12 @@ public class DSDL_An extends javax.swing.JFrame {
         btnhienthi.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SanPham1 sp = new SanPham1();
+                SanPham sp = new SanPham();
                 sp.loadtablespct();
                 sp.loadtable();
             }
         });
-        sp = new SanPham1();
+        sp = new SanPham();
         getContentPane().add(sp);
         sp.clear();
         sp.loadtablespct();

@@ -1,0 +1,377 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package view;
+
+import Service.InHoaDonService;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import javax.swing.table.DefaultTableModel;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
+
+/**
+ *
+ * @author LE DINH LINH
+ */
+public class InHoaDon extends javax.swing.JFrame {
+
+    /**
+     * Creates new form InHoaDon
+     */
+    public InHoaDon() {
+        initComponents();
+        displayInvoiceData();
+        printInvoice();
+
+    }
+    Component parentComponent = SwingUtilities.getWindowAncestor(this);
+
+    void printInvoice() {
+        try {
+            PDDocument document = new PDDocument();
+            PDPage page = new PDPage(PDRectangle.A4); // Chọn loại giấy in A4
+            document.addPage(page);
+
+            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+            // Load font từ file ttf
+            String fontFile = "C:\\Users\\LE DINH LINH\\Downloads\\GiaoDien\\src\\font\\Roboto-Medium.ttf";
+            PDType0Font font = PDType0Font.load(document, new File(fontFile));
+
+            // Tạo BufferedImage từ JFrame
+            BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+            Graphics2D g = image.createGraphics();
+            paint(g);
+            g.dispose();
+
+            // Vẽ nội dung của JFrame lên tệp PDF
+            contentStream.drawImage(PDImageXObject.createFromByteArray(document, toByteArray(image), ""), 0, 0);
+
+            contentStream.close();
+
+            String filePath = "C:\\Users\\LE DINH LINH\\Downloads\\GiaoDien\\src\\PDF\\hoadon_smartsap.pdf";
+            document.save(new File(filePath));
+            document.close();
+ 
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            Component parentComponent = SwingUtilities.getWindowAncestor(this);
+        }
+    }
+    // Phương thức để vẽ nội dung của JFrame lên tệp PDF với font được tải từ tệp ttf
+
+    private static void drawComponentToPDF(Component component, PDPageContentStream contentStream, PDDocument document, PDType0Font font) throws IOException {
+        Dimension screenSize = component.getSize();
+        BufferedImage image = new BufferedImage(screenSize.width, screenSize.height, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g = image.createGraphics();
+        component.paint(g);
+        g.dispose();
+
+        contentStream.setFont(font, 12); // Thiết lập font cho văn bản
+
+        // Chuyển đổi BufferedImage thành byte array và vẽ lên tệp PDF
+        contentStream.drawImage(PDImageXObject.createFromByteArray(document, toByteArray(image), ""), 0, 0);
+    }
+
+    // Phương thức để chuyển đổi BufferedImage thành byte array
+    private static byte[] toByteArray(BufferedImage image) throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(image, "png", baos);
+        return baos.toByteArray();
+    }
+
+    void displayInvoiceData() {
+        DefaultTableModel model = (DefaultTableModel) tblHoaDon.getModel();
+        JLabel[] labels = {lbmahoadon, lbtenkhachhang, lbsodienthoai, lbemail};
+
+        // Gọi service để lấy dữ liệu hóa đơn
+        String maHoaDon = InHoaDonService.getLatestInvoiceID(); // Lấy mã hóa đơn từ cơ sở dữ liệu
+
+        // Gán mã hóa đơn lấy được lên label mã hóa đơn trong giao diện
+        lbmahoadon.setText(maHoaDon);
+
+        // Gọi service để hiển thị dữ liệu hóa đơn
+        InHoaDonService.displayLatestInvoiceData(maHoaDon, model, labels);
+
+        // Lấy tổng cộng từ phương thức getTotalAmountByInvoiceID và hiển thị lên giao diện
+        double totalAmount = InHoaDonService.getTotalAmountByInvoiceID(maHoaDon);
+        lbTongCong.setText(String.valueOf(totalAmount)); // Hiển thị tổng cộng trên label lbTongCong
+
+        // Hiển thị ngày tháng năm lên label lbngay
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("'Ngày' dd 'Tháng' MM 'Năm' yyyy");
+        String formattedDate = currentDate.format(formatter);
+        lbngay.setText(formattedDate);
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblHoaDon = new javax.swing.JTable();
+        lbngay = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        lbtenkhachhang = new javax.swing.JLabel();
+        lbsodienthoai = new javax.swing.JLabel();
+        lbemail = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        lbmahoadon = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        lbTongCong = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("SMART SAP");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setText("HÓA ĐƠN BÁN HÀNG");
+
+        jLabel3.setText("Địa Chỉ:");
+
+        jLabel4.setText("Kiều Mai, Bắc Từ Liêm , Hà Nội");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI Light", 3, 12)); // NOI18N
+        jLabel5.setText("Cửa hàng bán điện thoại Smart Sap");
+
+        jLabel6.setText("Tên Khách hàng:");
+
+        jLabel7.setText("Số điện thoại:");
+
+        jLabel8.setText("Email: ");
+
+        tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Tên Sản Phẩm", "Số Lượng", "Đơn Giá", "Thành Tiền"
+            }
+        ));
+        jScrollPane1.setViewportView(tblHoaDon);
+
+        lbngay.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lbngay.setText("Ngày  Tháng  2021");
+
+        jLabel12.setText("Người bán hàng");
+
+        jLabel13.setText("Lê Đình Linh");
+
+        lbtenkhachhang.setText("Ledinhlinh");
+
+        lbsodienthoai.setText("0986194165");
+
+        lbemail.setText("ledinhlinh20112004@gmail.com");
+
+        jLabel10.setText("Mã hóa đơn");
+
+        lbmahoadon.setText("jLabel11");
+
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel9.setText("Tổng cộng : ");
+
+        lbTongCong.setText("100.000 VND");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbTongCong)
+                .addGap(31, 31, 31))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbTongCong))
+                .addContainerGap(7, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(26, 26, 26)
+                            .addComponent(jSeparator1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel10)
+                                            .addComponent(jLabel6))
+                                        .addGap(59, 59, 59)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbmahoadon)
+                                            .addComponent(lbtenkhachhang))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel8))
+                                        .addGap(75, 75, 75)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbsodienthoai)
+                                            .addComponent(lbemail))
+                                        .addGap(6, 6, 6))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(119, 119, 119)
+                                .addComponent(jLabel1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(90, 90, 90)
+                                        .addComponent(jLabel2))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(121, 121, 121)
+                                        .addComponent(jLabel5))))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbngay)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addComponent(jLabel13))
+                        .addComponent(jLabel12)))
+                .addGap(79, 79, 79))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(lbmahoadon))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(lbtenkhachhang))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(lbsodienthoai))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(lbemail))
+                .addGap(19, 19, 19)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lbngay)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel13)
+                .addContainerGap(134, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(() -> {
+            InHoaDon frame = new InHoaDon();
+            frame.setVisible(true);
+        });
+    }
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lbTongCong;
+    private javax.swing.JLabel lbemail;
+    private javax.swing.JLabel lbmahoadon;
+    private javax.swing.JLabel lbngay;
+    private javax.swing.JLabel lbsodienthoai;
+    private javax.swing.JLabel lbtenkhachhang;
+    private javax.swing.JTable tblHoaDon;
+    // End of variables declaration//GEN-END:variables
+}

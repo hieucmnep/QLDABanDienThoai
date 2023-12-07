@@ -2,7 +2,7 @@ package view;
 
 
 import Model.NhanVienYk;
-import Sevice.TaiKhoan;
+import Service.TaiKhoan;
 import dbconnect.MsgBox;
 import dbconnect.Auth;
 import java.io.BufferedReader;

@@ -11,6 +11,8 @@ package Model;
 public class HoaDonCT {
     private String MaHD;
     private String MaSPCT;
+    private String MaKH;
+    private String MaKM;
     private float DonGia;
     private int SoLuong;
     private float TienKhachDua;
@@ -25,9 +27,11 @@ public class HoaDonCT {
     public HoaDonCT() {
     }
 
-    public HoaDonCT(String MaHD, String MaSP, float DonGia, int SoLuong, float TienKhachDua, float TienTraLai, String NgayMua, String HinhThucTT, float TongTien, String TrangThai, String GhiChu, String GiamGia) {
+    public HoaDonCT(String MaHD, String MaSPCT, String MaKH, String MaKM, float DonGia, int SoLuong, float TienKhachDua, float TienTraLai, String NgayMua, String HinhThucTT, float TongTien, String TrangThai, String GhiChu, String GiamGia) {
         this.MaHD = MaHD;
-        this.MaSPCT = MaSP;
+        this.MaSPCT = MaSPCT;
+        this.MaKH = MaKH;
+        this.MaKM = MaKM;
         this.DonGia = DonGia;
         this.SoLuong = SoLuong;
         this.TienKhachDua = TienKhachDua;
@@ -52,8 +56,24 @@ public class HoaDonCT {
         return MaSPCT;
     }
 
-    public void setMaSPCT(String MaSP) {
-        this.MaSPCT = MaSP;
+    public void setMaSPCT(String MaSPCT) {
+        this.MaSPCT = MaSPCT;
+    }
+
+    public String getMaKH() {
+        return MaKH;
+    }
+
+    public void setMaKH(String MaKH) {
+        this.MaKH = MaKH;
+    }
+
+    public String getMaKM() {
+        return MaKM;
+    }
+
+    public void setMaKM(String MaKM) {
+        this.MaKM = MaKM;
     }
 
     public float getDonGia() {
@@ -136,10 +156,6 @@ public class HoaDonCT {
         this.GiamGia = GiamGia;
     }
 
-    @Override
-    public String toString() {
-        return "HoaDonCT{" + "MaHD=" + MaHD + ", MaSP=" + MaSPCT + ", DonGia=" + DonGia + ", SoLuong=" + SoLuong + ", TienKhachDua=" + TienKhachDua + ", TienTraLai=" + TienTraLai + ", NgayMua=" + NgayMua + ", HinhThucTT=" + HinhThucTT + ", TongTien=" + TongTien + ", TrangThai=" + TrangThai + ", GhiChu=" + GhiChu + ", GiamGia=" + GiamGia + '}';
-    }
 
     
 }

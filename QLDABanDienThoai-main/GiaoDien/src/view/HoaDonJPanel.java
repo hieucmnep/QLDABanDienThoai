@@ -1,13 +1,14 @@
 package view;
 
 import Model.HoaDonCT;
-import Sevice.HoaDonCTDAO;
+import Service.HoaDonCTDAO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class HoaDonJPanel extends javax.swing.JPanel {
 
+    ArrayList<HoaDonCT> list = new ArrayList<HoaDonCT>();
     private final HoaDonCTDAO shdct = new HoaDonCTDAO();
     DefaultTableModel dtm = new DefaultTableModel();
     int index;
@@ -52,12 +53,6 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         Danhsachhoadon.setToolTipText("");
 
         jLabel4.setText("Mã Hóa Đơn:");
-
-        txtMaHD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaHDActionPerformed(evt);
-            }
-        });
 
         jLabel9.setText("Ngày Tạo:");
 
@@ -230,20 +225,15 @@ public class HoaDonJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã HĐ", "Mã SPCT", "Đơn Giá", "Số Lượng", "Tiền Khách Đưa", "Tiền Trả Lại", "Ngày Mua", "Hình Thức Thanh Toán", "Tổng Tiền", "Ghi Chú", "Giảm GIá"
+                "Mã HĐ", "Mã SPCT", "Mã KH", "Mã KM", "Đơn Giá", "Số Lượng", "Tiền Khách Đưa", "Tiền Trả Lại", "Ngày Mua", "Hình Thức Thanh Toán", "Tổng Tiền", "Trạng Thái", "Giảm GIá", "Ghi Chú"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
-            }
-        });
-        tblHDCT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblHDCTMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(tblHDCT);
@@ -287,18 +277,18 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
+
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
         txtMaHD.setText("");
         txtMaSP.setText("");
         txtNgayTao.setText("");
-        rdoTatCa.setSelected(true);
         ArrayList<HoaDonCT> lshd = shdct.getAllHoaDonCT();
         dtm.setRowCount(0);
         for (HoaDonCT hdct : lshd) {
-            dtm.addRow(new Object[]{hdct.getMaHD(), hdct.getMaSPCT(), hdct.getDonGia(), hdct.getSoLuong(), hdct.getTienKhachDua(), hdct.getTienTraLai(), hdct.getNgayMua(), hdct.getHinhThucTT(), hdct.getTongTien(), hdct.getTrangThai(), hdct.getGhiChu(), hdct.getGiamGia()});
+            dtm.addRow(new Object[]{hdct.getMaHD(), hdct.getMaSPCT(), hdct.getMaKH(), hdct.getMaKM(), hdct.getDonGia(), hdct.getSoLuong(), hdct.getTienKhachDua(), hdct.getTienTraLai(), hdct.getNgayMua(), hdct.getHinhThucTT(), hdct.getTongTien(), hdct.getTrangThai(), hdct.getGiamGia(), hdct.getGhiChu()});
         }
-
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
@@ -313,7 +303,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
             ketQuaTimKiem.addAll(shdct.timKiemMaHD(maHD));
         }
         if (!maSP.isEmpty()) {
-            ketQuaTimKiem.addAll(shdct.timKiemMaSP(maSP));
+            ketQuaTimKiem.addAll(shdct.timKiemMaSPCT(maSP));
         }
         if (!NgayTao.isEmpty()) {
             ketQuaTimKiem.addAll(shdct.timKiemNgayTao(NgayTao));
@@ -327,7 +317,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
             // Xóa dữ liệu trong bảng
             dtm.setRowCount(0);
             for (HoaDonCT hdct : ketQuaTimKiem) {
-                dtm.addRow(new Object[]{hdct.getMaHD(), hdct.getMaSPCT(), hdct.getDonGia(), hdct.getSoLuong(), hdct.getTienKhachDua(), hdct.getTienTraLai(), hdct.getNgayMua(), hdct.getHinhThucTT(), hdct.getTongTien(), hdct.getTrangThai(), hdct.getGhiChu(), hdct.getGiamGia()});
+                dtm.addRow(new Object[]{hdct.getMaHD(), hdct.getMaSPCT(), hdct.getMaKH(), hdct.getMaKM(), hdct.getDonGia(), hdct.getSoLuong(), hdct.getTienKhachDua(), hdct.getTienTraLai(), hdct.getNgayMua(), hdct.getHinhThucTT(), hdct.getTongTien(), hdct.getTrangThai(), hdct.getGiamGia(), hdct.getGhiChu()});
             }
         }
     }//GEN-LAST:event_btnTimKiemActionPerformed
@@ -337,7 +327,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         ArrayList<HoaDonCT> lshd = shdct.timKiemTheoTT("Chưa Thanh Toán");
         dtm.setRowCount(0);
         for (HoaDonCT hdct : lshd) {
-            dtm.addRow(new Object[]{hdct.getMaHD(), hdct.getMaSPCT(), hdct.getDonGia(), hdct.getSoLuong(), hdct.getTienKhachDua(), hdct.getTienTraLai(), hdct.getNgayMua(), hdct.getHinhThucTT(), hdct.getTongTien(), hdct.getTrangThai(), hdct.getGhiChu(), hdct.getGiamGia()});
+            dtm.addRow(new Object[]{hdct.getMaHD(), hdct.getMaSPCT(), hdct.getMaKH(), hdct.getMaKM(), hdct.getDonGia(), hdct.getSoLuong(), hdct.getTienKhachDua(), hdct.getTienTraLai(), hdct.getNgayMua(), hdct.getHinhThucTT(), hdct.getTongTien(), hdct.getTrangThai(), hdct.getGiamGia(), hdct.getGhiChu()});
         }
     }//GEN-LAST:event_rdoChoThanhToanActionPerformed
 
@@ -346,7 +336,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         ArrayList<HoaDonCT> lshd = shdct.getAllHoaDonCT();
         dtm.setRowCount(0);
         for (HoaDonCT hdct : lshd) {
-            dtm.addRow(new Object[]{hdct.getMaHD(), hdct.getMaSPCT(), hdct.getDonGia(), hdct.getSoLuong(), hdct.getTienKhachDua(), hdct.getTienTraLai(), hdct.getNgayMua(), hdct.getHinhThucTT(), hdct.getTongTien(), hdct.getTrangThai(), hdct.getGhiChu(), hdct.getGiamGia()});
+            dtm.addRow(new Object[]{hdct.getMaHD(), hdct.getMaSPCT(), hdct.getMaKH(), hdct.getMaKM(), hdct.getDonGia(), hdct.getSoLuong(), hdct.getTienKhachDua(), hdct.getTienTraLai(), hdct.getNgayMua(), hdct.getHinhThucTT(), hdct.getTongTien(), hdct.getTrangThai(), hdct.getGiamGia(), hdct.getGhiChu()});
         }
     }//GEN-LAST:event_rdoTatCaActionPerformed
 
@@ -355,7 +345,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         ArrayList<HoaDonCT> lshd = shdct.timKiemTheoTT("Đã Thanh Toán");
         dtm.setRowCount(0);
         for (HoaDonCT hdct : lshd) {
-            dtm.addRow(new Object[]{hdct.getMaHD(), hdct.getMaSPCT(), hdct.getDonGia(), hdct.getSoLuong(), hdct.getTienKhachDua(), hdct.getTienTraLai(), hdct.getNgayMua(), hdct.getHinhThucTT(), hdct.getTongTien(), hdct.getTrangThai(), hdct.getGhiChu(), hdct.getGiamGia()});
+            dtm.addRow(new Object[]{hdct.getMaHD(), hdct.getMaSPCT(), hdct.getMaKH(), hdct.getMaKM(), hdct.getDonGia(), hdct.getSoLuong(), hdct.getTienKhachDua(), hdct.getTienTraLai(), hdct.getNgayMua(), hdct.getHinhThucTT(), hdct.getTongTien(), hdct.getTrangThai(), hdct.getGiamGia(), hdct.getGhiChu()});
         }
     }//GEN-LAST:event_rdoDaThanhToanActionPerformed
 
@@ -364,7 +354,7 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         ArrayList<HoaDonCT> lshd = shdct.timKiemTheoTT("Hủy");
         dtm.setRowCount(0);
         for (HoaDonCT hdct : lshd) {
-            dtm.addRow(new Object[]{hdct.getMaHD(), hdct.getMaSPCT(), hdct.getDonGia(), hdct.getSoLuong(), hdct.getTienKhachDua(), hdct.getTienTraLai(), hdct.getNgayMua(), hdct.getHinhThucTT(), hdct.getTongTien(), hdct.getTrangThai(), hdct.getGhiChu(), hdct.getGiamGia()});
+            dtm.addRow(new Object[]{hdct.getMaHD(), hdct.getMaSPCT(), hdct.getMaKH(), hdct.getMaKM(), hdct.getDonGia(), hdct.getSoLuong(), hdct.getTienKhachDua(), hdct.getTienTraLai(), hdct.getNgayMua(), hdct.getHinhThucTT(), hdct.getTongTien(), hdct.getTrangThai(), hdct.getGiamGia(), hdct.getGhiChu()});
         }
     }//GEN-LAST:event_rdoHuyActionPerformed
 
@@ -372,14 +362,6 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         ArrayList<HoaDonCT> lshd = shdct.InHoaDon();
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void txtMaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaHDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaHDActionPerformed
-
-    private void tblHDCTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHDCTMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblHDCTMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -409,9 +391,10 @@ public class HoaDonJPanel extends javax.swing.JPanel {
         ArrayList<HoaDonCT> lshd = shdct.getAllHoaDonCT();
         dtm.setRowCount(0);
         for (HoaDonCT hdct : lshd) {
-            dtm.addRow(new Object[]{hdct.getMaHD(), hdct.getMaSPCT(), hdct.getDonGia(), hdct.getSoLuong(), hdct.getTienKhachDua(), hdct.getTienTraLai(), hdct.getNgayMua(), hdct.getHinhThucTT(), hdct.getTongTien(), hdct.getTrangThai(), hdct.getGhiChu(), hdct.getGiamGia()});
+            dtm.addRow(new Object[]{hdct.getMaHD(), hdct.getMaSPCT(), hdct.getMaKH(), hdct.getMaKM(), hdct.getDonGia(), hdct.getSoLuong(), hdct.getTienKhachDua(), hdct.getTienTraLai(), hdct.getNgayMua(), hdct.getHinhThucTT(), hdct.getTongTien(), hdct.getTrangThai(), hdct.getGiamGia(), hdct.getGhiChu()});
         }
-
     }
+
+    
 
 }

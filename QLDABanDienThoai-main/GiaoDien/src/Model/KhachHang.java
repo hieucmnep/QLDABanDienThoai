@@ -23,6 +23,8 @@ public class KhachHang {
     private boolean trangThai;
     private HoaDonCT hoaDonCT;
     private SanPham sanPham;
+    private NhanVienModel nhanVien;
+    private HoaDonCTBH hoaDonCTBH;
 
     public KhachHang(int id, String maKH, String tenKH, String sdt, Date ngaySinh, String email, String diaChi, String gioiTinh, boolean trangThai, HoaDonCT hoaDonCT, SanPham sanPham) {
         this.id = id;
@@ -133,6 +135,22 @@ public class KhachHang {
 
     public void setSanPham(SanPham sanPham) {
         this.sanPham = sanPham;
+    }
+
+    public void setNhanVien(NhanVienModel nhanVien) {
+        this.nhanVien = nhanVien;
+    }
+
+    public void setHoaDonCTBH(HoaDonCTBH hoaDonCTBH) {
+        this.hoaDonCTBH = hoaDonCTBH;
+    }
+
+    public Object getNhanVien() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Iterable<HoaDonCTBH> getHoaDonCTBHList() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

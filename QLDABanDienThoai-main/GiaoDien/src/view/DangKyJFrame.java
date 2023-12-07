@@ -1,6 +1,6 @@
 package view;
 
-import Sevice.TaiKhoan;
+import Service.TaiKhoan;
 
 import javax.swing.JOptionPane;
 
@@ -132,7 +132,7 @@ public class DangKyJFrame extends javax.swing.JFrame {
 
         // Thêm tài khoản vào cơ sở dữ liệu
         TaiKhoan nhanVienDAO = new TaiKhoan();
-        boolean success = nhanVienDAO.themTaiKhoan(nv);
+        boolean success = nhanVienDAO.themTaiKhoanFromNhanVien(nv);
 
         // Kiểm tra kết quả và hiển thị thông báo tương ứng
         if (success) {

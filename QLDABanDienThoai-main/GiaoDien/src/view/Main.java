@@ -5,7 +5,7 @@
 package view;
 
 import Model.NhanVienYk;
-import Sevice.TaiKhoan;
+import Service.TaiKhoan;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,9 +19,9 @@ import javax.swing.Timer;
  */
 public class Main extends javax.swing.JFrame {
 
-//    private BanHang panelSell;
+    private BanHang panelSell;
     private boolean isMouseClicked = false;
-    private SanPham1 panelSanPham;
+    private SanPham panelSanPham;
     private KháchHang panelKhachhang;
     private HoaDonJPanel panelhoadon;
     private TrangChu panelTrangChu;
@@ -33,8 +33,8 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         setLocationRelativeTo(this);
-//        panelSell = new BanHang();
-        panelSanPham = new SanPham1();
+        panelSell = new BanHang();
+        panelSanPham = new SanPham();
         panelKhachhang = new KháchHang();
         panelhoadon = new HoaDonJPanel();
         panelTrangChu = new TrangChu();
@@ -559,7 +559,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_TrangChuMouseClicked
 
     private void BanHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BanHangMouseClicked
-//        showPanel(panelSell);
+        showPanel(panelSell);
     }//GEN-LAST:event_BanHangMouseClicked
 
     private void BanHangMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BanHangMouseEntered
@@ -710,7 +710,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_iblnvAncestorAdded
 
     private void khuyenmaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khuyenmaiMouseClicked
-         showPanel(panelKhuyenMaii);
+        showPanel(panelKhuyenMaii);
     }//GEN-LAST:event_khuyenmaiMouseClicked
 
     private void khuyenmaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khuyenmaiMouseEntered
@@ -738,7 +738,6 @@ public class Main extends javax.swing.JFrame {
 ////        iblnv.setText("Tên Nhân Viên: Not Found");
 ////    }
 //}
-
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

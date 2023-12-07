@@ -606,11 +606,11 @@ public class ThongKePanel extends javax.swing.JPanel {
                 uniqueStatusValues.add(status);
             }
 
-            if (status.equals("Đã thanh toán")) {
+            if (status.equals("Đã Thanh Toán")) {
                 paidCount++;
             } else if (status.equals("Hủy")) {
                 canceledCount++;
-            } else if (status.equals("Chưa thanh toán")) {
+            } else if (status.equals("Chưa Thanh Toán")) {
                 pendingCount++;
             }
         }
