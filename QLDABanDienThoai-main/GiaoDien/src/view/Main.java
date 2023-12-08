@@ -73,7 +73,7 @@ public class Main extends javax.swing.JFrame {
         vuuu = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btndoimatkhau = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
@@ -84,7 +84,7 @@ public class Main extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        iblnv = new javax.swing.JLabel();
+        iblnhanvien = new javax.swing.JLabel();
         MainChinh = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -356,7 +356,12 @@ public class Main extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(0, 51, 255));
         jLabel9.setText("Hỗ Trợ");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/changepass-removebg-preview.png"))); // NOI18N
+        btndoimatkhau.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/changepass-removebg-preview.png"))); // NOI18N
+        btndoimatkhau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndoimatkhauActionPerformed(evt);
+            }
+        });
 
         jLabel10.setForeground(new java.awt.Color(0, 51, 255));
         jLabel10.setText("Đổi mật khẩu");
@@ -400,11 +405,11 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        iblnv.setForeground(new java.awt.Color(255, 0, 51));
-        iblnv.setText("Ten");
-        iblnv.addAncestorListener(new javax.swing.event.AncestorListener() {
+        iblnhanvien.setForeground(new java.awt.Color(255, 0, 51));
+        iblnhanvien.setText("Ten");
+        iblnhanvien.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                iblnvAncestorAdded(evt);
+                iblnhanvienAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -421,8 +426,8 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(iblnv)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(iblnhanvien)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel14))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -444,7 +449,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabel14)
                     .addComponent(jLabel17)
                     .addComponent(jLabel18)
-                    .addComponent(iblnv))
+                    .addComponent(iblnhanvien))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
@@ -466,7 +471,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(vuuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(vuuuLayout.createSequentialGroup()
                         .addGap(82, 82, 82)
-                        .addComponent(jButton2))
+                        .addComponent(btndoimatkhau))
                     .addGroup(vuuuLayout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(jLabel10)))
@@ -483,7 +488,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(vuuuLayout.createSequentialGroup()
                 .addGroup(vuuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btndoimatkhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(vuuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -705,9 +710,9 @@ public class Main extends javax.swing.JFrame {
         NhanVien.setBackground(Color.RED);
     }//GEN-LAST:event_NhanVienMousePressed
 
-    private void iblnvAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_iblnvAncestorAdded
+    private void iblnhanvienAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_iblnhanvienAncestorAdded
 
-    }//GEN-LAST:event_iblnvAncestorAdded
+    }//GEN-LAST:event_iblnhanvienAncestorAdded
 
     private void khuyenmaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khuyenmaiMouseClicked
         showPanel(panelKhuyenMaii);
@@ -724,20 +729,16 @@ public class Main extends javax.swing.JFrame {
     private void khuyenmaiMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khuyenmaiMousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_khuyenmaiMousePressed
-////   private void displayTenNhanVien(String maNhanVien) {
-////    // Assuming TaiKhoan has a parameterless constructor
-////    TaiKhoan taiKhoan = new TaiKhoan();
-////    
-////    NhanVienYk nv = taiKhoan.timKiemMaTK(maNhanVien);
-////
-////    if (nv != null) {
-////        String hoTen = nv.getHoTen();
-////        iblnv.setText("Tên Nhân Viên: " + (hoTen != null));
-////    } else {
-////        // Handle the case where the employee is not found
-////        iblnv.setText("Tên Nhân Viên: Not Found");
-////    }
-//}
+
+    private void btndoimatkhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndoimatkhauActionPerformed
+        this.dispose();
+        DoiMatKhau DoiMaKhau = new DoiMatKhau();
+        DoiMaKhau.pack();
+        DoiMaKhau.setLocationRelativeTo(null);
+        DoiMaKhau.setVisible(true);
+    }//GEN-LAST:event_btndoimatkhauActionPerformed
+
+ 
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -781,9 +782,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel SanPham;
     private javax.swing.JLabel Thongke;
     private javax.swing.JLabel TrangChu;
-    private javax.swing.JLabel iblnv;
+    private javax.swing.JButton btndoimatkhau;
+    private javax.swing.JLabel iblnhanvien;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -803,4 +804,5 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel menu;
     private javax.swing.JPanel vuuu;
     // End of variables declaration//GEN-END:variables
+
 }

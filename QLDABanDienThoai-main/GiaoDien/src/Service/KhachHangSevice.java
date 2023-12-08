@@ -139,7 +139,7 @@ public class KhachHangSevice {
                 so.setTongTien(rs.getFloat("TONGTIEN"));
                 so.setTrangThai(rs.getString("TRANGTHAI"));
                 SanPham sp = new SanPham();
-                sp.setTenSP(rs.getString("TenSP"));
+                sp.setTenSP(rs.getString("TENSP"));
                 kh.setHoaDonCT(so);
 
                 kh.setSanPham(sp);

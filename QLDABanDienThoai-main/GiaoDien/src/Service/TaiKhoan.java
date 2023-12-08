@@ -45,8 +45,26 @@ public class TaiKhoan {
             String sql = "INSERT INTO TAIKHOAN (MANV, MatKhau, VaiTro) VALUES (?, ?, ?)";
             try (PreparedStatement ps = cn.prepareStatement(sql)) {
                 ps.setString(1, nv.getMaNV());
-                ps.setString(2, "DefaultPassword");
+                ps.setString(2, "");
                 ps.setBoolean(3, nv.isVaiTro());
+
+                int row = ps.executeUpdate();
+
+                return row > 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public boolean doiMatKhau(String maNV, String matKhauMoi) {
+        try (Connection cn = DBConnector.getConnection()) {
+            String sql = "UPDATE TAIKHOAN SET MatKhau = ? WHERE MANV = ?";
+            try (PreparedStatement ps = cn.prepareStatement(sql)) {
+                ps.setString(1, matKhauMoi);
+                ps.setString(2, maNV);
 
                 int row = ps.executeUpdate();
 
