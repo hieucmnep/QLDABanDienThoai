@@ -329,8 +329,8 @@
                                 <StringItem index="4" value="Iphone"/>
                                 <StringItem index="5" value="Huawie"/>
                                 <StringItem index="6" value="Sony"/>
-                                <StringItem index="7" value="Vsmart"/>
-                                <StringItem index="8" value="Pixel"/>
+                                <StringItem index="7" value="OnePlus"/>
+                                <StringItem index="8" value="Google"/>
                               </StringArray>
                             </Property>
                           </Properties>
@@ -617,7 +617,7 @@
                               <Font name="Segoe UI" size="12" style="1"/>
                             </Property>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="10">
+                              <StringArray count="12">
                                 <StringItem index="0" value="T&#x1ea5;t c&#x1ea3;"/>
                                 <StringItem index="1" value="Xiaomi"/>
                                 <StringItem index="2" value="Realme"/>
@@ -628,6 +628,8 @@
                                 <StringItem index="7" value="Sony"/>
                                 <StringItem index="8" value="Vsmart"/>
                                 <StringItem index="9" value="Pixel"/>
+                                <StringItem index="10" value="OnePlus"/>
+                                <StringItem index="11" value="Google"/>
                               </StringArray>
                             </Property>
                           </Properties>
@@ -1157,7 +1159,7 @@
                               <Font name="Segoe UI" size="12" style="1"/>
                             </Property>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="9">
+                              <StringArray count="11">
                                 <StringItem index="0" value="Xiaomi"/>
                                 <StringItem index="1" value="Realme"/>
                                 <StringItem index="2" value="Oppo"/>
@@ -1167,6 +1169,8 @@
                                 <StringItem index="6" value="Sony"/>
                                 <StringItem index="7" value="Vsmart"/>
                                 <StringItem index="8" value="Pixel"/>
+                                <StringItem index="9" value="OnePlus"/>
+                                <StringItem index="10" value="Google"/>
                               </StringArray>
                             </Property>
                           </Properties>

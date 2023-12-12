@@ -75,7 +75,7 @@ public class BanHang extends javax.swing.JPanel implements KhachHangSelectedList
             for (SanPham sp : productList) {
                 // Lấy đường dẫn tới ảnh trong project (điều này cần được điều chỉnh phù hợp với cấu trúc thư mục của project của bạn)
                 // Sử dụng đường dẫn tuyệt đối
-                String imagePath = "C:\\Users\\LE DINH LINH\\Downloads\\GiaoDien\\src\\img\\" + sp.getHinhSP();
+                String imagePath = "D:\\QLDABanDienThoai\\QLDABanDienThoai-main\\GiaoDien\\src\\img" + sp.getHinhSP();
                 ImageIcon hinhAnhIcon = new ImageIcon(imagePath);
 
                 // Định dạng giá thành chuỗi VND
@@ -572,7 +572,7 @@ public class BanHang extends javax.swing.JPanel implements KhachHangSelectedList
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setText("Tìm Kiếm:");
 
-        cbbThuongHieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Chọn Thương hiệu --", "Samsung", "Apple", "OnePlus", "Google", "Xiaomi" }));
+        cbbThuongHieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Chọn Thương hiệu --", "Samsung", "Apple", "OnePlus", "Google", "Xiaomi", "Realme", "Oppo", "Huawie", "Sony" }));
         cbbThuongHieu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cbbThuongHieuMouseClicked(evt);
@@ -805,7 +805,7 @@ public class BanHang extends javax.swing.JPanel implements KhachHangSelectedList
                             TongTien += totalAmount;
 
                             // Hiển thị hình ảnh, tên sản phẩm, giá, số lượng và tổng tiền dưới bảng "Đơn Hàng"
-                            String imagePath = "C:\\Users\\LE DINH LINH\\Downloads\\GiaoDien\\src\\img\\" + selectedProduct.getHinhSP();
+                            String imagePath = "D:\\QLDABanDienThoai\\QLDABanDienThoai-main\\GiaoDien\\src\\img" + selectedProduct.getHinhSP();
                             ImageIcon hinhAnhIcon = new ImageIcon(imagePath);
 
                             String giaFormatted = String.format("%,.0f VND", selectedProduct.getGia()); // Định dạng giá

@@ -53,14 +53,15 @@ public class NhanVien extends javax.swing.JPanel {
     String strFind = "";
     String findByName = "";
     String findByRole = "";
-    String duongdananh = "C:\\DuAn1DT\\QLDABanDienThoai-main\\GiaoDien\\src\\img";
-    ImageIcon iconmessage = new ImageIcon("C:\\DuAn1DT\\QLDABanDienThoai-main\\GiaoDien\\src\\Icon");
-    ImageIcon icon_message_error = new ImageIcon("C:\\DuAn1DT\\QLDABanDienThoai-main\\GiaoDien\\src\\Icon");
+    String duongdananh = "D:\\QLDABanDienThoai\\QLDABanDienThoai-main\\GiaoDien\\src\\Icon\\1.jpg";
+    ImageIcon iconmessage = new ImageIcon("D:\\QLDABanDienThoai\\QLDABanDienThoai-main\\GiaoDien\\src\\Icon\\Comments.png");
+    ImageIcon icon_message_error = new ImageIcon("D:\\QLDABanDienThoai\\QLDABanDienThoai-main\\GiaoDien\\src\\Icon\\Warning.png");
+    ImageIcon icon_add = new ImageIcon("D:\\QLDABanDienThoai\\QLDABanDienThoai-main\\GiaoDien\\src\\Icon\\Add.png");
+    ImageIcon icon_update = new ImageIcon("D:\\QLDABanDienThoai\\QLDABanDienThoai-main\\GiaoDien\\src\\Icon\\Edit.png");
 
     public NhanVien() {
         init();
     }
-  
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -93,7 +94,6 @@ public class NhanVien extends javax.swing.JPanel {
         cbovaitro = new javax.swing.JComboBox<>();
         btnthem = new javax.swing.JButton();
         btnsua = new javax.swing.JButton();
-        btnxoa = new javax.swing.JButton();
         btnlammoi = new javax.swing.JButton();
         anh = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -227,16 +227,6 @@ public class NhanVien extends javax.swing.JPanel {
         btnsua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnsuaActionPerformed(evt);
-            }
-        });
-
-        btnxoa.setBackground(new java.awt.Color(255, 0, 51));
-        btnxoa.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        btnxoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Delete.png"))); // NOI18N
-        btnxoa.setText("Xóa");
-        btnxoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnxoaActionPerformed(evt);
             }
         });
 
@@ -468,7 +458,7 @@ public class NhanVien extends javax.swing.JPanel {
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Search.png"))); // NOI18N
         jLabel15.setText("Lọc thông tin");
 
-        jLabel2.setText("Hình Anh");
+        jLabel2.setText("Hình Ảnh");
 
         txthinhanh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -505,8 +495,7 @@ public class NhanVien extends javax.swing.JPanel {
                         .addGap(26, 26, 26)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnxoa)
-                                .addGap(28, 28, 28)
+                                .addGap(124, 124, 124)
                                 .addComponent(btnlammoi)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -559,7 +548,7 @@ public class NhanVien extends javax.swing.JPanel {
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtcmnd, txtdiachi, txtemail, txthoten, txtluong, txtmanv, txtngaysinh, txtsdt});
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnsua, btnthem, btnxoa});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnsua, btnthem});
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -608,7 +597,6 @@ public class NhanVien extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnthem)
                             .addComponent(btnsua)
-                            .addComponent(btnxoa)
                             .addComponent(btnlammoi)
                             .addComponent(jLabel2)
                             .addComponent(txthinhanh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -632,18 +620,17 @@ public class NhanVien extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(202, 202, 202))
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(194, 194, 194))
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(202, 202, 202))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(194, 194, 194))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -666,47 +653,38 @@ public class NhanVien extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnthemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemActionPerformed
-        // TODO add your handling code here:
         Component parentComponent = SwingUtilities.getWindowAncestor(this);
         NhanVienModel nv = getFrom1();
         if (nv == null) {
             return;
         }
-        if (nv != null) {
-            nvs.add(nv);
-            loadTable();
-            JOptionPane.showMessageDialog(parentComponent, "Thêm dữ liệu thành công !", "Thông Báo", HEIGHT, iconmessage);
-        } else {
-            JOptionPane.showMessageDialog(parentComponent, "Thêm dữ liệu thất bại !", "Thông Báo", HEIGHT, icon_message_error);
+        int luaChon = JOptionPane.showConfirmDialog(parentComponent, "Xác nhận thêm nhân viên mới ? Yes : No !", "Thông Báo", WIDTH, HEIGHT, icon_add);
+        if (luaChon == JOptionPane.YES_OPTION) {
+            if (nv != null) {
+                nvs.add(nv);
+                loadTable();
+                JOptionPane.showMessageDialog(parentComponent, "Thêm dữ liệu thành công !", "Thông Báo", HEIGHT, iconmessage);
+            } else {
+                JOptionPane.showMessageDialog(parentComponent, "Thêm dữ liệu thất bại !", "Thông Báo", HEIGHT, icon_message_error);
 
+            }
         }
     }//GEN-LAST:event_btnthemActionPerformed
 
     private void btnsuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsuaActionPerformed
-        // TODO add your handling code here:
         Component parentComponent = SwingUtilities.getWindowAncestor(this);
         int row = tblNhanVien.getSelectedRow();
         NhanVienModel nv = getFrom();
-        if (nv == null) {
-            return;
+        int luaChon = JOptionPane.showConfirmDialog(parentComponent, "Bạn có muốn sửa đối tượng này không ?", "Thông báo", WIDTH, HEIGHT, icon_update);
+        if (luaChon == JOptionPane.YES_OPTION) {
+            if (nv == null) {
+                return;
+            }
+            nvs.update(nv);
+            loadTable();
+            JOptionPane.showMessageDialog(parentComponent, "Sửa thành công !", "Thông Báo", HEIGHT, iconmessage);
         }
-        nvs.update(nv);
-        loadTable();
-        JOptionPane.showMessageDialog(parentComponent, "Sửa thành công !", "Thông Báo", HEIGHT, iconmessage);
     }//GEN-LAST:event_btnsuaActionPerformed
-
-    private void btnxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaActionPerformed
-        // TODO add your handling code here:
-        Component parentComponent = SwingUtilities.getWindowAncestor(this);
-        int row = tblNhanVien.getSelectedRow();
-        NhanVienModel nv = getFrom();
-        if (nv == null) {
-            return;
-        }
-        nvs.remove(nv);
-        loadTable();
-        JOptionPane.showMessageDialog(parentComponent, "Xóa thành công !", "Thông Báo", HEIGHT, iconmessage);
-    }//GEN-LAST:event_btnxoaActionPerformed
 
     private void btnlammoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlammoiActionPerformed
         // TODO add your handling code here:
@@ -729,7 +707,7 @@ public class NhanVien extends javax.swing.JPanel {
 
     private void btnchonanhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnchonanhActionPerformed
         try {
-            JFileChooser f = new JFileChooser("C:\\Users\\ADMIN\\Downloads\\DuAn1-main (1)\\DuAn1-main\\GiaoDien\\src\\img");
+            JFileChooser f = new JFileChooser("D:\\QLDABanDienThoai\\QLDABanDienThoai-main\\GiaoDien\\src\\img");
             f.setDialogTitle("Mở File");
             Component parentComponent = SwingUtilities.getWindowAncestor(this);
             f.showOpenDialog(parentComponent);
@@ -799,7 +777,7 @@ public class NhanVien extends javax.swing.JPanel {
         txtluong.setText("" + luong);
         int col = tblNhanVien.getSelectedColumn();
         txthinhanh.setText((String) tblNhanVien.getValueAt(row, 11));
-        ImageIcon icon1 = new ImageIcon("C://java_3_Projects//duan1//src//poly//img" + "//" + tblNhanVien.getValueAt(row, 11));
+        ImageIcon icon1 = new ImageIcon("D:\\QLDABanDienThoai\\QLDABanDienThoai-main\\GiaoDien\\src\\img" + "//" + tblNhanVien.getValueAt(row, 11));
         anh.setIcon(icon1);
 
         // Kiểm tra xem ô được chọn có phải là ô chứa giá trị int không
@@ -890,7 +868,7 @@ public class NhanVien extends javax.swing.JPanel {
 
             }
             Component parentComponent = SwingUtilities.getWindowAncestor(this);
-            File f = new File("H://danhsachnhanvien.xlsx"); // tạo đường dẫn lưa file
+            File f = new File("D://danhsachnhanvien.xlsx"); // tạo đường dẫn lưa file
             try {
                 FileOutputStream fis = new FileOutputStream(f); // dùng fos để đọc file
                 wordkbook.write(fis);
@@ -1251,7 +1229,6 @@ public class NhanVien extends javax.swing.JPanel {
     private javax.swing.JButton btnsua;
     private javax.swing.JButton btnthem;
     private javax.swing.JButton btntimkiem;
-    private javax.swing.JButton btnxoa;
     private javax.swing.JButton btnxuatfile;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cboloctheochucvu;

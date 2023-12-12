@@ -24,6 +24,7 @@ public class KhoHangSevice {
         Connection cnt = DBConnector.getConnection();
         String sql = "SELECT SANPHAM.MASP,TENSP,GIA,NGAYNHAP,SUM(SANPHAMCT.SOLUONG) as TONG\n"
                 + "FROM SANPHAMCT JOIN SANPHAM ON SANPHAMCT.MASP = SANPHAM.MASP\n"
+                + "where (SANPHAMCT.SOLUONG)  > 0 \n"
                 + "Group by NGAYNHAP,SANPHAM.MASP,TENSP,GIA";
         try {
             PreparedStatement psm = cnt.prepareStatement(sql);
@@ -34,7 +35,6 @@ public class KhoHangSevice {
                 kh.setTenSp(rs.getString(2));
                 kh.setGia(rs.getFloat(3));
                 kh.setSoluong(rs.getInt(5));
-
                 SanPhamCT sp = new SanPhamCT();
                 sp.setNgayNhap(rs.getDate(4));
                 kh.setSp(sp);
@@ -49,39 +49,40 @@ public class KhoHangSevice {
         }
         return KH;
     }
-public ArrayList<KhoHang> searchJoinSPKH(String searchString) {
-    ArrayList<KhoHang> khm = new ArrayList<>();
-    Connection cnt = DBConnector.getConnection();
-    String sql = "SELECT SANPHAM.MASP, TENSP, GIA, NGAYNHAP, SUM(SANPHAMCT.SOLUONG) as TONG \n"
-            + "FROM SANPHAMCT JOIN SANPHAM ON SANPHAMCT.MASP = SANPHAM.MASP\n"
-            + "WHERE TENSP LIKE ? OR SANPHAM.MASP LIKE ?\n"
-            + "GROUP BY SANPHAM.MASP, TENSP, GIA, NGAYNHAP";
 
-    try {
-        PreparedStatement psm = cnt.prepareStatement(sql);
+    public ArrayList<KhoHang> searchJoinSPKH(String searchString) {
+        ArrayList<KhoHang> khm = new ArrayList<>();
+        Connection cnt = DBConnector.getConnection();
+        String sql = "SELECT SANPHAM.MASP, TENSP, GIA, NGAYNHAP, SUM(SANPHAMCT.SOLUONG) as TONG \n"
+                + "FROM SANPHAMCT JOIN SANPHAM ON SANPHAMCT.MASP = SANPHAM.MASP\n"
+                + "WHERE TENSP LIKE ? OR SANPHAM.MASP LIKE ?\n"
+                + "GROUP BY SANPHAM.MASP, TENSP, GIA, NGAYNHAP";
 
-        psm.setString(1, "%" + searchString + "%");
-        psm.setString(2, "%" + searchString + "%");
+        try {
+            PreparedStatement psm = cnt.prepareStatement(sql);
 
-        ResultSet rs = psm.executeQuery();
-        while (rs.next()) {
-            KhoHang kh = new KhoHang();
-            kh.setMasp(rs.getString(1));
-            kh.setTenSp(rs.getString(2));
-            kh.setGia(rs.getFloat(3));
-            kh.setSoluong(rs.getInt(5));
-            SanPhamCT sp = new SanPhamCT();
-            sp.setNgayNhap(rs.getDate(4));
-            kh.setSp(sp);
+            psm.setString(1, "%" + searchString + "%");
+            psm.setString(2, "%" + searchString + "%");
 
-            khm.add(kh);
+            ResultSet rs = psm.executeQuery();
+            while (rs.next()) {
+                KhoHang kh = new KhoHang();
+                kh.setMasp(rs.getString(1));
+                kh.setTenSp(rs.getString(2));
+                kh.setGia(rs.getFloat(3));
+                kh.setSoluong(rs.getInt(5));
+                SanPhamCT sp = new SanPhamCT();
+                sp.setNgayNhap(rs.getDate(4));
+                kh.setSp(sp);
+
+                khm.add(kh);
+            }
+            psm.close();
+            rs.close();
+            cnt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        psm.close();
-        rs.close();
-        cnt.close();
-    } catch (Exception e) {
-        e.printStackTrace();
+        return khm;
     }
-    return khm;
-}
 }

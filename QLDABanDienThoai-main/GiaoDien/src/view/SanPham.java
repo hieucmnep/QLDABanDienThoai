@@ -227,7 +227,7 @@ public class SanPham extends javax.swing.JPanel {
         jLabel4.setText("Thương hiệu :");
 
         cbbthuonghieu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        cbbthuonghieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Xiaomi", "Realme", "Oppo", "Samsung", "Iphone", "Huawie", "Sony", "Vsmart", "Pixel" }));
+        cbbthuonghieu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Xiaomi", "Realme", "Oppo", "Samsung", "Iphone", "Huawie", "Sony", "OnePlus", "Google" }));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Màu sắc :");
@@ -382,7 +382,7 @@ public class SanPham extends javax.swing.JPanel {
         });
 
         cbblocth.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        cbblocth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Xiaomi", "Realme", "Oppo", "Samsung", "Iphone", "Huawie", "Sony", "Vsmart", "Pixel" }));
+        cbblocth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Xiaomi", "Realme", "Oppo", "Samsung", "Iphone", "Huawie", "Sony", "Vsmart", "Pixel", "OnePlus", "Google" }));
         cbblocth.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbblocthItemStateChanged(evt);
@@ -560,7 +560,7 @@ public class SanPham extends javax.swing.JPanel {
         jLabel16.setText("Thương hiệu :");
 
         cbbthuonghieuct.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        cbbthuonghieuct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Xiaomi", "Realme", "Oppo", "Samsung", "Iphone", "Huawie", "Sony", "Vsmart", "Pixel" }));
+        cbbthuonghieuct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Xiaomi", "Realme", "Oppo", "Samsung", "Iphone", "Huawie", "Sony", "Vsmart", "Pixel", "OnePlus", "Google" }));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel17.setText("Màu sắc :");

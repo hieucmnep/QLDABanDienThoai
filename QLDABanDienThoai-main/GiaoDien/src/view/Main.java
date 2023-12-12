@@ -78,13 +78,9 @@ public class Main extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        iblnhanvien = new javax.swing.JLabel();
         MainChinh = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -379,20 +375,13 @@ public class Main extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 204, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel13.setForeground(new java.awt.Color(0, 0, 255));
-        jLabel13.setText("Nhân viên:");
-
-        jLabel15.setForeground(new java.awt.Color(0, 0, 255));
-        jLabel15.setText("Vị Trí");
-
-        jLabel16.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel16.setText("Giám Đốc");
-
         jLabel14.setForeground(new java.awt.Color(255, 0, 51));
 
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 0, 255));
         jLabel17.setText("Thời gian");
 
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 0, 51));
         jLabel18.setText("Date");
         jLabel18.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -405,56 +394,28 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        iblnhanvien.setForeground(new java.awt.Color(255, 0, 51));
-        iblnhanvien.setText("Ten");
-        iblnhanvien.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                iblnhanvienAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(iblnhanvien)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel14))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel16)))
-                .addGap(54, 54, 54)
+                .addGap(108, 108, 108)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17)
-                .addGap(30, 30, 30)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel18)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
                     .addComponent(jLabel14)
                     .addComponent(jLabel17)
-                    .addComponent(jLabel18)
-                    .addComponent(iblnhanvien))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel16))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(jLabel18))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout vuuuLayout = new javax.swing.GroupLayout(vuuu);
@@ -710,10 +671,6 @@ public class Main extends javax.swing.JFrame {
         NhanVien.setBackground(Color.RED);
     }//GEN-LAST:event_NhanVienMousePressed
 
-    private void iblnhanvienAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_iblnhanvienAncestorAdded
-
-    }//GEN-LAST:event_iblnhanvienAncestorAdded
-
     private void khuyenmaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_khuyenmaiMouseClicked
         showPanel(panelKhuyenMaii);
     }//GEN-LAST:event_khuyenmaiMouseClicked
@@ -783,17 +740,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel Thongke;
     private javax.swing.JLabel TrangChu;
     private javax.swing.JButton btndoimatkhau;
-    private javax.swing.JLabel iblnhanvien;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
